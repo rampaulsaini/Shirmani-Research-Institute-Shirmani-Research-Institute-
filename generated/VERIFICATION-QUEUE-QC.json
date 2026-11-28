@@ -1,9 +1,11 @@
 {
-  "version": 1,
-  "records": 100200,
-  "unique_tasks": 100200,
-  "claim_records": 100200,
+  "version": 2,
+  "records": 10,
+  "queue_records": 10,
+  "unique_tasks": 10,
+  "unique_claims": 10,
   "error_count": 0,
   "publication_gate": "PASS",
+  "verification_policy": "Queue structure and provenance are checked against authoritative records; VERIFIED queue states require independent review markers and remain subject to the separate promotion gate.",
   "errors": []
 }

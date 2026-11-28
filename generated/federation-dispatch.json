@@ -1,17 +1,11 @@
 {
   "schema_version": 1,
-  "federation_id": "UNKNOWN",
-  "generated_at": null,
+  "repository": "rampaulsaini/Omniverse-Platform",
+  "generated_at": "2026-11-28T14:08:05.025326+00:00",
   "source_generated_at": null,
   "state": "UNKNOWN",
-  "dispatch": {
-    "attempted": 0,
-    "dispatched": 0,
-    "deferred": 0,
-    "failed": 0,
-    "invalid": 0
-  },
-  "targets": [],
   "dispatch_record_verified": false,
-  "note": "Bootstrap placeholder only. No central dispatch record has been fetched or independently validated. This file is replaced by the federation sync workflow when a valid central record is available."
+  "dispatch": null,
+  "targets": [],
+  "note": "Central dispatch record has not yet been synchronized."
 }

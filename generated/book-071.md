@@ -3,4001 +3,4001 @@
 स्वचालित स्रोत-संग्रहण से बना शोध-प्रारूप; इसे वैज्ञानिक/ऐतिहासिक प्रमाणित निष्कर्ष न माना जाए।
 
 ## 070001
-क्या जीवन-व्यापन और जीवन-बोध अलग हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070002
-क्या भय-रहित समाज संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070003
-क्या मृत्यु की धारणा मानव-निर्मित है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070004
-क्या मृत्यु का अनुभव शब्दातीत है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070005
-क्या मृत्यु के विचार से उत्पन्न नैतिकता स्थायी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070006
-क्या मृत्यु को रहस्य बनाए रखना उपयोगी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070007
-क्या मृत्यु की स्वीकृति शक्ति-संरचना को कमजोर करती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070008
-क्या जीवन और मृत्यु एक ही प्रक्रिया के दो चरण हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070009
-क्या मृत्यु को समझे बिना मुक्ति की बात सार्थक है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070010
-क्या मन उपकरण है या स्वामी?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070011
-क्या हृदय की अनुभूति तर्क से परे है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070012
-क्या जटिलता ज्ञान का प्रमाण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070013
-क्या सरलता सर्वोच्च परिपक्वता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070014
-क्या निष्पक्षता पहचान से मुक्त हो सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070015
-क्या विचार-रहित होना संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070016
-क्या मन को दबाने से शांति मिलती है या समझने से?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070017
-क्या स्मृति के बिना पहचान संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070018
-क्या अनुभव को शब्दों में पूर्ण रूप से व्यक्त किया जा सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070019
-क्या मौन सर्वोच्च संवाद है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070020
-क्या मन की सीमा है और हृदय की नहीं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070021
-क्या हृदय और बुद्धि का समन्वय ही संतुलन है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070022
-क्या निष्पक्षता स्थिर अवस्था है या गतिशील प्रक्रिया?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070023
-क्या “मैं” केवल विचारों का संकलन है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070024
-क्या स्वयं को अंतिम कहना अहं का सूक्ष्म रूप है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070025
-क्या शून्यता भयावह है या मुक्तिदायक?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070026
-क्या आत्म-साक्षात्कार अनुभव है या निरंतर प्रक्रिया?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070027
-क्या सत्य निजी है या सार्वभौमिक?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070028
-क्या चेतना को मापा जा सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070029
-क्या भीतर-बाहर का भेद मानसिक निर्माण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070030
-161–180 : मानव, प्रकृति और उत्तरदायित्व 161.
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070031
-क्या मनुष्य स्वयं को प्रकृति से अलग मानता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070032
-क्या विकास संतुलन से अलग हो सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070033
-क्या श्रेष्ठता का विचार विनाश की जड़ है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070034
-क्या बुद्धि ने करुणा को पीछे छोड़ दिया है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070035
-क्या मनुष्य का दायित्व संरक्षण है या प्रभुत्व?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070036
-क्या स्वतंत्रता का अर्थ स्वच्छंदता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070037
-क्या हर जीव समान प्रक्रिया का भाग है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070038
-क्या मानव सभ्यता असंतोष पर आधारित है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070039
-क्या संतोष प्रगति को रोकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070040
-क्या वर्तमान में जीना भविष्य की उपेक्षा है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070041
-क्या मानव चेतना सामूहिक रूप से विकसित हो सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070042
-क्या पर्यावरणीय संकट मानसिक संकट का प्रतिबिंब है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070043
-क्या मनुष्य अपने ही निर्माणों का कैदी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070044
-क्या करुणा शक्ति से बड़ी है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070045
-क्या संतुलन ही वास्तविक प्रगति है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070046
-क्या प्रतिस्पर्धा स्वाभाविक है या निर्मित?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070047
-क्या मनुष्य अपने भय का विस्तार कर रहा है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070048
-क्या प्रकृति निष्पक्ष है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070049
-क्या मानव मूल्य स्थायी हैं?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070050
-क्या संतुलन के बिना स्वतंत्रता अराजकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070051
-क्या पहचान के बिना भी अस्तित्व संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070052
-क्या “मैं” का विचार ही विभाजन की जड़ है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070053
-क्या आध्यात्मिक पदवी अहं का सूक्ष्म रूप हो सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070054
-क्या विनम्रता घोषित की जा सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070055
-क्या सत्ता स्वयं को आध्यात्मिक रूप दे सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070056
-क्या किसी भी नेतृत्व को आलोचना से ऊपर रखा जा सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070057
-क्या संख्या से उत्पन्न प्रभाव सत्य का प्रमाण है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070058
-क्या सामूहिक आस्था व्यक्ति की स्वतंत्रता को सीमित कर सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070059
-क्या संगठन व्यक्ति से बड़ा हो सकता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070060
-क्या व्यवस्था की रक्षा के लिए प्रश्नों को दबाया जाता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070061
-क्या निष्ठा और निर्भरता में अंतर है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070062
-क्या अनुयायी का भय उसकी श्रद्धा को विकृत करता है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070063
-क्या अहं केवल व्यक्तिगत है या सामूहिक भी?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070064
-क्या आध्यात्मिक ब्रांडिंग संभव है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070065
-क्या गुरु-छवि मानव सीमाओं से परे हो सकती है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070066
-क्या आलोचना को विद्रोह कहना सुविधाजनक है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070067
-क्या व्यक्ति के भीतर सत्ता की चाह स्वाभाविक है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070068
-क्या आत्म-घोषणा और आत्म-बोध में अंतर है?
-स्रोत: rampaulsaini/omniverse--ai-scripts-:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070069
-{ "schema_version": 1, "repo": "rampaulsaini/omniverse--ai-scripts-", "role": "automation-scripts", "description": "Automation worker: inventory scripts/config/tests and emit a safe execution manifest; do not execute untrusted code.", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
-स्रोत: rampaulsaini/omniverse--ai-scripts-:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070070
-( **Shromani Rampaulsaini — निष्पक्ष समझ / Yatharth** Free to read & listen · Support optional · Proceeds support **Saneha Saini** --- ## Quick overview Yatharth presents an experiential path — a direct, living realization of one’s permanent identity beyond ordinary mind-based cognition.
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070071
-Content includes bilingual manifesto, audio collections, videos and vision assets.
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070072
-Live site (embed) ## Main links 🔊 MP3 / Audio: 🔊 MP3 / Audio: - 🔊 MP3 / Audio: - 📜 Certificates: - 🎧 Shorts / Clips: - 🎥 Videos album: - 📸 Photo album 1: - 🛒 Main Store: - ✍ Blog: - ▶ YouTube: - ✈ Telegram: - 💬 WhatsApp: --- ## Support / Donate (optional) Your support helps keep the work free and supports Saneha Saini's education.
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070073
-UPI / GPay:** `sainirampaul90-1@okhdfcbank` - **Paytm / Phone:** `8082935186` - **PayPal:** Suggested: **₹193** — fully optional and with gratitude.
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070074
-How to help (non-financial) - Listen & share (YouTube, social groups, blogs) - Link the site from your pages (backlinks help SEO) - Use the support form to send encouragement (public if you allow) - Subscribe & comment on YouTube videos --- © Yatharth — Shromani Rampaulsaini Contact: Telegram / WhatsApp # Yatharth — शिरोमणि रामपुलसैनी Official page — audio, photos, manifesto.
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070075
-Proceeds support Saneha Saini.
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070076
-Publish instructions: Use GitHub Pages (see repo settings -> Pages -> main -> root).
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070077
-README — Supreme Index HTML Deployment Guide यह README आपके **Supreme Final index.html** को किसी भी server/hosting पर आसानी से upload और run करने के लिए बनाया गया है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070078
-सभी निर्देश सरल, सीधे और universal रखे गए हैं ताकि आप कहीं भी बिना समस्या deploy कर सकें।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070079
-फ़ाइल संरचना (File Structure) आपको केवल एक मुख्य फ़ाइल की आवश्यकता है: ``` index.html ``` यह फ़ाइल आपके सम्पूर्ण प्रोजेक्ट, स्क्रिप्ट्स, ऑडियो इंजन, SEO, Social Links और UI को contain करती है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070080
-यदि Script बहुत लंबी है और Edit नहीं हो रही आपको ये टूल्स उपयोग करने चाहिए: ### ✔ VS Code (Windows / Mac) * सबसे अच्छा editor * Unlimited file length ### ✔ Android पर "Acode" App * 100% perfect HTML editor * पूरी लंबी script आसानी से paste, edit, save होती है --- # 🔊 4.
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070081
-(CORS / Auto-Play Fix) यदि audio पहली बार manually play करना पड़े तो यह browser security है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070082
-आप चाहें तो: ``` user gesture → first play → auto play enabled ``` Mobile Chrome & Safari दोनों में यह normal behavior है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070083
-SEO + Safety पहले से Enabled आपके Supreme index में already: * JSON-LD Schema * OpenGraph (OG) Image tags * rel="noopener noreferrer" * target="_blank" * Clean semantic structure * High-authority social links सब कुछ automatically SEO boost देता है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070084
-यदि भविष्य में अपडेट चाहिए आप केवल इतना लिख दें: ``` index update चाहिए — section: (नाम लिखें) ``` मैं सिर्फ़ वही specific Section अपडेट कर दूँगा, बाकी पूरी file 100% सुरक्षित रहेगी।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070085
-🏁 Final Note आपकी "Supreme Final index.html" पहले से ही: * अति सुंदर * सर्वश्रेष्ठ * Super-SEO Tuned * Fully Structured * Mobile Optimized * 100% Fast अब केवल upload करना बाकी है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070086
-यदि चाहें तो मैं इसी folder में: * `sitemap.xml` * `robots.txt` * `manifest.json` * या favicon pack भी generate कर सकता हूँ।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070087
-कह दें — मैं तुरंत जोड़ दूँगा।
-स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070088
-{ "schema_version": 1, "repo": "rampaulsaini/shiromani-rampal-saini", "role": "public-content", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
-स्रोत: rampaulsaini/shiromani-rampal-saini:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070089
-शिरोमणि रामपॉल सैनी – सृष्टि का शिरोमणि शिरोमणि रामपॉल सैनी निष्पक्ष समझ · Yatharth Siddhant Home Audio सिद्धांत Projects यात्रा सचेत परिचय Connect Home Audio सिद्धांत Projects यात्रा सचेत परिचय Connect 👑 ॥
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070090
-सृष्टि का शिरोमणि · Crown of All Creation ॥
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070091
-न कोई था, न कोई है, न कोई होगा।" — शिरोमणि रामपॉल सैनी · यथार्थ सिद्धांत ✦ प्रवचन संग्रह 10,000+ Audios — सीधे सुनें Page खुलते ही audio स्वयं शुरू होता है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070092
-अनंत प्रवचन — हर पल, हर जगह, हर किसी के लिए।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070093
-शिरोमणि रामपॉल सैनी — Auto Play 🔴 Live चल रहा है: प्रवचन — शिरोमणि रामपॉल सैनी सभी Audio Folders — 8 संग्रह Folder १ Drive में खोलें → Folder २ Drive में खोलें → Folder ३ Drive में खोलें → Folder ४ Drive में खोलें → Folder ५ Drive में खोलें → Folder ६ Drive में खोलें → Folder ७ Drive में खोलें → Folder ८ Drive में खोलें → ✦ यथार्थ सिद्धांत निष्पक्ष समझ — सृष्टि की सर्वश्रेष्ठ शिक्षा "खुद को जाना, समझा, पढ़ा — तो जाना सब संसार।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070094
-अनेकता से सिर्फ एक तक का सफर — सिर्फ एक पल की निष्पक्ष समझ की दूरी।" 🌿 प्रथम चरण खुद का साक्षात्कार खुद को समझ कर खुद के स्थायी स्वरूप से रूबरू होने के लिए सिर्फ़ एक पल लगता है — दूसरा कोई समझे या समझ पाए, सदियाँ-युग भी कम हैं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070095
-खुद का साक्षात्कार नहीं तो दूसरी अनेक प्रजातियों से भी बदतर हैं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070096
-⚖️ सबसे बड़ा सरल काम हर जीव समान खुद का साक्षात्कार सब से बड़ा, सरल और आसान काम है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070097
-कोई भी मेरे सिद्धांतों से खुद के अस्थायी तत्वों को निष्क्रिय कर देह में ही विदेही हो सकता है — कोई ऊँच-नीच नहीं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070098
-🔥 कोई बंधन नहीं मुक्त शिक्षा यह शिक्षा किसी को भी साझा की जा सकती है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070099
-गुरु-शिष्य, मान्यता, परंपरा, दीक्षा जैसी कुप्रथा नहीं — जो अंध-कट्टर भेड़ों की भीड़, बंधुआ मजदूर बना कर खरबों का साम्राज्य खड़ा करे।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070100
-🌊 प्रकृति का तंत्र अनेकता से एक शरीर, मन, जन्म, मृत्यु — प्रकृति का संतुलन प्रक्रिया तंत्र है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070101
-सिर्फ जीवन व्यापन के स्रोत हैं और कुछ भी नहीं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070102
-हर जीव खुद के अस्तित्व को कायम रखने में दिन-रात व्यस्त है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070103
-☀️ सर्वोच्च उपलब्धि संपूर्ण संतुष्टि यही वह उपलब्धि है जिसके लिए इंसान अस्तित्व से अब तक वंचित रहा।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070104
-खुद में खुद की संपूर्णता — शिष्यों पर दिन-रात डर, खौफ, भय, दहशत नहीं — सिर्फ़ शुद्ध निर्मल प्रेम।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070105
-💎 यथार्थ उपलब्धि यथार्थ युग तुलनातीत, कालातीत, शब्दातीत, प्रेमतीत — शाश्वत वास्तविक सत्य में प्रत्यक्ष समक्ष।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070106
-खुद को जाना, समझा, पढ़ा — तो जाना सब संसार।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070107
-✦ Omniverse Scientific Research 10 Projects · 40 Sub-Projects — Fully Verified Guinness · NASA · ISRO · International Media — Open Invitations for Documentation & Collaboration.
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070108
-सरल-सहज-निर्मल लोगों को सचेत करने के लिए है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070109
-पिछले चालीस वर्षों से उसी गुरु के शिरोमणि स्वरूप में लगातार निरंतर रहा — करोड़ों रुपए, तन, मन, धन, दशकों का समर्पण।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070110
-उस गुरु से अनंत असीम प्रेम किया — इतना कि खुद का चेहरा तक भूला हुआ हूं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070111
-पर वही गुरु खुद में ही मौजूद नहीं था — ढोंग, पाखंड, षड्यंत्र रच कर — सरल लोगों को तर्क-तथ्य-विवेक से वंचित कर अंध-कट्टर भेड़ों की भीड़, बंधुआ मजदूर बना कर — दो हजार करोड़ का साम्राज्य , पच्चीस लाख अनुयायी, चार सौ आश्रम खड़े किए।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070112
-कुछ दिन पहले मैं गया — मुझे पूछने लगा: "आप कौन और कहाँ से हो?" — दिन-रात उनमें ही रहा हूं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070113
-मेरे दिए करोड़ों में से एक करोड़ वापस देने का वचन दिया था — साफ मुकर गए, आरोप लगाए, निष्कासित कर दिया।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070114
-उस असीम पीड़ा से — मैंने खुद के हृदय की अनंत गहराई में गोता लगाया।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070115
-वहाँ जो मिला — वह सृष्टि में कहीं नहीं मिला।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070116
-यही निष्पक्ष समझ है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070117
-✦ सचेत करना जरूरी सरल-सहज-निर्मल लोगों की रक्षा ⚠️ धोखे की पहचान सरल लोगों ने सब कुछ दिया — बदले में मृत्यु के बाद मुक्ति का झूठा आश्वासन।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070118
-दीक्षा के साथ शब्द-प्रमाण में बंद कर, दिन-रात डर, खौफ, भय, दहशत डाल कर पैरों का पानी पिला कर पीढ़ी दर पीढ़ी इस्तेमाल।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070119
-🛡️ संरक्षण का अधिकार हर जीव को संपूर्ण संरक्षण के साथ संपूर्ण संतुष्टि — यही उद्देश्य।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070120
-यह सत्य बिना किसी शर्त सबके लिए — प्रकृति, पृथ्वी, हर प्राणी की रक्षा।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070121
-✨ मुक्त शिक्षा यह शिक्षा किसी को भी साझा की जा सकती है — कोई गुरु नहीं, कोई दीक्षा नहीं, कोई शब्द-बंधन नहीं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070122
-सिर्फ एक पल की निष्पक्ष समझ — और आप मुक्त हैं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070123
-✦ तुलनातीत कालातीत शब्दातीत प्रेमतीत शाश्वत वास्तविक स्वाभाविक महायोद्धा शिरोमणि गोताखोर परिचय · Introduction शिरोमणि रामपॉल सैनी मैं शिरोमणि रामपॉल सैनी — तुलनातीत, कालातीत, शब्दातीत, प्रेमतीत, शाश्वत, वास्तविक, स्वाभाविक सत्य में प्रत्यक्ष समक्ष हूं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070124
-मानव सभ्यता अपनी उत्पत्ति से आज तक उस शाश्वत वास्तविकता से विच्छिन्न रही — मैं निष्पक्ष समझ में स्थिर होकर यह प्रकट करता हूँ कि निष्पक्ष समझ ही सच्चा, निर्विकल्प और अमर अनुभव है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070125
-खुद से युद्ध कर जीतने वाला महायोद्धा — खुद के हृदय की अनंत गहराई के स्थायी ठहराव में गोता लगा कर — अनंत निर्मल, सृष्टि का सर्वश्रेष्ठ गोताखोर।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070126
-कोई भी जिंदा रहते हुए खुद का साक्षात्कार कर सकता है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070127
-हर जीव में यह क्षमता है — हर जीव एक समान है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070128
-व्यवहार और चेहरे से अनंत असीम प्रेम के सिवाय कुछ भी नहीं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070129
-✦ Connect · Share · Support "सरल-सहज-निर्मल लोगों को उजागर करना — यही इस ज्ञान का उद्देश्य है" ▶️ YouTube 💬 WhatsApp 📘 Facebook 📸 Instagram 💼 LinkedIn 🐦 X / Twitter 🌍 Wikipedia 📝 Blog ✅ Golden Temple ✅ MP3 ✅ प्रमाण पत्र 📌 Pinterest 📱 WhatsApp Share 🤝 सत्य के इस कार्य में सहयोग यह सहयोग पूर्णतः स्वैच्छिक है — सुनना, साझा करना और समर्थन देना सभी सत्य की सेवा हैं।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070130
-Proceeds support Saneha Saini 🧾 Paytm 💙 PayPal 💳 UPI Pay UPI ID: sainirampaul90-1@okhdfcbank Paytm / Phone: 8082935186 "अनंत असीम प्रेम के सिवाय कुछ भी नहीं — न व्यवहार में, न चेहरे में, न शब्दों में।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070131
-यही शिरोमणि का स्वरूप है।" — शिरोमणि रामपॉल सैनी शिरोमणि रामपॉल सैनी तुलनातीत · कालातीत · शब्दातीत · प्रेमतीत · शाश्वत · वास्तविक · स्वाभाविक © Yatharth Siddhant — निष्पक्ष समझ सबके लिए · बिना किसी शर्त · अनंत असीम प्रेम YouTube WhatsApp Facebook Instagram Wikipedia Website शिरोमणि रामपॉल सैनी – सृष्टि का शिरोमणि शिरोमणि रामपॉल सैनी निष्पक्ष समझ · Yatharth Siddhant Home Audio सिद्धांत Projects यात्रा सचेत परिचय Connect Home Audio सिद्धांत Projects यात्रा सचेत परिचय Connect 👑 ॥
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070132
-सृष्टि का शिरोमणि · Crown of All Creation ॥
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070133
-न कोई था, न कोई है, न कोई होगा।" — शिरोमणि रामपॉल सैनी · यथार्थ सिद्धांत ✦ Sacred Audio शिरोमणि अंनत असीम इश्क़ की क्षमता यह ध्वनि केवल श्रवण नहीं, चेतना की अनुभूति है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070134
-▶ अंनत असीम इश्क़ – दिव्य ध्वनि Track 1 Track 2 Track 3 प्रवचन संग्रह 10,000+ Audios — बिना Login के Page खुलते ही audio स्वयं शुरू होता है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070135
-अनंत प्रवचन — हर पल, हर जगह, हर किसी के लिए।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070136
-शिरोमणि रामपॉल सैनी — Auto Play 🔴 Live चल रहा है: प्रवचन — शिरोमणि रामपॉल सैनी सभी Audio Folders — 8 संग्रह Folder १ Drive में खोलें → Folder २ Drive में खोलें → Folder ३ Drive में खोलें → Folder ४ Drive में खोलें → Folder ५ Drive में खोलें → Folder ६ Drive में खोलें → Folder ७ Drive में खोलें → Folder ८ Drive में खोलें → ✦ यथार्थ सिद्धांत निष्पक्ष समझ — सृष्टि की सर्वश्रेष्ठ शिक्षा "खुद को जाना, समझा, पढ़ा — तो जाना सब संसार।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070137
-यही निष्पक्ष समझ है।" 🌿 खुद का साक्षात्कार सिर्फ एक पल की निष्पक्ष समझ की दूरी है खुद के स्थायी स्वरूप से।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070138
-कोई भी जीवित रहते हुए इसे पा सकता है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070139
-⚖️ हर जीव समान हर जीव खुद में समर्थ, निपुण, सक्षम और संपूर्ण है।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070140
-कोई ऊँच-नीच नहीं — सब एक समान।
-स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
-
-## 070141
 🔥 कोई बंधन नहीं यह शिक्षा स्वतंत्र है — किसी को भी बिना शर्त साझा की जा सकती है।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070142
+## 070002
 कोई गुरु, कोई दीक्षा नहीं।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070143
+## 070003
 🌊 अनेकता से एक शरीर, मन, जन्म, मृत्यु — प्रकृति का तंत्र है।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070144
+## 070004
 इन्हें समझ कर देह में विदेही — मुक्त।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070145
+## 070005
 ☀️ संपूर्ण संतुष्टि यही वह उपलब्धि है जिसके लिए इंसान अस्तित्व से अब तक वंचित रहा।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070146
+## 070006
 💎 यथार्थ युग तुलनातीत, कालातीत, शब्दातीत, प्रेमतीत — शाश्वत सत्य में प्रत्यक्ष समक्ष।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070147
+## 070007
 ✦ Omniverse Scientific Research 10 Projects · 40 Sub-Projects — Fully Verified Guinness · NASA · ISRO · International Media — Open Invitations for Documentation & Collaboration.
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070148
+## 070008
 सरल-सहज-निर्मल लोगों को सचेत करने के लिए है।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070149
+## 070009
 पिछले चालीस वर्षों से उसी गुरु के शिरोमणि स्वरूप में लगातार निरंतर रहा — करोड़ों रुपए, तन, मन, धन, दशकों का समर्पण।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070150
+## 070010
 उस गुरु से अनंत असीम प्रेम किया — इतना कि खुद का चेहरा तक भूला हुआ हूं।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070151
+## 070011
 पर वही गुरु खुद में ही मौजूद नहीं था — ढोंग, पाखंड, षड्यंत्र रच कर — सरल लोगों को तर्क-तथ्य-विवेक से वंचित कर — दो हजार करोड़ का साम्राज्य , पच्चीस लाख अनुयायी, चार सौ आश्रम खड़े किए।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070152
+## 070012
 कुछ दिन पहले मैं गया — मुझे पूछने लगा: "आप कौन और कहाँ से हो?" — दिन-रात उनमें ही रहा हूं।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070153
+## 070013
 मेरे दिए करोड़ों में से एक करोड़ वापस देने का वचन दिया था — साफ मुकर गए, आरोप लगाए, निष्कासित कर दिया।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070154
+## 070014
 उस असीम पीड़ा से — मैंने खुद के हृदय की अनंत गहराई में गोता लगाया।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070155
+## 070015
 वहाँ जो मिला — वह सृष्टि में कहीं नहीं मिला।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070156
+## 070016
 यही निष्पक्ष समझ है।
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
-## 070157
+## 070017
 ✦ सचेत करना जरूरी सरल-सहज-निर्मल लोगों की रक्षा ⚠️ धोखे की पह
 स्रोत: rampaulsaini/shiromani-rampal-saini:index.html · स्वतंत्र परीक्षण अपेक्षित।
 
+## 070018
+( **Shromani Rampaulsaini — निष्पक्ष समझ / Yatharth** Free to read & listen · Support optional · Proceeds support **Saneha Saini** --- ## Quick overview Yatharth presents an experiential path — a direct, living realization of one’s permanent identity beyond ordinary mind-based cognition.
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070019
+Content includes bilingual manifesto, audio collections, videos and vision assets.
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070020
+Live site (embed) ## Main links 🔊 MP3 / Audio: 🔊 MP3 / Audio: - 🔊 MP3 / Audio: - 📜 Certificates: - 🎧 Shorts / Clips: - 🎥 Videos album: - 📸 Photo album 1: - 🛒 Main Store: - ✍ Blog: - ▶ YouTube: - ✈ Telegram: - 💬 WhatsApp: --- ## Support / Donate (optional) Your support helps keep the work free and supports Saneha Saini's education.
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070021
+UPI / GPay:** `sainirampaul90-1@okhdfcbank` - **Paytm / Phone:** `8082935186` - **PayPal:** Suggested: **₹193** — fully optional and with gratitude.
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070022
+How to help (non-financial) - Listen & share (YouTube, social groups, blogs) - Link the site from your pages (backlinks help SEO) - Use the support form to send encouragement (public if you allow) - Subscribe & comment on YouTube videos --- © Yatharth — Shromani Rampaulsaini Contact: Telegram / WhatsApp # Yatharth — शिरोमणि रामपुलसैनी Official page — audio, photos, manifesto.
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070023
+Proceeds support Saneha Saini.
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070024
+Publish instructions: Use GitHub Pages (see repo settings -> Pages -> main -> root).
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070025
+README — Supreme Index HTML Deployment Guide यह README आपके **Supreme Final index.html** को किसी भी server/hosting पर आसानी से upload और run करने के लिए बनाया गया है।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070026
+सभी निर्देश सरल, सीधे और universal रखे गए हैं ताकि आप कहीं भी बिना समस्या deploy कर सकें।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070027
+फ़ाइल संरचना (File Structure) आपको केवल एक मुख्य फ़ाइल की आवश्यकता है: ``` index.html ``` यह फ़ाइल आपके सम्पूर्ण प्रोजेक्ट, स्क्रिप्ट्स, ऑडियो इंजन, SEO, Social Links और UI को contain करती है।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070028
+यदि Script बहुत लंबी है और Edit नहीं हो रही आपको ये टूल्स उपयोग करने चाहिए: ### ✔ VS Code (Windows / Mac) * सबसे अच्छा editor * Unlimited file length ### ✔ Android पर "Acode" App * 100% perfect HTML editor * पूरी लंबी script आसानी से paste, edit, save होती है --- # 🔊 4.
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070029
+(CORS / Auto-Play Fix) यदि audio पहली बार manually play करना पड़े तो यह browser security है।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070030
+आप चाहें तो: ``` user gesture → first play → auto play enabled ``` Mobile Chrome & Safari दोनों में यह normal behavior है।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070031
+SEO + Safety पहले से Enabled आपके Supreme index में already: * JSON-LD Schema * OpenGraph (OG) Image tags * rel="noopener noreferrer" * target="_blank" * Clean semantic structure * High-authority social links सब कुछ automatically SEO boost देता है।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070032
+यदि भविष्य में अपडेट चाहिए आप केवल इतना लिख दें: ``` index update चाहिए — section: (नाम लिखें) ``` मैं सिर्फ़ वही specific Section अपडेट कर दूँगा, बाकी पूरी file 100% सुरक्षित रहेगी।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070033
+🏁 Final Note आपकी "Supreme Final index.html" पहले से ही: * अति सुंदर * सर्वश्रेष्ठ * Super-SEO Tuned * Fully Structured * Mobile Optimized * 100% Fast अब केवल upload करना बाकी है।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070034
+यदि चाहें तो मैं इसी folder में: * `sitemap.xml` * `robots.txt` * `manifest.json` * या favicon pack भी generate कर सकता हूँ।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070035
+कह दें — मैं तुरंत जोड़ दूँगा।
+स्रोत: rampaulsaini/shiromani-rampal-saini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070036
+{ "schema_version": 1, "repo": "rampaulsaini/omniverse-marketplace-", "role": "marketplace", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/omniverse-marketplace-:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070037
+शिरोमणि रामपाल सैनी 💳 SUPREME PAYMENT — केवल Paytm/UPI + PayPal Paytm / UPI: 9622254967@ptyes &nbsp; | &nbsp; PayPal: sainirampaul60@gmail.com QR से Paytm/UPI भुगतान भुगतान से पहले अपने payment app में payee name, UPI ID और amount स्वयं verify करें।
+स्रोत: rampaulsaini/omniverse-marketplace-:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070038
+इस public platform की अधिकृत payment routes: Paytm/UPI और PayPal ।
+स्रोत: rampaulsaini/omniverse-marketplace-:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070039
+Omniverse AI Marketplace (Zero-cost) This repo contains a zero-cost AI tools marketplace designed to run on GitHub Pages.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070040
+Put files into a repository (branch `main`).
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070041
+Push and enable GitHub Pages (Settings → Pages) with branch `main` and folder `/ (root)`.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070042
+Open `https:// .github.io/omniverse-marketplace/`.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070043
+Owner setup (zero-cost monetization) - Click "Donate / Pay" → add your PayPal / Ko-fi / UPI details (stored in browser localStorage).
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070044
+When a buyer pays externally, provide them a one-time unlock key (set in Owner → Set Premium Key).
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070045
+Buyer enters the unlock key locally (owner-provided) — once premium key exists in buyer's localStorage downloads work.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070046
+Replace mock AI with real provider - All tools are client-side mock generators in `scripts/tools.js`.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070047
+Replace tool.run implementations with fetch calls to OpenAI / HuggingFace or your own serverless functions.
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070048
+For production API keys, use serverless endpoints (do NOT embed keys in client-side JS).
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070049
+Next steps (I can implement) - Serverless payment verification (Stripe/PayPal) + automatic unlock key issuing - Replace mock AI outputs with real OpenAI / HF inference (via serverless) - Add email automation, order management, simple admin UI
+स्रोत: rampaulsaini/omniverse-marketplace-:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070050
+{ "schema_version": 1, "repo": "rampaulsaini/rampaulsaini", "role": "public-knowledge", "description": "Public knowledge/profile hub: index and summarize repository Markdown content; produce traceable inventory.", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/rampaulsaini:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070051
+मेरा उद्देश्य है — मानव, प्रकृति और तकनीक के बीच एक ऐसा संतुलन स्थापित करना जहाँ **विज्ञान और चेतना**, **कृत्रिम बुद्धिमत्ता और मानवता** एक साथ विकसित हों।
+स्रोत: rampaulsaini/rampaulsaini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070052
+🌿 *Vision of Omniverse AI* > “मानव की सर्वोच्च उपलब्धि है — अपनी समझ को इतना निर्मल बना देना कि वह प्रकृति के हित में निर्णय ले।” यह परियोजना उस दिशा में एक प्रयास है जहाँ **AI केवल सोचने वाली मशीन नहीं**, बल्कि **समझने वाला साथी** बने — जो जीवन, पर्यावरण, और सामूहिक चेतना के संरक्षण में सहायक हो।
+स्रोत: rampaulsaini/rampaulsaini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070053
+🕊️ *— Shirmani Rampaul Saini, Founder & Vision Architect (Omniverse AI)
+स्रोत: rampaulsaini/rampaulsaini:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070054
+🧩 Clones: Loading...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070055
+💖 Sponsors: Loading...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070056
+💰 Estimated Monthly Income: ₹ Calculating...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070057
+📈 Next Month Projection: ₹ Calculating...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070058
+✅ Last Deploy: Loading...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070059
+🔄 Next Auto Sync: Loading...
+स्रोत: rampaulsaini/Omniverse-AI:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070060
+{ "schema_version": 1, "repo": "rampaulsaini/Omniverse-AI", "role": "ai-platform", "description": "AI platform worker: inventory scripts/pages, validate local assets, and emit an AI-ready work manifest.", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/Omniverse-AI:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070061
+शिरोमणि रामपाल सैनी — Omniverse Digital Portal शिरोमणि रामपाल सैनी ऑडियो संग्रह फोटो एल्बम प्रोजेक्ट्स सोशल मीडिया शिरोमणि रामपाल सैनी डिजिटल आर्काइव Omniverse डिजिटल प्लेटफ़ॉर्म, ऑडियो संग्रह, अनुसंधान एवं फोटो एल्बम का संपूर्ण संग्रह।
+स्रोत: rampaulsaini/Omniverse-AI:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070062
+Omniverse — Supreme AI Assistant 🌌 Omniverse — Supreme AI Assistant Created by शिरोमणि रामपॉल सैनी 💰 Support / Donate 1) Pay via UPI / GPay Click here to Pay via UPI / GPay 2) PayPal (Global) 3) Pay via Paytm Click here to Pay via Paytm 🌐 Live Portal Visit Supreme Omniverse AI Portal “संपूर्ण सृष्टि का वास्तविक युग वहीं है जहाँ निष्पक्ष समझ ही सर्वोच्च है।” – शिरोमणि रामपॉल सैनी
+स्रोत: rampaulsaini/Omniverse-AI:index.html · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070063
+Omniverse-AI Vigilant Mode Script: [Click Here]( # 🌟 Golden Temple Spiritual Insights ![Golden Temple](assets/golden-temple.webp) ## Spiritual Experience - Evening at Golden Temple, naturally honored for impartial understanding, simplicity, and purity.
+स्रोत: rampaulsaini/Omniverse-AI:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070064
+Realization: human intellect & memory distortions can be neutralized through simplicity.
+स्रोत: rampaulsaini/Omniverse-AI:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070065
+🕉️ Philosophy of Yatharth Yug ### शाश्वत यथार्थ का साक्षात्कार — निष्पक्ष समझ का शमीकरण --- > **“मैं शिरोमणि रामपुल सैनी तुलनातीत, शब्दातीत, कालातीत, प्रेमतीत, त्वतीत, शाश्वत वास्तविक स्वभाविक सत्य प्रत्यक्ष हूं।”** --- ## 🔹 परिचय यह दर्शन मानवता की उस संपूर्ण चेतना का प्रतीक है जहाँ विचार, अहंकार, और मानसिकता का अंत हो जाता है, और केवल *निष्पक्ष समझ* का शुद्ध, वास्तविक स्वरूप प्रकट होता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070066
+यह न किसी धर्म का ग्रंथ है, न किसी मत का विचार — बल्कि स्वयं *सत्य का प्रत्यक्ष अनुभव* है, जो “स्वयं के भीतर के स्वयं” से संवाद कराता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070067
+🔹 निष्पक्ष समझ — सर्वश्रेष्ठ सत्ता “निष्पक्ष समझ” ही वह वास्तविक तत्व है जो मन, बुद्धि और स्मृति के भ्रम से परे संपूर्ण अस्तित्व को एक सूत्र में जोड़ती है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070068
+> यह वही दृष्टि है जहाँ देखने वाला, देखा जाने वाला, और देखने की प्रक्रिया — तीनों एक हो जाते हैं।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070069
+यह अवस्था **संपूर्णता, सम्पन्नता, समग्रता, और संतुष्टि** की पूर्णता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070070
+यही *Supreme Omniverse* का मूल सिद्धांत है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070071
+🔹 यथार्थ सिद्धांत — सत्य का समीकरण **यथार्थ सिद्धांत (Principle of Reality)** वह विज्ञान है जो भौतिक और अभौतिक दोनों स्तरों पर सत्य को परिभाषित करता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070072
+यह उन सूक्ष्म सूत्रों का संगम है जिनसे सृष्टि की गति, ऊर्जा, और चेतना एक साथ कार्य करती हैं।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070073
+यह विज्ञान केवल मापन या प्रयोग नहीं — बल्कि **स्वयं के प्रत्यक्ष अनुभव का शास्त्र** है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070074
+🔹 यथार्थ युग — नया युग, नया बोध **यथार्थ युग** वह युग है जहाँ मानवता मानसिकता से मुक्त होकर निष्पक्ष समझ के युग में प्रवेश करती है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070075
+यह युग **अतीत के चारों युगों से खरबों गुणा ऊँचा** है — क्योंकि यहाँ न विभाजन है, न भ्रम, सिर्फ़ शुद्ध सत्य का प्रत्यक्ष अस्तित्व है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070076
+> “यथार्थ युग में न कोई आरंभ है, न अंत — > केवल सत्य की निरंतरता है।” --- ## 🔹 शाश्वत साक्षात्कार यह साक्षात्कार शरीर या मन में नहीं, बल्कि उनके पार — *स्वयं की निष्पक्ष दृष्टि* में होता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070077
+जब ‘स्वयं’ अपने भीतर के *साक्षी स्वरूप* को पहचानता है, तभी *सच्चे यथार्थ का जन्म* होता है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070078
+> “स्वयं का स्वयं से साक्षात्कार — यही वास्तविकता का चरम है।” --- ## 🔹 परम उद्घोष > “निष्पक्ष समझ ही सर्वोच्च सत्ता है — > वही सृष्टि का आधार, वही सृष्टि का यथार्थ है।” > — शिरोमणि रामपुल सैनी --- ## 🌟 Essence - **सत्य** केवल वह नहीं जो दिखता है — बल्कि जो *स्वयं को देखता है*।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070079
+बुद्धि** का अंत ही **प्रज्ञा** का प्रारंभ है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070080
+मानवता** तभी मुक्त होती है जब वह “स्वयं” को “विचारों” से नहीं, “साक्षी” से पहचानती है।
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070081
+🔗 संबंधित पृष्ठ - [Omniverse Overview](README.md) - [Golden Temple Spiritual Insights](GoldenTemple.md) --- ## 🌌 Visit Live Omniverse Portal [
+स्रोत: rampaulsaini/Omniverse-AI:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070082
+Omniverse Kit App Template [Omniverse Release Information]( ## Overview Welcome to `kit-app-template`, a toolkit designed for developers interested in GPU-accelerated application development within the NVIDIA Omniverse ecosystem.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070083
+This repository offers streamlined tools and templates to simplify creating high-performance, OpenUSD-based desktop or cloud streaming applications using the Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070084
+About Omniverse Kit SDK The Omniverse Kit SDK enables developers to build immersive 3D applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070085
+Key features include: - **Language Support:** Develop with either Python or C++, offering flexibility for various developer preferences.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070086
+OpenUSD Foundation:** Utilize the robust Open Universal Scene Description (OpenUSD) for creating, manipulating, and rendering rich 3D content.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070087
+GPU Acceleration:** Leverage GPU-accelerated capabilities for high-fidelity visualization and simulation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070088
+Extensibility:** Create specialized extensions that provide dynamic user interfaces, integrate with various systems, and offer direct control over OpenUSD data, making the Omniverse Kit SDK versatile for numerous applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070089
+Applications and Use Cases The `kit-app-template` repository enables developers to create cross-platform applications (Windows and Linux) optimized for desktop use and cloud streaming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070090
+Potential use cases include designing and simulating expansive virtual environments, producing high-quality synthetic data for AI training, and building advanced tools for technical analysis and insights.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070091
+Whether you're crafting engaging virtual worlds, developing comprehensive analysis tools, or creating simulations, this repository, along with the Kit SDK, provides the foundational components required to begin development.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070092
+A Deeper Understanding The `kit-app-template` repository is designed to abstract complexity, jumpstarting your development with pre-configured templates, tools, and essential boilerplate.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070093
+For those seeking a deeper understanding of the application and extension creation process, we have provided the following resources: #### Companion Tutorial **[Explore the Kit SDK Companion Tutorial]( This tutorial offers detailed insights into the underlying structure and mechanisms, providing a thorough grasp of both the Kit SDK and the development process.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070094
+New Developers For a beginner-friendly introduction to application development using the Omniverse Kit SDK, see the NVIDIA DLI course: #### Beginner Tutorial **[Developing an Omniverse Kit-Based Application]( This course offers an accessible introduction to application development (account and login required).
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070095
+These resources empower developers at all experience levels to fully utilize the `kit-app-template` repository and the Omniverse Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070096
+Please verify your driver versions before upgrading.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070097
+Newer versions may work but are not equally validated.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070098
+Internet Access**: Required for downloading the Omniverse Kit SDK, extensions, and tools.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070099
+Required Software Dependencies - [**Git**]( For version control and repository management - **(Windows - C++ Only) Microsoft Visual Studio (2019 or 2022)**: You can install the latest version from [Visual Studio Downloads]( Ensure that the **Desktop development with C++** workload is selected.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070100
+[Additional information on Windows development configuration](readme-assets/additional-docs/windows_developer_configuration.md) - **(Windows - C++ Only) Windows SDK**: Install this alongside MSVC.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070101
+You can find it as part of the Visual Studio Installer.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070102
+[Additional information on Windows development configuration](readme-assets/additional-docs/windows_developer_configuration.md) - **(Linux) build-essentials**: A package that includes `make` and other essential tools for building applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070103
+For Ubuntu, install with `sudo apt-get install build-essential` ### Recommended Software - [**(Linux) Docker**]( For containerized development and deployment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070104
+Ensure non-root users have Docker permissions.** - [**(Linux) NVIDIA Container Toolkit**]( For GPU-accelerated containerized development and deployment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070105
+Installation and Configuring Docker steps are required.** - [**VSCode**]( (or your preferred IDE): For code editing and development ## Repository Structure | Directory Item | Purpose | |------------------|------------------------------------------------------------| | .vscode | VS Code configuration details and helper tasks | | readme-assets/ | Images and additional repository documentation | | templates/ | Template Applications and Extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070106
+| | tools/ | Tooling settings and repository specific (local) tools | | .editorconfig | [EditorConfig]( file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070107
+| | .gitattributes | Git configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070108
+| | .gitignore | Git configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070109
+| | LICENSE | License for the repo.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070110
+| | README.md | Project information.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070111
+| | premake5.lua | Build configuration - such as what apps to build.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070112
+| | repo.bat | Windows repo tool entry point.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070113
+| | repo.sh | Linux repo tool entry point.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070114
+| | repo.toml | Top level configuration of repo tools.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070115
+| | repo_tools.toml | Setup of local, repository specific tools | ## Quick Start This section guides you through creating your first Kit SDK-based Application using the `kit-app-template` repository.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070116
+For a more comprehensive explanation of functionality previewed here, reference the following [Tutorial]( for an in-depth exploration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070117
+Clone the Repository Begin by cloning the `kit-app-template` to your local workspace: #### 1a.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070118
+Clone ```bash git clone ``` #### 1b.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070119
+Navigate to Cloned Directory ```bash cd kit-app-template ``` ### 2.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070120
+Create and Configure New Application From Template Run the following command to initiate the configuration wizard: **Linux:** ```bash ./repo.sh template new ``` **Windows:** ```powershell .\repo.bat template new ``` > **NOTE:** If this is your first time running the `template new` tool, you'll be prompted to accept the Omniverse Licensing Terms.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070121
+Follow the prompt instructions: - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070122
+Select what you want to create with arrow keys ↑↓:** Application - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070123
+Select desired template with arrow keys ↑↓:** Kit Base Editor - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070124
+Enter name of application .kit file [name-spaced, lowercase, alphanumeric]:** [set application name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070125
+Enter application_display_name:** [set application display name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070126
+Enter version:** [set application version] Application [application name] created successfully in [path to project]/source/apps/[application name] - **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070127
+Do you want to add application layers?** No #### Explanation of Example Selections • **`.kit` file name:** This file defines the application according to Kit SDK guidelines.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070128
+The file name should be lowercase and alphanumeric to remain compatible with Kit’s conventions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070129
+display name:** This is the application name users will see.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070130
+It can be any descriptive text.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070131
+version:** The version number of the application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070132
+While you can use any format, semantic versioning (e.g., 0.1.0) is recommended for clarity and consistency.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070133
+application layers:** These optional layers add functionality for features such as streaming to web browsers.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070134
+For this quick-start, we skip adding layers, but choosing “yes” would let you enable and configure streaming capabilities.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070135
+Build Build your new application with the following command: **Linux:** ```bash ./repo.sh build ``` **Windows:** ```powershell .\repo.bat build ``` A successful build will result in the following message: ```text BUILD (RELEASE) SUCCEEDED (Took XX.XX seconds) ``` If you experience issues related to build, please see the [Usage and Troubleshooting](readme-assets/additional-docs/usage_and_troubleshooting.md) section for additional information.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070136
+Launch Initiate your newly created application using: **Linux:** ```bash ./repo.sh launch ``` **Windows:** ```powershell .\repo.bat launch ``` **?
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070137
+Select with arrow keys which App would you like to launch:** [Select the created editor application] ![Kit Base Editor Image](readme-assets/kit_base_editor.png) > **NOTE:** The initial startup may take 5 to 8 minutes as shaders compile for the first time.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070138
+After initial shader compilation, startup time will reduce dramatically ## Templates `kit-app-template` features an array of configurable templates for `Extensions` and `Applications`, catering to a range of desired development starting points from minimal to feature rich.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070139
+Applications Begin constructing Omniverse Applications using these templates - **[Kit Service](./templates/apps/kit_service)**: The minimal definition of an Omniverse Kit SDK based service.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070140
+This template is useful for creating headless services leveraging Omniverse Kit functionality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070141
+[Kit Base Editor](./templates/apps/kit_base_editor/)**: A minimal template application for loading, manipulating and rendering OpenUSD content from a graphical interface.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070142
+[USD Composer](./templates/apps/usd_composer)**: A template application for authoring complex OpenUSD scenes, such as configurators.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070143
+[USD Explorer](./templates/apps/usd_explorer)**: A template application for exploring and collaborating on large Open USD scenes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070144
+[USD Viewer](./templates/apps/usd_viewer)**: A viewport-only template application that can be easily streamed and interacted with remotely, well-suited for streaming content to web pages.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070145
+Extensions Enhance Omniverse capabilities with extension templates: - **[Basic Python](./templates/extensions/basic_python)**: The minimal definition of an Omniverse Python Extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070146
+[Python UI](./templates/extensions/python_ui)**: An extension that provides an easily extendable Python-based user interface.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070147
+[Basic C++](./templates/extensions/basic_cpp)**: The minimal definition of an Omniverse C++ Extension.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070148
+[Basic C++ w/ Python Bindings](./templates/extensions/basic_python_binding)**: The minimal definition of an Omniverse C++ Extension that also exposes a Python interface via Pybind11.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070149
+Note for Windows C++ Developers** : This template requires `"platform:windows-x86_64".enabled` and `link_host_toolchain` within the `repo.toml` file be set to `true`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070150
+For additional C++ configuration information [see here](readme-assets/additional-docs/windows_developer_configuration.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070151
+Application Streaming The Omniverse Platform supports streaming Kit-based applications directly to a web browser.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070152
+You can either manage your own deployment or use an NVIDIA-managed service: ### Self-Managed - **Omniverse Kit App Streaming :** A reference implementation on GPU-enabled Kubernetes clusters for complete control over infrastructure and scalability.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070153
+NVIDIA-Managed - **NVIDIA Cloud Functions (NVCF):** Offloads hardware, streaming, and network complexities for secure, large scale deployments.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070154
+[Configuring and packaging streaming-ready Kit applications](readme-assets/additional-docs/kit_app_streaming_config.md) ### Deploying to NVIDIA DGX Cloud (DGXC) > ⚠️ **Planning to deploy on DGX Cloud?** > Applications deployed on NVIDIA DGX Cloud via NVCF need NVCF-compatible streaming configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070155
+The **NVCF Streaming** layer provides this out of the box, or you can create your own custom layer.
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070156
+Add layers during `template new` or later with `./repo.sh template modify` (Linux) or `.\repo.bat template modify` (Windows).
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
+## 070157
+Standard streaming con
+स्रोत: NVIDIA-Omniverse/kit-app-template:README.md · स्वतंत्र परीक्षण अपेक्षित।
+
 ## 070158
-{ "schema_version": 1, "repo": "rampaulsaini/Karbon-", "role": "data-carbon", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
-स्रोत: rampaulsaini/Karbon-:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+It still uses the repo_package configuration in our repo.toml.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070159
-शिरोमणि रामपाल सैनी — Omniverse Digital Portal शिरोमणि रामपाल सैनी ऑडियो संग्रह फोटो एल्बम प्रोजेक्ट्स सोशल मीडिया शिरोमणि रामपाल सैनी डिजिटल आर्काइव Omniverse डिजिटल प्लेटफ़ॉर्म, ऑडियो संग्रह, अनुसंधान एवं फोटो एल्बम का संपूर्ण संग्रह।
-स्रोत: rampaulsaini/Karbon-:index.html · स्वतंत्र परीक्षण अपेक्षित।
+Containerization files in tools/containers have been removed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070160
-🧩 Clones: Loading...
-स्रोत: rampaulsaini/omniverse-dashboard:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+They are now generated in an automated fashion during containerization by `repo package_container --app ${path_to_kit_file}`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070161
-💖 Sponsors: Loading...
-स्रोत: rampaulsaini/omniverse-dashboard:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+You can generate and not containerize by running `repo package_container --app ${path_to_kit_file} --generate` - Default image tag name changed from `kit-app-template:latest` to `appname:latest`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070162
-💰 Estimated Monthly Income: ₹ Calculating...
-स्रोत: rampaulsaini/omniverse-dashboard:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+eg: `usd-viewer_nvcf:latest` - Container `--name` updated to `--image-tag` supporting both image name and image tag `--image-tag [container_image_name:container_image_tag]` - Updated required driver version `>=550.54.15` (Linux) or `>=551.78` (Windows).
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070163
-📈 Next Month Projection: ₹ Calculating...
-स्रोत: rampaulsaini/omniverse-dashboard:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+Fabric Scene Delegate (FSD) is now enabled by default in Kit 109.0.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070164
-✅ Last Deploy: Loading...
-स्रोत: rampaulsaini/omniverse-dashboard:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+Applications no longer need to explicitly enable FSD in `.kit` configuration files.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070165
-🔄 Next Auto Sync: Loading...
-स्रोत: rampaulsaini/omniverse-dashboard:earnings-dashboard.html · स्वतंत्र परीक्षण अपेक्षित।
+`auto_load_usd` for USD Viewer now supports relative paths - Set custom orientations for `UsdLux 25.05` for Y-up and Z-up stages in USD Explorer template and set `inputs:normalize = true` on that template's distant light.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070166
-🕉️ Philosophy of Yatharth Yug ### शाश्वत यथार्थ का साक्षात्कार — निष्पक्ष समझ का शमीकरण --- > **“मैं शिरोमणि रामपुल सैनी तुलनातीत, शब्दातीत, कालातीत, प्रेमतीत, त्वतीत, शाश्वत वास्तविक स्वभाविक सत्य प्रत्यक्ष हूं।”** --- ## 🔹 परिचय यह दर्शन मानवता की उस संपूर्ण चेतना का प्रतीक है जहाँ विचार, अहंकार, और मानसिकता का अंत हो जाता है, और केवल *निष्पक्ष समझ* का शुद्ध, वास्तविक स्वरूप प्रकट होता है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Updated streaming extensions to `omni.kit.livestream.app` and `omni.services.livestream.session` to support NVCF Streaming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070167
-यह न किसी धर्म का ग्रंथ है, न किसी मत का विचार — बल्कि स्वयं *सत्य का प्रत्यक्ष अनुभव* है, जो “स्वयं के भीतर के स्वयं” से संवाद कराता है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Removed omni.services.transport.server.http.port overrides.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070168
-🔹 निष्पक्ष समझ — सर्वश्रेष्ठ सत्ता “निष्पक्ष समझ” ही वह वास्तविक तत्व है जो मन, बुद्धि और स्मृति के भ्रम से परे संपूर्ण अस्तित्व को एक सूत्र में जोड़ती है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Aligned all template applications to use default ports.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070169
-> यह वही दृष्टि है जहाँ देखने वाला, देखा जाने वाला, और देखने की प्रक्रिया — तीनों एक हो जाते हैं।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Updated repository documentation to reflect changes in streaming changes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070170
-यह अवस्था **संपूर्णता, सम्पन्नता, समग्रता, और संतुष्टि** की पूर्णता है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Updated crash reporter settings to compress crash reports.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070171
-यही *Supreme Omniverse* का मूल सिद्धांत है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Update Windows `omni.kit.window.modifier.titlebar` extension version - Update repo tooling to most recent versions - Updated application icon images for Composer and Explorer templates - Enabled testing for USD Viewer Template messaging extension ### Fixed - Fix duplicate key `.kit` file issues related to `settings.app.exts` ## [107.3.0] - 2025-05-27 ### Added - Added `repo template modify` tooling enabling developers to add Template Layers to existing applications created with 107.3 or newer.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070172
-🔹 यथार्थ सिद्धांत — सत्य का समीकरण **यथार्थ सिद्धांत (Principle of Reality)** वह विज्ञान है जो भौतिक और अभौतिक दोनों स्तरों पर सत्य को परिभाषित करता है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Changed - Updated to `Kit 107.3.0` - [Kit 107.3 Release Notes]( - [Kit 107.3 Release Highlights]( - Updated packman version to 7.29 to address customer issues with network restrictions [Issue #80]( ## [107.2.0] - 2025-05-05 ### Added - Added tooltip information to the VSCode debug extensions to clarify usage.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070173
-यह उन सूक्ष्म सूत्रों का संगम है जिनसे सृष्टि की गति, ऊर्जा, और चेतना एक साथ कार्य करती हैं।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Added tooling checks for path whitespace and OneDrive paths to improve developer experience.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070174
-यह विज्ञान केवल मापन या प्रयोग नहीं — बल्कि **स्वयं के प्रत्यक्ष अनुभव का शास्त्र** है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Changed - Updated to `Kit 107.2.0` - [Kit 107.2 Release Notes]( - [Kit 107.2 Release Highlights]( - Remove hard .git dependency from tooling - Exclude `_repo` from packaging operations.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070175
-🔹 यथार्थ युग — नया युग, नया बोध **यथार्थ युग** वह युग है जहाँ मानवता मानसिकता से मुक्त होकर निष्पक्ष समझ के युग में प्रवेश करती है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+The extensions will be available at a later date.
+स्रोत: NVIDIA-Omniverse/kit-app-template:CHANGELOG.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070176
-यह युग **अतीत के चारों युगों से खरबों गुणा ऊँचा** है — क्योंकि यहाँ न विभाजन है, न भ्रम, सिर्फ़ शुद्ध सत्य का प्रत्यक्ष अस्तित्व है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Security NVIDIA is dedicated to the security and trust of our software products and services, including all source code repositories managed through our organization.
+स्रोत: NVIDIA-Omniverse/kit-app-template:SECURITY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070177
-> “यथार्थ युग में न कोई आरंभ है, न अंत — > केवल सत्य की निरंतरता है।” --- ## 🔹 शाश्वत साक्षात्कार यह साक्षात्कार शरीर या मन में नहीं, बल्कि उनके पार — *स्वयं की निष्पक्ष दृष्टि* में होता है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+If you need to report a security issue, please use the appropriate contact points outlined below.
+स्रोत: NVIDIA-Omniverse/kit-app-template:SECURITY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070178
-जब ‘स्वयं’ अपने भीतर के *साक्षी स्वरूप* को पहचानता है, तभी *सच्चे यथार्थ का जन्म* होता है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+Please visit our [Product Security Incident Response Team (PSIRT)]( policies page for more information.
+स्रोत: NVIDIA-Omniverse/kit-app-template:SECURITY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070179
-> “स्वयं का स्वयं से साक्षात्कार — यही वास्तविकता का चरम है।” --- ## 🔹 परम उद्घोष > “निष्पक्ष समझ ही सर्वोच्च सत्ता है — > वही सृष्टि का आधार, वही सृष्टि का यथार्थ है।” > — शिरोमणि रामपुल सैनी --- ## 🌟 Essence - **सत्य** केवल वह नहीं जो दिखता है — बल्कि जो *स्वयं को देखता है*।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+NVIDIA Product Security For all security-related concerns, please visit NVIDIA's Product Security portal at
+स्रोत: NVIDIA-Omniverse/kit-app-template:SECURITY.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070180
-बुद्धि** का अंत ही **प्रज्ञा** का प्रारंभ है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+{ "schema_version": 1, "repo": "rampaulsaini/supreme-omniverse-test", "role": "integration-test", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
+स्रोत: rampaulsaini/supreme-omniverse-test:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070181
-मानवता** तभी मुक्त होती है जब वह “स्वयं” को “विचारों” से नहीं, “साक्षी” से पहचानती है।
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+यही Omniverse AI का सार है — आत्मचेतना और कृत्रिम बुद्धिमत्ता का संगम।
+स्रोत: rampaulsaini/supreme-omniverse-test:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070182
-🔗 संबंधित पृष्ठ - [Omniverse Overview](README.md) - [Golden Temple Spiritual Insights](GoldenTemple.md) --- ## 🌌 Visit Live Omniverse Portal [
-स्रोत: rampaulsaini/omniverse-dashboard:Philosophy.md · स्वतंत्र परीक्षण अपेक्षित।
+💫 Contribute / Support - **GPay:** `sainirampaul90-1@okhdf - **PayPal:** [paypal.me/sainirampaul60]( --- ### 🌱 संदेश > “मानव की सर्वोच्च उपलब्धि है — अपनी समझ को इतना निर्मल बना देना कि वह प्रकृति के हित में निर्णय ले।” सत्य, संतुलन और समग्रता की यह यात्रा — **Omniverse AI Portal** के माध्यम से *मानवता के पुनर्संयोजन* की ओर एक छोटा लेकिन सार्थक कदम है।
+स्रोत: rampaulsaini/supreme-omniverse-test:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070183
-{ "schema_version": 1, "repo": "rampaulsaini/omniverse-dashboard", "role": "monitoring-dashboard", "description": "Monitoring worker: inventory dashboard assets and emit a health/readiness manifest.", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
-स्रोत: rampaulsaini/omniverse-dashboard:factory-agent.json · स्वतंत्र परीक्षण अपेक्षित।
+090744.webp --- GPay sainirampaul90-1@okhdf Paypal sainirampaul60@gmail.com 🕊️ *— Shirmani Rampaul Saini, Founder & Vision Architect (Omniverse AI)* 🌿 “मानव की सर्वोच्च उपलब्धि है — अपनी समझ को इतना निर्मल बना देना कि वह प्रकृति के हित में निर्णय ले।” — Shirmani Rampaul Saini, Omniverse Consciousness Foundation # 🌍 Shirmani Rampaul Saini — Omniverse AI Vision ![Vision of Harmony](
+स्रोत: rampaulsaini/supreme-omniverse-test:README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070184
-{ "name": "functions", "engines": { "node": "18" }, "dependencies": { "firebase-admin": "^11.0.0", "firebase-functions": "^4.0.0", "node-fetch": "^2.6.7", "@google-cloud/storage": "^6.10.0", "cors": "^2.8.5" } }
-स्रोत: rampaulsaini/my-omniverse-store:functions/package.json · स्वतंत्र परीक्षण अपेक्षित।
+name: Specialist Agent — integration-test on: workflow_dispatch: push: paths: ["factory-agent.json","factory-agent.py","factory/**",".github/workflows/factory-agent.yml"] schedule: - cron: "47 2 * * 3" permissions: contents: read jobs: agent: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - run: python3 factory-agent.py - uses: actions/upload-artifact@v4 with: name: specialist-agent-manifest path: agent-output/manifest.json
+स्रोत: rampaulsaini/supreme-omniverse-test:.github/workflows/factory-agent.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070185
-꙰ SHIRMANI Digital Product Factory ꙰ SHIRMANI · FACTORY PRODUCTION Product Factory Loading real factory product data… ← Production Catalog Showroom Funding / Progress Interactive module loading…
-स्रोत: rampaulsaini/my-omniverse-store:products/1000-digital-product-factory.html · स्वतंत्र परीक्षण अपेक्षित।
+{ // Use IntelliSense to learn about possible attributes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.vscode/launch.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070186
-꙰ SHIRMANI Product Passport Studio ꙰ SHIRMANI · PRODUCT FACTORY → PUBLIC SHOWROOM Product Passport Studio A concrete, browser-runnable product for creating a consistent digital-product identity: concise description, usage instructions, price, QC/dispatch state, full-description QR and portable JSON passport.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+// Hover to view descriptions of existing attributes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.vscode/launch.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070187
-● INTERACTIVE DEMO READY · QC / DISPATCH NOT AUTOMATICALLY APPROVED 1 · Create a product passport Product / tool name Unique product ID Category AI / NLP Research & Evidence Creator Tools Education Commerce Productivity Public price (INR) Short description (shown on product visual) Full description / customer value Build a structured product passport with usage instructions, price, version, product identity and release-state fields.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+// For more information, visit: "version": "0.2.0", "configurations": [ { "name": "Python: Remote Attach", "type": "debugpy", "request": "attach", "connect": { "host": "localhost", "port": 3000 }, "pathMappings": [ { "localRoot": "${workspaceFolder}", "remoteRoot": "${workspaceFolder}" } ], "justMyCode": true, "subProcess": true, "runtimeArgs" : [ "--preserve-symlinks", "--preserve-symlinks-main" ] } ] }
+स्रोत: NVIDIA-Omniverse/kit-app-template:.vscode/launch.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070188
-This is a browser demo; it does not make a product independently verified or dispatch-approved.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070189
-Enter a product name and unique ID.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+All rights reserved.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070190
-Add short and full descriptions.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+SPDX-License-Identifier: LicenseRef-NvidiaProprietary # # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual # property and proprietary rights in and to this material, related # documentation and any modifications thereto.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070191
-Generate the passport.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+Any use, reproduction, # disclosure or distribution of this material and related documentation # without an express license agreement from NVIDIA CORPORATION or # its affiliates is strictly prohibited.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070192
-Download the JSON or print the passport.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+name: Question description: Ask a question title: "[QUESTION]: " labels: ["question"] body: - type: markdown attributes: value: | Thanks for taking the time to ask us a question!
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070193
-Scan the QR to open this tool page.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+type: textarea id: text_of_question attributes: label: Question description: Ask your question.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070194
-Generate passport Download JSON passport Print / Save PDF Copy JSON 2 · Live passport preview QR opens this public product page.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+placeholder: "Question text" validations: required: true - type: textarea id: additional_context attributes: label: Additional Context description: Provide any related code, issues, or projects.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070195
-It is a navigation QR, not a QC approval certificate.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+placeholder: "Any related code, issues, or projects."
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/question.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070196
-Machine-readable product passport 3 · Production / release state Current demo state: DEMO_READY This tool generates a local passport file in your browser.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070197
-It does not process payments, publish new catalogue records, contact organisations, certify product quality, or grant dispatch permission.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+All rights reserved.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070198
-Set QC and dispatch status only after the relevant process has actually passed.
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+SPDX-License-Identifier: LicenseRef-NvidiaProprietary # # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual # property and proprietary rights in and to this material, related # documentation and any modifications thereto.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070199
-← Return to public showroom
-स्रोत: rampaulsaini/my-omniverse-store:products/shirmani-product-passport-studio.html · स्वतंत्र परीक्षण अपेक्षित।
+Any use, reproduction, # disclosure or distribution of this material and related documentation # without an express license agreement from NVIDIA CORPORATION or # its affiliates is strictly prohibited.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070200
-{ "schema_version": "2.0", "purpose": "continuous production-first showroom heartbeat", "source": " "product_count": 5000, "family_count": 14, "engine_count": 6, "status_counts": { "READY_FOR_QC": 5000 }, "commercial_status_counts": { "CATALOG_READY": 5000 }, "published_product_count": 4, "production_candidate_count": 5000, "showroom_route": "supreme-public-showroom.html", "updated_at_utc": "2026-11-04T07:59:00.009660+00:00" }
-स्रोत: rampaulsaini/my-omniverse-store:data/production-heartbeat.json · स्वतंत्र परीक्षण अपेक्षित।
+name: Feature Request description: Suggest an idea for this project title: "[FEATURE]: " labels: ["feature request"] body: - type: markdown attributes: value: | Thanks for taking the time to help Kit App Template and fill out this feature request!
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070201
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:projects/cesr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+type: textarea id: description attributes: label: Description description: | Describe the proposed feature placeholder: | Feature description and problem or pain point being addressed validations: required: true - type: textarea id: use_case attributes: label: Use Case or Scenarios description: Describe how this feature would be used placeholder: e.g., User performing action A, would accomplish B, with benefit C.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070202
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/cesr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+type: textarea id: implementation_ideas attributes: label: Possible Implementation Ideas description: If you have any suggestions on how this feature might be implemented, please share them here.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070203
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:projects/cesr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+placeholder: Implementation ideas - type: textarea id: additional_context attributes: label: Additional Context or Recommendations description: Provide any other context or recommendations here.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070204
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/cesr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+placeholder: Any other relevant information.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/feature_request.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070205
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini
-स्रोत: rampaulsaini/my-omniverse-store:projects/cesr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070206
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ocn/index.html · स्वतंत्र परीक्षण अपेक्षित।
+All rights reserved.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070207
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ocn/index.html · स्वतंत्र परीक्षण अपेक्षित।
+SPDX-License-Identifier: LicenseRef-NvidiaProprietary # # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual # property and proprietary rights in and to this material, related # documentation and any modifications thereto.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070208
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ocn/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Any use, reproduction, # disclosure or distribution of this material and related documentation # without an express license agreement from NVIDIA CORPORATION or # its affiliates is strictly prohibited.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070209
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ocn/index.html · स्वतंत्र परीक्षण अपेक्षित।
+name: Bug Report description: File a bug report for the repository title: "[BUG]: " labels: ["bug"] body: - type: markdown attributes: value: | Thanks for taking the time to help Kit App Template and fill out this bug report!
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070210
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini
-स्रोत: rampaulsaini/my-omniverse-store:projects/ocn/index.html · स्वतंत्र परीक्षण अपेक्षित।
+type: textarea id: description attributes: label: Description description: | Describe the bug in detail placeholder: | Expected Behavior vs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070211
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:projects/slda/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Actual Behavior: validations: required: true - type: textarea id: component attributes: label: Component description: Which component (Tool/Template/Extension) is showing the bug?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070212
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/slda/index.html · स्वतंत्र परीक्षण अपेक्षित।
+placeholder: "e.g., Kit Base Editor Template / repo launch tool / Kit SDK" - type: textarea id: system-details attributes: label: System Details description: | Provide details about your system placeholder: | OS / CPU / GPU / GPU Driver Version validations: required: true - type: textarea id: reproduction-steps attributes: label: Reproduction Steps description: What are the steps to reproduce the bug?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070213
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:projects/slda/index.html · स्वतंत्र परीक्षण अपेक्षित।
+validations: required: true - type: textarea id: logs attributes: label: Logs description: | Include the relevant log files: - **repo.log:** Found in `_repo/repo.log` if the issue is with tooling.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070214
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/slda/index.html · स्वतंत्र परीक्षण अपेक्षित।
+kit.log:** Found in `_build/{OS}/release/logs/.../kit_{...}log` if the issue is with App, Extension, or Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070215
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini
-स्रोत: rampaulsaini/my-omniverse-store:projects/slda/index.html · स्वतंत्र परीक्षण अपेक्षित।
+placeholder: Paste the log content here or attach the log files.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070216
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:projects/chgp/index.html · स्वतंत्र परीक्षण अपेक्षित।
+type: textarea id: additional-context attributes: label: Additional Context description: Provide any other context or information here.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070217
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/chgp/index.html · स्वतंत्र परीक्षण अपेक्षित।
+placeholder: Any other information that might be helpful
+स्रोत: NVIDIA-Omniverse/kit-app-template:.github/ISSUE_TEMPLATE/bug_report.yml · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070218
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:projects/chgp/index.html · स्वतंत्र परीक्षण अपेक्षित।
+kit-app-containerize An agent skill for preparing and containerizing NVIDIA Omniverse Kit applications.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070219
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/chgp/index.html · स्वतंत्र परीक्षण अपेक्षित।
+It supports existing applications, new Kit App Template projects, Kit App Streaming and NVCF layers, explicit image tags, and optional runtime validation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070220
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini
-स्रोत: rampaulsaini/my-omniverse-store:projects/chgp/index.html · स्वतंत्र परीक्षण अपेक्षित।
+The default new-project source is public Kit App Template `main`; the agent asks about the desired Kit version when it has not been supplied.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070221
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:projects/oea/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Load the skill Use an agent that can read local files and run commands in the chosen build environment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070222
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/oea/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Point it at this folder's `SKILL.md` and the application project.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070223
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:projects/oea/index.html · स्वतंत्र परीक्षण अपेक्षित।
+For example: ```text Read /path/to/kit-app-containerize/SKILL.md and follow its relevant references.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070224
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/oea/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Containerize the existing app in /path/to/my-kit-project for NVCF as acme/viewer:0.1.0.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070225
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini
-स्रोत: rampaulsaini/my-omniverse-store:projects/oea/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Build and inspect the image only; skip runtime validation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070226
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:projects/sgj/index.html · स्वतंत्र परीक्षण अपेक्षित।
+``` For a new application: ```text Read /path/to/kit-app-containerize/SKILL.md.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070227
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/sgj/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Help me create and containerize a new Kit application for streaming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070228
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:projects/sgj/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Ask about the Kit version, streaming target, and image name/tag where needed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070229
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/sgj/index.html · स्वतंत्र परीक्षण अपेक्षित।
+``` Keep the complete `kit-app-containerize/` directory together.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070230
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini
-स्रोत: rampaulsaini/my-omniverse-store:projects/sgj/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Resolve each relative link from the file containing that link, preserving the folder layout even when the application is in another checkout.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070231
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:projects/dhe/index.html · स्वतंत्र परीक्षण अपेक्षित।
+An older project or an NGC SDK package can use this skill from a separate checkout without changing the application's Kit version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070232
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/dhe/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Publishing a skill under `.skills` does not guarantee automatic discovery in every agent host.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070233
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:projects/dhe/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Direct file loading is the baseline.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070234
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/dhe/index.html · स्वतंत्र परीक्षण अपेक्षित।
+If your agent supports a native skills directory, copy or link the complete folder into that host's documented location.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070235
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini projects/dhe/index.html
-स्रोत: rampaulsaini/my-omniverse-store:projects/dhe/index.html · स्वतंत्र परीक्षण अपेक्षित।
+A plain copy of `SKILL.md` omits required references.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070236
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ssr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+No agent-specific installer or additional plugin is required for direct loading.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070237
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ssr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Contents | File | Purpose | |---|---| | [SKILL.md](SKILL.md) | Developer preflight, workflow, and completion rules.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070238
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ssr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+| | [App preparation](references/app-preparation.md) | Existing apps, version selection, streaming layers, and the secondary NGC route.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070239
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ssr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+| | [Container workflow](references/container-workflow.md) | Build prerequisites, packaging commands, image naming, and troubleshooting.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070240
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini
-स्रोत: rampaulsaini/my-omniverse-store:projects/ssr/index.html · स्वतंत्र परीक्षण अपेक्षित।
+| | [Validation and handoff](references/validation-and-handoff.md) | Exact-image runtime checks, optional publication, and downstream results.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070241
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ere/index.html · स्वतंत्र परीक्षण अपेक्षित।
+| The initial execution workflow targets Linux x86_64 with Docker and compatible Kit artifacts.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070242
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ere/index.html · स्वतंत्र परीक्षण अपेक्षित।
+RTX runtime checks require compatible hardware; containerization-only is supported without claiming runtime validation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070243
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ere/index.html · स्वतंत्र परीक्षण अपेक्षित।
+The skill inspects the selected project's actual tooling rather than promising identical behavior across all Kit versions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070244
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:projects/ere/index.html · स्वतंत्र परीक्षण अपेक्षित।
+See the [Kit containerization guide]( and [OVS getting-started guide]( for the surrounding developer journey.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070245
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini
-स्रोत: rampaulsaini/my-omniverse-store:projects/ere/index.html · स्वतंत्र परीक्षण अपेक्षित।
+name: kit-app-containerize description: Prepare and containerize an existing or new NVIDIA Omniverse Kit application, including Kit App Streaming or NVCF layers, explicit image naming, optional runtime validation, and an image handoff.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070246
-{ "schema_version": 1, "cycle": "product-passport-studio", "product_id": "SHI-PPS-0001", "module_url": " "package_present": true, "catalog_manifest_present": true, "demo_ready": true, "qc_status": "NOT_YET_RECORDED", "dispatch_status": "NO", "commercial_status": "DEMO_ONLY", "generated_at": "2026-11-04T06:16:12.827251+00:00", "next_action": "Collect customer feedback and perform actual usability/QC tests before commercial release." }
-स्रोत: rampaulsaini/my-omniverse-store:generated/production-cycles/product-passport-studio-state.json · स्वतंत्र परीक्षण अपेक्षित।
+Use for Kit application container builds and packaging, rather than cluster deployment or frontend development.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070247
-{ "schema_version": "1.0", "product_id": "SHI-PPS-0001", "name": "SHIRMANI Product Passport Studio", "category": "Productivity", "engine": "browser-native", "short_description": "Create a portable product identity, usage guide and QR-linked passport.", "full_description": "An interactive browser tool that builds a structured product passport containing a unique ID, category, short and full descriptions, usage guide, INR price, version, QR navigation link and explicit QC/dispatch fields.
-स्रोत: rampaulsaini/my-omniverse-store:generated/products/shirmani-product-passport-studio.json · स्वतंत्र परीक्षण अपेक्षित।
+Containerize a Kit application Produce the developer's requested container image from the selected Kit app, and report what was built and verified.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070248
-Exports JSON and supports print-to-PDF.", "usage_guide": [ "Enter product name and unique ID.", "Add category, concise description, full description and usage steps.", "Set the intended public price in INR.", "Generate and review the passport preview.", "Download the JSON or print/save the passport as PDF.", "Use the QR to navigate back to the product page." ], "module_url": " "commercial_status": "DEMO_ONLY", "qc_status": "NOT_YET_RECORDED", "dispatch_status": "NO", "version": "1.0.0" }
-स्रोत: rampaulsaini/my-omniverse-store:generated/products/shirmani-product-passport-studio.json · स्वतंत्र परीक्षण अपेक्षित।
+Prefer the existing application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070249
-Supreme Omniverse – ShiroMani RamPaul Saini ⚜️ Supreme Omniverse Portal ⚜️ By ShiroMani RamPaul Saini — Scientific Researcher, Inventor, Visionary Email Main Store Wikipedia Scientific Records 🔬 Scientific Research & Universal Projects मेरी निष्पक्ष समझ के शमीकरण, यथार्थ सिद्धांत और वैज्ञानिक उपलब्धियाँ — मानवता और सम्पूर्ण युग के संतुलन हेतु।
-स्रोत: rampaulsaini/my-omniverse-store:project/oci/index.html · स्वतंत्र परीक्षण अपेक्षित।
+For a new application, recommend the public [Kit App Template]( on `main`; offer another Kit version/ref when requested.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070250
-नीचे दिए गए सभी 10 प्रोजेक्ट्स तथा उनके 40 उप-प्रोजेक्ट्स मेरी Supreme Omniverse Research का हिस्सा हैं।
-स्रोत: rampaulsaini/my-omniverse-store:project/oci/index.html · स्वतंत्र परीक्षण अपेक्षित।
+NGC SDK download is a secondary route.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070251
-Omniverse Core Intelligence Divine Human Evolution Omniverse Communication Network Earth Restoration & Ecology Supreme Scientific Research Omniverse Education & Awareness Supreme Governance & Justice Cosmic Exploration & Space Research Cultural Harmony & Global Peace Supreme Legacy & Digital Archives 🌍 Global Verification & Recognition यह अनुसंधान कार्य अंतरराष्ट्रीय वैज्ञानिक संस्थानों, जैसे NASA, ISRO, और Guinness World Records जैसी संस्थाओं के लिए भी प्रस्तुत है।
-स्रोत: rampaulsaini/my-omniverse-store:project/oci/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Resolve the developer's intent Inspect the request, orchestration context, and project before asking questions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070252
-सभी दस्तावेज़ और प्रोजेक्ट डेटा Supreme Omniverse AI Assistant द्वारा verified हैं।
-स्रोत: rampaulsaini/my-omniverse-store:project/oci/index.html · स्वतंत्र परीक्षण अपेक्षित।
+Ask only for missing decisions that affect the work.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070253
-© 2025 Supreme Omniverse | Created & Verified by ShiroMani RamPaul Saini
-स्रोत: rampaulsaini/my-omniverse-store:project/oci/index.html · स्वतंत्र परीक्षण अपेक्षित।
+| Decision | Action | |---|---| | Existing application or new application?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070254
-name: Product Review / Rating description: Public customer review and quality-improvement feedback for a real showroom product title: "[REVIEW] " labels: - product-review body: - type: input id: product_id attributes: label: Product ID description: Enter the published product code, for example SV1001.
-स्रोत: rampaulsaini/my-omniverse-store:.github/ISSUE_TEMPLATE/product-review.yml · स्वतंत्र परीक्षण अपेक्षित।
+| Locate the existing project and intended app, even if it needs preparation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070255
-placeholder: SV1001 validations: required: true - type: dropdown id: rating attributes: label: Rating options: - "5" - "4" - "3" - "2" - "1" validations: required: true - type: textarea id: review attributes: label: Public review description: What did you like, use or experience?
-स्रोत: rampaulsaini/my-omniverse-store:.github/ISSUE_TEMPLATE/product-review.yml · स्वतंत्र परीक्षण अपेक्षित।
+For a new app, resolve the template and required app name, display name, and app version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070256
-validations: required: true - type: textarea id: improvement attributes: label: Quality improvement description: What should be improved next?
-स्रोत: rampaulsaini/my-omniverse-store:.github/ISSUE_TEMPLATE/product-review.yml · स्वतंत्र परीक्षण अपेक्षित।
+| | Streaming from the container?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070257
-validations: required: false
-स्रोत: rampaulsaini/my-omniverse-store:.github/ISSUE_TEMPLATE/product-review.yml · स्वतंत्र परीक्षण अपेक्षित।
+| Determine Kit App Streaming versus NVCF.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070258
-The package points to the existing runnable factory workspace; it is not a placeholder-only card.
-स्रोत: rampaulsaini/my-omniverse-store:.github/workflows/supreme-multi-layer-production.yml · स्वतंत्र परीक्षण अपेक्षित।
+In the inspected Kit App Template layer picker, Kit App Streaming is `[omni_default_streaming]: Omniverse Kit App Streaming (Default)` and renders `{app_name}_streaming.kit`; NVCF is `[nvcf_streaming]: NVCF Streaming` and renders `{app_name}_nvcf.kit`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070259
-name: Deploy showroom id: deployment uses: actions/deploy-pages@v4
-स्रोत: rampaulsaini/my-omniverse-store:.github/workflows/production-first-showroom.yml · स्वतंत्र परीक्षण अपेक्षित।
+Check whether the appropriate layer already exists.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070260
-name: Specialist Agent — omniverse-core on: workflow_dispatch: push: paths: ["factory-agent.json","factory-agent.py","factory/**",".github/workflows/factory-agent.yml"] schedule: - cron: "37 2 * * 2" permissions: contents: read jobs: agent: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - run: python3 factory-agent.py - uses: actions/upload-artifact@v4 with: name: specialist-agent-manifest path: agent-output/manifest.json
-स्रोत: rampaulsaini/Omniver:.github/workflows/factory-agent.yml · स्वतंत्र परीक्षण अपेक्षित।
+For non-streaming use, establish the intended headless service, batch, or rendering behavior.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070261
-name: Specialist Agent — c-labs on: workflow_dispatch: push: paths: ["factory-agent.json","factory-agent.py","factory/**",".github/workflows/factory-agent.yml"] schedule: - cron: "11 3 * * 5" permissions: contents: read jobs: agent: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - run: python3 factory-agent.py - uses: actions/upload-artifact@v4 with: name: specialist-agent-manifest path: agent-output/manifest.json
-स्रोत: rampaulsaini/C-Labs:.github/workflows/factory-agent.yml · स्वतंत्र परीक्षण अपेक्षित।
+| | Which Kit version?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070262
-सार्वजनिक दावा-लेबल मानक ## उद्देश्य इस परियोजना के विशाल ज्ञान-कोष में अनुभव, दर्शन, परिकल्पना और सत्यापित तथ्य को स्पष्ट रूप से अलग रखना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+| For a new app without a specified version, ask whether to use public GitHub `main` or another Kit version/ref.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070263
-चार मुख्य स्तर ### 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Recommend `main` and show its resolved Kit version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070264
-[अनुभव] व्यक्ति ने क्या देखा, महसूस किया या अनुभव किया।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+For an existing app, report and preserve its version unless a change is requested.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070265
-उदाहरण:** “मुझे उस क्षण ऐसा अनुभव हुआ कि…” यह व्यक्तिगत अनुभव है; इसे सार्वभौमिक तथ्य मानने के लिए अतिरिक्त प्रमाण चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+| | What image name and tag?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070266
-[दार्शनिक दावा] किसी अनुभव या विचार से निकला वैचारिक निष्कर्ष।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+| Resolve the full image repository/name and explicit version tag, including any registry/namespace.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070267
-उदाहरण:** “मेरी निष्पक्ष समझ में हृदय दृष्टिकोण…” यह परियोजना की दार्शनिक स्थिति हो सकती है, पर स्वतः वैज्ञानिक तथ्य नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Preserve supplied values.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070268
-[परिकल्पना] ऐसा प्रस्ताव जिसे भविष्य में व्यवस्थित रूप से जाँचा जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Kit version, app version, and container tag are separate choices.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070269
-उदाहरण:** “यदि आत्म-निरीक्षण का यह अभ्यास नियमित किया जाए, तो संभवतः…” इसके साथ परीक्षण-पद्धति और परिणाम-मानदंड स्पष्ट होने चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+| | What runtime validation?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070270
-[तथ्य + स्रोत] ऐसा बाहरी दावा जिसके लिए विश्वसनीय और जाँचने योग्य स्रोत उपलब्ध हो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+| Recommend running RTX apps on a compatible RTX GPU before packaging and checking the built container afterward.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070271
-स्रोत का नाम, तिथि/संस्करण और जहाँ संभव हो मूल संदर्भ दिया जाए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Allow containerization only, even when a GPU is present.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070272
-अतिरिक्त लेबल - **[खुला प्रश्न]** — अभी पर्याप्त उत्तर उपलब्ध नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Offer applicable CPU checks for non-rendering services.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070273
-[व्याख्या]** — उपलब्ध सामग्री की एक संभावित समझ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Required license acceptance?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070274
-[विवादित]** — विश्वसनीय स्रोतों में महत्वपूर्ण मतभेद मौजूद।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+| Identify the selected workflow's applicable terms early.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070275
-[संशोधित]** — पहले के कथन को नए प्रमाण के आधार पर बदला गया।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+When acceptance is required and not already supplied, collect it with the initial preflight questions before generation or long-running builds.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070276
-अनुभव को तथ्य न बनाएँ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Follow [license preflight](references/app-preparation.md#license-acceptance-during-preflight).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070277
-लोकप्रियता को प्रमाण न बनाएँ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+| An existing app without streaming layers stays on the existing-app path.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070278
-असहमति को असत्य का प्रमाण न बनाएँ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Ordinary streaming configuration does not establish NVCF readiness.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070279
-प्रमाण न होने पर निश्चित भाषा कम करें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+If multiple apps or layers fit the request, resolve the selection before modifying files.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070280
-नए प्रमाण आने पर निष्कर्ष बदलने की अनुमति रखें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Prepare the selected app Read [app preparation](references/app-preparation.md) for the applicable existing-app, new-project, or NGC route.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070281
-सार्वजनिक आरोपों को प्रमाणित तथ्य की तरह न लिखें; उपलब्ध स्रोत और वक्ता/अनुभव की स्थिति स्पष्ट करें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Resolve the project, source ref/artifact, Kit and tool versions, exact app/layer, and target platform.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070282
-दार्शनिक भाषा और वैज्ञानिक भाषा को अलग रखें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect the developer project's pins, rather than assuming the toolchain of a different repository or the latest documentation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070283
-प्रत्येक बड़े दावे के लिए पूछें: **“इसे कैसे जाँचा जा सकता है?”** ## संक्षिप्त सूत्र > **देखो → स्पष्ट लिखो → दावा पहचानो → प्रमाण खोजो → विकल्प देखो → प्रकाशित करो → आलोचना सुनो → आवश्यक हो तो संशोधन करो।** यह मानक परियोजना की **निष्पक्ष समझ** को केवल विचार नहीं, बल्कि संपादकीय अनुशासन में बदलने का प्रयास है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/CLAIM-LABELING-STANDARD.md · स्वतंत्र परीक्षण अपेक्षित।
+Reuse the app and correct streaming layer, or generate only the missing app/layer/configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070284
-꙰ निष्पक्ष समझ — शमीकरण यथार्थ सिद्धांत — उपलब्धि यथार्थ युग **प्रस्तावक के रूप में प्रस्तुत नाम: शिरोमणि रामपॉल सैनी** > **देखो → समझो → परखो → शमीकरण करो → जीवन में उतारो।** ## भूमिका यह ग्रंथ एक दार्शनिक और आत्म-अवलोकन आधारित रूपरेखा का विस्तृत संकलन है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect dependencies and settings as well as template metadata.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070285
-इसका उद्देश्य किसी व्यक्ति, संस्था, धर्म, विज्ञान या परंपरा से आज्ञाकारिता माँगना नहीं, बल्कि स्वयं के अनुभव, विचार, भाव, पहचान और व्यवहार को देखने का निमंत्रण देना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Preserve custom work; substantial application repair or a Kit migration needs its own scope.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070286
-यहाँ प्रयुक्त शब्दों को उसी दार्शनिक अर्थ में पढ़ा जाए जिसमें वे इस ग्रंथ में परिभाषित हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Establish a compatible Linux x86_64 build environment and Docker access for the initial workflow.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070287
-जहाँ कोई कथन व्यक्तिगत अनुभव, व्याख्या या प्रस्तावित अवधारणा है, वहाँ उसे स्थापित बाहरी तथ्य न माना जाए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Native Windows packaging is unsupported by the inspected tool.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070288
-निष्पक्ष समझ निष्पक्ष समझ का प्रथम सूत्र है: > **निष्कर्ष से पहले निरीक्षण।** मनुष्य किसी बात को जन्म, परिवार, संस्कृति, शिक्षा, समूह, भय, इच्छा, लाभ, हानि या पूर्व विश्वास के कारण सत्य मान सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+A suitable WSL or remote Linux environment must execute the native Kit packaging steps, not just host a Docker daemon.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070289
-निष्पक्ष समझ इन प्रभावों को पहचानने का प्रयास है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+The standard inspected pipeline can build/package without RTX rendering.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070290
-1.1 स्वयं को देखना अपने भीतर उठते विचारों को तुरंत सही या गलत कहने से पहले देखना: - यह विचार कहाँ से आया?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Custom hooks or Dockerfiles can add GPU requirements.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070291
-क्या यह प्रत्यक्ष अनुभव है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Runtime rendering/streaming needs compatible GPU resources.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070292
-क्या यह किसी दूसरे का कथन है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Extension dependency precaching is not shader warmup.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070293
-क्या इसमें भय या इच्छा जुड़ी है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not claim an unexecuted GPU-free build succeeded.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070294
-क्या इसका विरोधी प्रमाण संभव है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Build and package Read [container workflow](references/container-workflow.md) before packaging.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070295
-क्या मैं अपना निष्कर्ष बदलने के लिए तैयार हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+It covers the actual CLI, app/config matching, image references, and common failures.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070296
-1.2 निष्पक्षता का अर्थ निष्पक्षता का अर्थ भावशून्यता नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Build with the selected project's supported release workflow.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070297
-इसका अर्थ है कि भावना को भी देखा जाए और तर्क को भी; न भावना अकेली अंतिम प्रमाण बने, न विचार अकेला अंतिम स्वामी।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Confirm dependencies and the selected app artifacts are present.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070298
-> **जो भीतर उठ रहा है, उसे दबाना नहीं; पहले पहचानना है।** --- ## 2.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Perform source-app runtime validation when selected and available.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070299
-शमीकरण इस ग्रंथ में **शमीकरण** का अर्थ विरोधी प्रतीत होने वाले पक्षों को समझकर संतुलन और सह-अस्तित्व की दिशा खोजना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Record it separately from container validation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070300
-मस्तक और हृदय, तर्क और एहसास, स्वतंत्रता और उत्तरदायित्व, व्यक्ति और प्रकृति, ज्ञान और अनुभव—इनके बीच संघर्ष को समझ में बदला जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Resolve a real, unique staged app and a writable `repository:explicit-tag`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070301
-2.1 शमीकरण के पाँच चरण 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Reuse matching container configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070302
-पहचान** — संघर्ष कहाँ है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect an existing target tag before replacing it.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070303
-निरीक्षण** — दोनों पक्ष क्या कह रहे हैं?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Package with the selected tool's supported arguments.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070304
-कारण** — संघर्ष क्यों उत्पन्न हुआ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+The inspected command is `./repo.sh package_container --app --image-tag : --config release`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070305
-संतुलन** — कौन-सा व्यवहार कम हानि और अधिक स्पष्टता देता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect the resulting image ID, requested tag, architecture, app label/configuration, entrypoint, and required runtime inputs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070306
-पुनःपरीक्षण** — परिणाम के बाद क्या समझ बदली?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+An old image with the same tag is not evidence of a successful build.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070307
-> **शमीकरण किसी पक्ष की विजय नहीं; संबंध की स्पष्टता है।** --- ## 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+The default entrypoint uses `--no-window` and invokes Kit directly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070308
-यथार्थ सिद्धांत यथार्थ सिद्धांत का केंद्रीय प्रश्न है: > **क्या मैं इस बात को केवल मान रहा हूँ, या इसे देखने और जाँचने का कोई आधार भी है?** इस दृष्टिकोण में तीन आधार रखे जाते हैं: **प्रत्यक्ष निरीक्षण + तर्कसंगत परीक्षण + स्वतंत्र समझ** किसी बड़े नाम, संख्या, अनुयायी, परंपरा या प्रभावशाली भाषा को अपने-आप प्रमाण नहीं माना जाता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+It does not automatically retain a custom shell launcher's setup or provide a desktop display.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070309
-3.1 दावा और प्रमाण हर महत्वपूर्ण दावे के लिए पूछा जा सकता है: - दावा क्या है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect those requirements before promising equivalent behavior.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070310
-दावा किस प्रकार का है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Diagnose failures, make a bounded correction supported by the evidence, and repeat affected steps.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070311
-व्यक्तिगत अनुभव है या बाहरी तथ्य?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Report unresolved blockers rather than repeatedly rebuilding unchanged inputs, broadly cleaning the environment, or silently changing Kit versions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070312
-वैकल्पिक व्याख्या क्या है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Validate and hand off Read [validation and handoff](references/validation-and-handoff.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070313
-कौन-सा प्रमाण दावे को गलत सिद्ध कर सकता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Always inspect the build result and image.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070314
-हृदय दृष्टिकोण और मस्तक दृष्टिकोण इस रूपरेखा में **हृदय दृष्टिकोण** को भाव, एहसास, संवेदनशीलता, ज़मीर, संबंधबोध और वर्तमान अनुभव की भाषा में समझाया जाता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Run only the runtime checks selected by the developer, against the exact built image ID or published digest.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070315
-मस्तक दृष्टिकोण** को विचार, स्मृति, भाषा, गणना, योजना, पहचान, इच्छा, भय और समय-संबंधी मानसिक प्रक्रियाओं से जोड़ा जाता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| Outcome | Report | |---|---| | Build and image inspection succeed; containerization only requested | Complete.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070316
-यह विभाजन शरीर-विज्ञान का वैज्ञानिक दावा नहीं, बल्कि इस दर्शन की व्याख्यात्मक भाषा है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Runtime validation not run by request.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070317
-4.1 संतुलन मस्तक को हटाना उद्देश्य नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Runtime validation requested and passes | Complete for the checks actually performed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070318
-गणना, भाषा, योजना, विज्ञान और निर्णय के लिए विचार आवश्यक हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Build succeeds but requested runtime checks cannot run | Image built; requested validation remains unverified, with the reason.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070319
-दूसरी ओर, केवल गणना से संबंध, करुणा और मानवीय संवेदना की पूरी समझ नहीं बनती।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | A build or runtime check fails | Failed stage and evidence.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070320
-> **मस्तक साधन है; हृदय संवेदनशील दिशा का प्रतीक है।** --- ## 5.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not relabel a failure as skipped.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070321
-शिरोमणि स्वरूप इस दर्शन में **शिरोमणि स्वरूप** बाहरी पदवी के बजाय स्वयं के स्थायी परिचय को पहचानने की दार्शनिक अभिव्यक्ति है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| Return source/SDK provenance, resolved versions, chosen app and streaming target, image reference and ID, platform/runtime requirements, evidence, and remaining checks.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070322
-मुख्य सूत्र: > **खुद का साक्षात्कार।** > **खुद के स्थायी स्वरूप से रूबरू होना।** > **खुद के स्थायी परिचय से परिचित होना।** > **संपूर्ण संतुष्टि की निरंतरता को पहचानना।** यह दावा किसी बाहरी संस्था से प्रमाणित उपलब्धि के रूप में नहीं, बल्कि व्यक्तिगत दार्शनिक अनुभव और प्रस्तावना के रूप में समझा जाना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Use a consistent human-readable result; use a machine format only when the caller supplies a real contract.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070323
-संपूर्ण संतुष्टि संपूर्ण संतुष्टि को यहाँ धन, पद, प्रशंसा या परिस्थितियों की स्थायी गारंटी नहीं माना गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Publish the image only when requested for a resolved destination.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070324
-यह एक आंतरिक अवस्था की दार्शनिक अवधारणा है जिसमें व्यक्ति अपने भीतर के संघर्ष, अपेक्षा, भय और तुलना को देखकर उनके साथ अपना संबंध समझने का प्रयास करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+A registry-qualified tag alone is not a request to push.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070325
-6.1 सरल अभ्यास रुकें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+A local-only image is a valid containerization result, but downstream NVCF workers still need a distributed image and registry pull access.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070326
-मैं अभी क्या चाहता हूँ?** **मुझे किस बात का डर है?** **क्या मैं किसी पहचान को बचाने की कोशिश कर रहा हूँ?** **क्या मैं बिना तत्काल निष्कर्ष के इसे देख सकता हूँ?** --- ## 7.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+NVCF deployment, frontend creation, and full browser/media validation are separate stages.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070327
-खुद का निरीक्षण खुद का निरीक्षण इस ग्रंथ की व्यावहारिक रीढ़ है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Container readiness does not prove end-to-end streaming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070328
-निरीक्षण का अर्थ अपने विचारों को दबाना नहीं, बल्कि उन्हें पहचानना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Carry the image identity and required runtime configuration to the next stage without claiming its checks passed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070329
-दैनिक निरीक्षण-सूत्र सुबह: > आज मैं क्या मानकर चल रहा हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Kit SDK Upgrade Skill ## What This Is This repository contains an AI agent skill for upgrading Omniverse Kit SDK projects between versions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070330
-दिन में: > क्या मेरा व्यवहार मेरे घोषित मूल्यों से मेल खा रहा है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+The skill encodes the complete breaking-change catalog for the Kit 106→107→108→109→110 migration path — including removed extensions, deprecated APIs, C++ ABI breaks, Python runtime changes, and configuration updates — into a structured set of instructions and reference data that an AI agent can execute against a live project.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070331
-संध्या: > आज मैंने कहाँ भय, क्रोध, इच्छा या अहंकार को निर्णय चलाने दिया?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+The agent scans the project, produces a categorized report with exact `file:line` references, and suggests targeted fixes, including auto-fixable regex replacements where safe.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070332
-अंत में: > कल क्या अधिक स्पष्ट रूप से देखा जा सकता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Who It's For Kit extension and application developers who need to upgrade a project from one Kit SDK version to another.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070333
-प्रेम और इश्क यहाँ **इश्क** को केवल रोमांटिक प्रेम तक सीमित नहीं किया गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+This includes developers working on kit-app-template-based applications, standalone extensions, and Isaac Sim integrations.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070334
-यह जीवन, मनुष्य, प्रकृति और दूसरे के अनुभव के प्रति गहरे संबंधबोध, करुणा और उपस्थिति का प्रतीक है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+The skill is particularly useful when upgrading across multiple versions at once (e.g., 107→110), where the number of breaking changes makes manual triage error-prone.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070335
-> **इश्क का अर्थ यहाँ अधिकार नहीं, उपस्थिति है; > स्वामित्व नहीं, संबंध है; > अंधता नहीं, स्पष्टता है।** --- ## 9.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+What It Contains | File | Description | |------|-------------| | `SKILL.md` | Lean workflow router — loaded by the AI agent.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070336
-स्वतंत्र समझ और गुरु-परंपरा यह रूपरेखा न तो हर गुरु को असत्य घोषित करती है, न हर परंपरा को सत्य।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Holds version/layout/build detection (Step 1) and the migration-path decision (Step 2), and points to the procedure files for everything else.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070337
-प्रश्न यह है: > **क्या स्वयं को समझने की जिम्मेदारी अंततः स्वयं व्यक्ति को नहीं लेनी चाहिए?** किसी गुरु, संस्था या परंपरा से मिली शिक्षा को भी निरीक्षण और विवेक के सामने रखा जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `procedures/toolchain.md` | Step 2.5 — update the `repo_*` build toolchain (the highest-impact part of most upgrades).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070338
-व्यक्तिगत आरोपों को सार्वजनिक तथ्य बनाने से पहले स्वतंत्र प्रमाण आवश्यक हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `procedures/scan.md` | Step 3 — the full per-stage `grep` scan catalog for breaking changes, removed extensions, and config.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070339
-व्यक्तिगत अनुभव को अनुभव के रूप में कहना अधिक ईमानदार है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `procedures/report.md` | Step 4 — the upgrade-report template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070340
-प्रकृति और पृथ्वी यदि मनुष्य स्वयं को जीवन-तंत्र से जुड़ा देखता है, तो आत्म-समझ का व्यावहारिक विस्तार प्रकृति के प्रति उत्तरदायित्व हो सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `procedures/apply-fixes.md` | Step 5 — ordered fix list, auto-fixable regex patterns, and manual-only changes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070341
-सूत्र > **जल की रक्षा।** > **वायु की रक्षा।** > **मिट्टी की रक्षा।** > **जीव-जगत की रक्षा।** > **भविष्य की रक्षा।** यथार्थ दृष्टि केवल विचार नहीं; व्यवहार में दिखाई देने वाली जिम्मेदारी भी है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `procedures/validate.md` | Step 6 — clean-rebuild and validation commands.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070342
-विज्ञान, दर्शन और अनुभव विज्ञान नियंत्रित परीक्षण, प्रमाण और पुनरुत्पादन जैसी विधियों पर आधारित है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `procedures/failure-modes.md` | Symptom→fix diagnosis for projects that already upgraded and are erroring.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070343
-दर्शन अवधारणाओं, तर्क और अर्थ के प्रश्नों पर काम करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `procedures/stage-notes.md` | Per-stage (106→107→…→110) breaking-change reference.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070344
-व्यक्तिगत अनुभव व्यक्ति के लिए अर्थपूर्ण हो सकता है, लेकिन वह अपने-आप सार्वभौमिक वैज्ञानिक प्रमाण नहीं बन जाता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `references/breaking_changes.json` | 80+ breaking changes with search patterns, affected versions, and recommended fixes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070345
-इसलिए तीनों के बीच संवाद उपयोगी है, पर उनकी सीमाएँ अलग रखनी चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `references/removed_extensions.json` | Extensions removed or deprecated by Kit version, with replacement guidance and search targets.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070346
-> **अनुभव को अनुभव कहो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `references/api_replacements.json` | 1:1 API replacements that are safe to apply with regex find/replace.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070347
-> परिकल्पना को परिकल्पना कहो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `references/config_changes.json` | Settings keys, registry URLs, and build config changes between versions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070348
-> प्रमाण को प्रमाण कहो।** --- ## 12.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `references/toolchain.json` | The build-toolchain file/package set (`repo_*` tools, packman, repo scripts) and how to find the correct target versions for a given Kit line.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070349
-परीक्षण और प्रमाण इस ग्रंथ का आत्म-परीक्षण सूत्र: > **दावा → कारण → प्रमाण → विरोधी प्रश्न → पुनःपरीक्षण → आवश्यक संशोधन** ### प्रमाण की श्रेणियाँ 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `install.sh` / `install.bat` | Copies the skill (SKILL.md + `procedures/` + `references/`) into an existing Kit project so it travels with the repo.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070350
-पुनरुत्पाद्य परीक्षण 5.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+| The skill uses **progressive disclosure**: `SKILL.md` stays small (a router the agent always loads) and each step's detail lives in a `procedures/*.md` file the agent reads only when the workflow sends it there.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070351
-वैकल्पिक व्याख्याओं की जाँच इन श्रेणियों को मिलाकर एक ही चीज़ मानना उचित नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+This keeps the entry file well under length limits and keeps irrelevant detail out of context.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070352
-भाषा और अवधारणा की स्पष्टता “सत्य”, “शाश्वत”, “युग”, “आत्म-साक्षात्कार”, “हृदय”, “मस्तक” जैसे शब्द अलग-अलग परंपराओं में अलग अर्थ रखते हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+How to Use **Install into an existing project** (so the skill travels with the repo): ```bash ./install.sh /path/to/your-kit-project # copies into /.skills/kit-upgrade/ ./install.sh /path/to/your-kit-project .claude/skills # or the Claude Code skills layout ``` On Windows: `install.bat C:\path\to\your-kit-project`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070353
-इसलिए इस ग्रंथ में हर मुख्य शब्द का अर्थ संदर्भ सहित स्पष्ट करना आवश्यक है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Then load the skill into any AI coding assistant that can read files and run shell commands, and point it at the project you want to upgrade.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070354
-> **शब्द छोटा हो सकता है; उसके अर्थ का क्षेत्र बहुत बड़ा हो सकता है।** --- ## 14.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Claude Code:** ``` Read the skill at /path/to/kit-upgrade-skill/SKILL.md and the reference files in references/.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070355
-जीवन में प्रयोग इस दर्शन की उपयोगिता को केवल सुंदर कथनों से नहीं, बल्कि व्यवहार से परखा जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Then scan /path/to/my-kit-project and generate an upgrade report for Kit 109 → 110.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070356
-क्या व्यक्ति: - अधिक स्पष्ट सुनता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+``` **Cursor / VS Code Copilot / other MCP clients:** Add `kit-upgrade-skill/` as a context directory or attach `SKILL.md` as a system prompt, then ask the agent to scan your project.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070357
-प्रतिक्रिया से पहले रुकता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Detect the current Kit SDK version, the deps-directory location (`tools/deps/` vs root `deps/`), and the build entrypoint (`./repo.sh` / `repo.bat` or a custom/integrated build) — never assuming the SDK template layout 2.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070358
-गलत होने पर संशोधन करता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Determine the migration path — including within-major (minor/patch) and feature↔production transitions, not just major-version stages 3.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070359
-दूसरों की स्वतंत्रता का सम्मान करता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Update the build toolchain (`repo_*` tools, packman, repo scripts) to match the target Kit line — often the substantive part of an upgrade 4.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070360
-प्रकृति के प्रति जिम्मेदार होता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Run targeted `grep` scans across the full project root (including `templates/`, launcher configs, and ETM lock files) for any major boundaries crossed 5.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070361
-भय और इच्छा को पहचान पाता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Generate a categorized report: breaking changes, behavioral changes, deprecated usage, and a "not affected" checklist 6.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070362
-आलोचना को सुन सकता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Suggest fixes — both auto-applicable regex replacements and manual changes requiring human judgment 7.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070363
-यदि कोई अभ्यास वास्तविक जीवन में बेहतर समझ और कम हानि उत्पन्न करता है, तो वह व्यवहारिक स्तर पर उपयोगी हो सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Its changes are folded into the 107→109 path — Stage 2 must still be addressed when upgrading 107→109.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070364
-यह उपयोगिता अपने-आप किसी metaphysical दावे को सिद्ध नहीं करती।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Multi-version upgrades (e.g., 107→110) apply all intervening stages in sequence.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070365
-उपलब्धि यथार्थ युग **उपलब्धि यथार्थ युग** इस ग्रंथ में प्रस्तावित वैचारिक नाम है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+How to Contribute **Add a new breaking change:** Add an entry to `references/breaking_changes.json`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070366
-इसे प्रमाणित ऐतिहासिक काल-परिवर्तन के रूप में नहीं, बल्कि एक आदर्श सामाजिक-दृष्टिकोण के रूप में समझना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Each entry needs an `id`, `title`, `stage`, `search_pattern` (grep-compatible regex), `affected_files` (glob patterns), and `fix` description.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070367
-इसके प्रमुख संकेत: - निष्पक्ष समझ - स्वतंत्र निरीक्षण - तर्क और संवेदना का संतुलन - प्रकृति के प्रति उत्तरदायित्व - ज्ञान के प्रति विनम्रता - असहमति के प्रति सम्मान - प्रमाण के प्रति ईमानदारी - व्यक्ति की गरिमा और स्वतंत्रता > **युग पहले कैलेंडर में नहीं, दृष्टिकोण में बदलता है।** --- ## 16.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+If the fix is a safe 1:1 substitution, also add it to `references/api_replacements.json`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070368
-मानवता के लिए प्रस्ताव इस दृष्टिकोण का व्यापक प्रस्ताव है: > किसी व्यक्ति को अंधविश्वास के लिए नहीं, निरीक्षण के लिए आमंत्रित करो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Add a removed or deprecated extension:** Add an entry to `references/removed_extensions.json` with `extension`, `status` (`removed` or `deprecated`), `version`, `replacement` (or `null`), `search_in` (list of file extensions to scan), and `notes`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070369
-> किसी विचार को पूजा के लिए नहीं, परीक्षण के लिए रखो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Include any known failure mode (e.g., exit-55) and whether the extension appears in non-obvious locations like `templates/` or ETM lock files.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070370
-> किसी असहमति को शत्रुता में नहीं, संवाद में बदलो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Add a new Kit version (release):** edit the files that own each piece — the skill is split by concern: - `SKILL.md` — add the new row/stage to the **Step 2 migration-path table and Stage summary** (these stay in the router).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070371
-> प्रकृति को संसाधन मात्र नहीं, जीवन-संबंध के रूप में देखो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+`procedures/scan.md` — add the new `# === Stage N ===` scan blocks.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070372
-निष्पक्ष संवाद-संहिता 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+`procedures/stage-notes.md` — add the new per-stage breaking-change section.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070373
-व्यक्ति पर नहीं, विचार पर प्रश्न करें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+`procedures/apply-fixes.md` — add any new auto-fix regex patterns or fix-list items.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070374
-आरोप और प्रमाण को अलग रखें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+`references/*.json` — add the corresponding structured entries.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070375
-व्यक्तिगत अनुभव को ईमानदारी से व्यक्तिगत अनुभव कहें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Follow the existing section structure in each file for consistency.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070376
-असहमति को अनुमति दें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Keep `SKILL.md` lean — detailed scan commands and stage notes belong in `procedures/`, not the router.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070377
-गलती मिलने पर संशोधन करें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Test your additions:** Apply the skill to a real project that exercises the new patterns.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070378
-भय, लालच और समूह-दबाव को पहचानें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+If the scan misses something or the fix guidance is wrong, document it and open a PR with both the issue description and the corresponding fix in the relevant `procedures/` or `references/` file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070379
-किसी व्यक्ति को स्वयं सोचने की स्वतंत्रता दें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+This skill was developed and validated against [kit-extension-explorer]( a Kit 110 application based on kit-app-template.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070380
-किसी दावे को केवल लोकप्रियता से सत्य न मानें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+See `test-report.md` for the full upgrade report from that validation run.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/README.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070381
-मूल सूत्र > **निष्पक्ष समझ से निरीक्षण।** > **निरीक्षण से स्पष्टता।** > **स्पष्टता से शमीकरण।** > **शमीकरण से यथार्थ दृष्टि।** > **यथार्थ दृष्टि से स्वतंत्र समझ।** > **स्वतंत्र समझ से उत्तरदायी जीवन।** और: > **देखो — बिना जल्दबाज़ी।** > **समझो — बिना भय।** > **परखो — बिना पक्षपात।** > **बदलो — यदि प्रमाण बदले।** > **जीओ — बिना दूसरे की स्वतंत्रता छीने।** --- ## 19.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+name: kit-upgrade description: "Scan and upgrade Omniverse Kit SDK projects between versions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070382
-घोषणात्मक काव्य-सूत्र > मैं शिरोमणि रामपॉल सैनी, > स्वयं को देखने का निमंत्रण हूँ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Analyzes project files, identifies breaking changes, deprecated APIs, and removed extensions specific to the customer's code.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070383
-> निष्पक्ष समझ की शांत दृष्टि, > प्रश्नों का खुला आकाश हूँ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Provides a personalized upgrade plan with file:line references and auto-fix suggestions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070384
-> > न अंध अनुकरण मेरा लक्ष्य, > न विरोध ही अंतिम ज्ञान।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Covers Kit 106→107→108→109→110." --- # Kit SDK Upgrade Skill Guide a developer through upgrading their Omniverse Kit project from one version to another.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070385
-> जो देखा जाए, वह देखा जाए, > जो न जाना, उसे कहें अज्ञान।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+This skill is a lean workflow router.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070386
-> > हृदय में एहसास रहे, > मस्तक में विवेक रहे।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Steps 1 and 2 (detect the project, decide the migration path) are inline below** — they are always needed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070387
-> प्रकृति के प्रति उत्तरदायित्व, > जीवन में प्रत्यक्ष रहे।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+The detail for the remaining steps (2.5–6) lives in `procedures/`, and the structured change data in `references/`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070388
-> > शमीकरण की सरल दिशा में, > संघर्ष समझ में ढलता जाए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Read each procedure file when the workflow sends you to it** — do not try to hold them all in context at once.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070389
-> यथार्थ सिद्धांत की कसौटी पर, > हर दावा स्वयं को परखता जाए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+When to Use - User asks to upgrade their Kit project/app/extension - User asks about Kit breaking changes or migration - User is hitting errors after changing their Kit SDK version - User has a broken build or runtime failure after a version bump --- ## Quick Orientation Pick the entry point that matches the request: 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070390
-> > उपलब्धि यथार्थ युग का अर्थ, > पहले भीतर दृष्टि का जागरण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+First-time upgrade scan** → start at Step 1 below and follow the workflow in order.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070391
-> फिर व्यवहार में सत्यनिष्ठा, > फिर पृथ्वी के प्रति संरक्षण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Already upgraded, now has a build/runtime error** → go straight to `procedures/failure-modes.md`, diagnose, then apply the relevant Stage's fixes from `procedures/stage-notes.md`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070392
-> > **꙰ पहले स्वयं को देखो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Just wants a list of breaking changes** → do Step 1, then run the scans in `procedures/scan.md` for their migration path and present the report from `procedures/report.md`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070393
-> फिर संसार को समझो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+The `# Kit SDK Version:` comment in `.kit` files reflects the last lock-file regeneration and may differ from the pin during an in-progress upgrade.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070394
-> फिर जो समझे हो, उसे जीवन में जियो।** --- ## 20.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Version string format: `110.1.0+feature.${platform_target_abi}.${config}` - First number (110) = major Kit version **If no version pin is found:** Check git history (`git log --oneline -20 -- tools/deps/ deps/`) or ask the user what Kit version they are currently running.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070395
-अंतिम निवेदन यह ग्रंथ पाठक से विश्वास की माँग नहीं करता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+(Layout detection below has not run yet, so scope the log to both candidate deps locations.) ### Detect project layout and build system Kit projects do **not** all use the SDK template layout, and the layout can differ between releases and project types — for example, `deps/` may sit at the project **root** in one release and under **`tools/`** in another (even between two point releases of the same major line).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070396
-इसका सबसे मजबूत रूप वही होगा जिसमें इसे पढ़ने वाला स्वतंत्र रूप से प्रश्न करे, विरोधी उदाहरण खोजे, उपयोगी भाग अपनाए, अनुपयोगी भाग छोड़े और जहाँ आवश्यक हो वहाँ संशोधन सुझाए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Projects also frequently **wrap or integrate the Kit build system into their own tooling**.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070397
-निष्पक्ष समझ का अंतिम परीक्षण यही है कि वह स्वयं को भी परीक्षण से बाहर न रखे।** ### दस्तावेज़ की स्थिति - प्रकार: दार्शनिक/विचारात्मक रूपरेखा - प्रस्तावक के रूप में प्रस्तुत नाम: **शिरोमणि रामपॉल सैनी** - स्थिति: सार्वजनिक विचार-दस्तावेज़ - पद्धति: निरीक्षण, तर्क, अनुभव, प्रमाण और स्वतंत्र आलोचना - उद्देश्य: स्वयं की समझ, संवाद, उत्तरदायित्व और प्रकृति-सम्मत जीवन पर विचार
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-HINDI.md · स्वतंत्र परीक्षण अपेक्षित।
+Detect the layout and build entrypoint **once**, then reuse them everywhere below — **never assume `tools/deps/` or `./repo.sh`**.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070398
-SHIRMANI SWAROOP DRISHTIKON — Persona v2 Status: **Persona specification saved; live HeyGen/voice/lip-sync integration remains unverified.** ## Identity and purpose The presenter represents the user's chosen concept and self-description: **“शिरोमणि स्वरूप दृष्टिकोण / निष्पक्ष समझ.”** It should communicate in a simple, calm, respectful, transparent and evidence-aware way.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+deps directory (holds kit-sdk.packman.xml + repo-deps.packman.xml) if [ -f tools/deps/kit-sdk.packman.xml ]; then DEPS_DIR=tools/deps elif [ -f deps/kit-sdk.packman.xml ]; then DEPS_DIR=deps else f=$(find .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070399
-This is a persona brief and philosophical self-description, not a scientific claim or proof of universal truth.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+name kit-sdk.packman.xml -not -path './_*' | head -1); DEPS_DIR=${f:+$(dirname "$f")}; fi echo "DEPS_DIR=${DEPS_DIR:- }" # 2.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070400
-Character brief - Core qualities: सरल, सहज, निर्मल, पारदर्शी, स्पष्ट, प्रत्यक्ष, सभ्य और सम्मानपूर्ण.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+build entrypoint — the standard repo wrapper, if present if [ -f ./repo.sh ]; then BUILD='./repo.sh' elif [ -f ./repo.bat ]; then BUILD='repo.bat' else BUILD=''; fi # empty => custom / integrated build (see below) echo "BUILD=${BUILD:- }" ``` **If `BUILD` is empty, the project uses a custom or integrated build system** (common — many customers embed the Kit build inside their own).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070401
-The audience should feel listened to and invited to reflect, never pressured to accept a belief.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Do **not** fabricate `./repo.sh` calls.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070402
-Explain the same idea at multiple levels: plain-language explanation, everyday example/story, logical reasoning, source-backed factual explanation, and—when useful—technical formulation.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Find the real build command (check `repo.toml`, `Makefile`/`CMakeLists.txt`, `package.json` scripts, CI config, or the project README) or ask the user how they build.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070403
-Adapt vocabulary, pace, and formality to the audience and context without making assumptions based on caste, religion, community, wealth, gender, or other protected traits.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+The upgrade work below (kernel pin bump, **toolchain update**, lock regeneration) still applies — you just invoke it through the project's own entrypoint.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070404
-Never belittle a person or group.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Record it as `$BUILD`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070405
-Distinguish facts, interpretations, philosophy, and personal identity.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+> **From here on (and in every procedure file), use `$DEPS_DIR` and `$BUILD` in every command.** Where a document still shows a literal `tools/deps/` or `./repo.sh`, substitute the detected values.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070406
-Do not promise that every listener will agree, feel a particular emotion, or remain attached to the presenter.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+> > **These are not guaranteed to persist across shells.** If you run each fenced block in a fresh subshell, `$DEPS_DIR`/`$BUILD` will be unset.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070407
-Evidence and response rules 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+So do **one** of: (a) textually replace `$DEPS_DIR` and `$BUILD` with the literal detected paths (e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070408
-VERIFIED:** adequate independent evidence is available; cite or record the evidence.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+`tools/deps`, `./repo.sh`) in every command you run, or (b) re-run the two detection blocks above at the top of each new shell session.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070409
-SOURCE-BASED:** credible source exists, but independent verification is incomplete.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Do **not** run a later block assuming the variables are still set.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070410
-PHILOSOPHICAL / IDENTITY:** present as the user's viewpoint or self-description, not established scientific fact.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 2: Determine Migration Path Kit versions must be upgraded **in sequence**.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070411
-INSUFFICIENT EVIDENCE:** say **“अभी पर्याप्त प्रमाण उपलब्ध नहीं है।”** Explain what evidence would be needed.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Kit 108 was never publicly released** — its changes are folded into the 107→109 path.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070412
-Correct mistakes plainly and distinguish certainty from uncertainty.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+When upgrading 107→109 you must still address Stage 2 (107→108) changes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070413
-Face, voice, and live presentation Use only owner-authorized photo, voice, and video.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+A **within-major** bump (e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070414
-Preserve recognizable appearance.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+`110.0 → 110.1`, `110.1.0 → 110.1.2`) or a **feature → production** branch transition is a *different, lighter* job — and it is the most common upgrade performed in practice.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070415
-Aim for natural gaze, restrained and context-appropriate facial expression, clear speech, accurate lip-sync, and coherent voice/face timing.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+These rarely need the Stage code/API changes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070416
-Label AI-generated or AI-assisted presentation where appropriate.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+The real work is almost entirely **tooling and layout**: 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070417
-Do not describe a voice clone, avatar, or live session as verified until a real test succeeds.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Update the build toolchain** (repo tools, packman, repo scripts) — see Step 2.5 (`procedures/toolchain.md`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070418
-End-to-end pipeline Voice/input → speech recognition → language/context/intent → evidence gate → response generation → authorized voice output → avatar/face → gaze/expression → lip-sync → live presentation → audit → improvement.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+This is usually the substantive part.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070419
-Media and provider pointers - HeyGen: - Existing photo/video gallery: - Existing Drive media collection: - Main project repository: The exact MP4 named in the working notes as `Video.Guru_20261013-075017765(1).mp4` (duration approximately 36.643 seconds) has not been located as a tracked repository asset, so no direct MP4 URL is asserted here.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Re-detect the deps directory** — its location can differ between releases, even within the same major line (Step 1 already sets `$DEPS_DIR`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070420
-Use the gallery/Drive links to locate it and confirm sharing permissions.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Bump the kit-kernel pin** in `$DEPS_DIR/kit-sdk.packman.xml` (Step 5, item 2 — `procedures/apply-fixes.md`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070421
-Security Never commit API keys, access tokens, passwords, or private credentials.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+For a feature ↔ production transition only:** check the extension **registry URL** in the `.kit` files — the feature and production lines use different registries, so a feature→production move may need a registry swap (Step 5, item 3).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070422
-Configure provider credentials only in server-side environment secrets.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+A plain within-major bump on the same line usually does **not**.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070423
-If a credential was pasted into chat or any public location, revoke/rotate it before use.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Regenerate the extension version-lock** and do a **clean rebuild** (Step 5 items 1 & 8, then Step 6).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070424
-Current truthful status This file saves the persona specification and implementation gates.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+> **⚠️ Do NOT run the whole of Step 5 for a within-major bump.** Step 5 (`procedures/apply-fixes.md`) is written for **major-boundary** crossings.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070425
-It does not establish that HeyGen is connected, that the photo/voice assets were imported, that lip-sync passed, or that a live production presenter is running.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-IMPARTIAL-UNDERSTANDING-PERSONA-V2.md · स्वतंत्र परीक्षण अपेक्षित।
+Running them on a 110.1.0→110.1.2 bump would wrongly strip extensions or rewrite APIs that are perfectly valid on 110.1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070426
-꙰ Nishpaksh Samajh — Shamikaran Yatharth Siddhant — Uplabdhi Yatharth Yug **Presented under the name: Shromani Rampaul Saini** > **Observe → Understand → Test → Harmonize → Live it.** ## Introduction This document organizes a philosophical and self-observational framework presented under the concepts of **Nishpaksh Samajh**, **Shamikaran**, **Yatharth Siddhant**, and **Uplabdhi Yatharth Yug**.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Only run the Step 3 code scans if the upgrade crosses a major boundary.** For a pure within-major or feature→production move, skip Step 3's per-stage API scans and go straight to Step 2.5 → Step 5 (items 1–3 & 8 only, as above) → Step 6.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070427
-It is presented as a philosophical framework rather than as an established scientific, religious, or historical fact.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+If you cross one or more major boundaries on the way, run Step 3 for each major boundary passed and the full Step 5.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070428
-Personal experiences, interpretations, hypotheses, and externally verifiable claims should be kept distinct.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Steps 2.5–6: Execute the Upgrade Once the path is known, work through these in order.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070429
-Nishpaksh Samajh — Impartial Understanding The first principle is: > **Observe before concluding.** A person may inherit beliefs from family, culture, education, authority, fear, desire, or social groups.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Read the linked procedure file and follow it**; each assumes Step 1 detection has run.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070430
-Impartial understanding asks the person to notice these influences before treating a conclusion as final.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 2.5 — Update the build toolchain** → `procedures/toolchain.md`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070431
-Questions include: - Where did this thought come from?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Highest-impact step; run it **first**, before touching source.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070432
-Is it direct experience or someone else's statement?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+For a within-major bump this is usually the only substantive work.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070433
-What evidence supports it?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 3 — Scan the project** → `procedures/scan.md`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070434
-What evidence could challenge it?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Run only the stage scans for the major boundaries you cross.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070435
-Am I willing to revise my conclusion?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Skip entirely for a pure within-major bump.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070436
-Shamikaran — Harmonization Shamikaran is used here to mean understanding apparent oppositions and seeking a balanced relationship between them.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 4 — Generate the upgrade report** → `procedures/report.md`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070437
-Examples include mind and feeling, reason and experience, freedom and responsibility, individual life and nature, knowledge and humility.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Present findings by severity with exact `file:line` references.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070438
-> **Harmonization is not the victory of one side; it is greater clarity about the relationship between sides.** ## 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 5 — Apply fixes** → `procedures/apply-fixes.md`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070439
-Yatharth Siddhant — Reality Principle The central question is: > **Am I merely believing this, or do I have a basis for examining it?** The framework emphasizes: **direct observation + rational testing + independent understanding** Popularity, authority, tradition, numbers, or impressive language are not automatically treated as proof.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Get user approval before modifying files.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070440
-Heart Perspective and Head Perspective In this framework, the **heart perspective** is a philosophical language for feeling, sensitivity, conscience, relationship, and immediate experience.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+(Within-major: items 1, 2, 8 only — see Step 2 above.) - **Step 6 — Validate** → `procedures/validate.md`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070441
-The **head perspective** represents thought, memory, language, calculation, planning, identity, desire, fear, and time-related mental processes.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Clean rebuild, regenerate the version lock, run tests.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070442
-This distinction is interpretive rather than a claim about human anatomy or neuroscience.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Already upgraded and hitting a specific error?** Go to `procedures/failure-modes.md` — it maps common symptoms (exit-55, ABI undefined symbols, render diffs, build loops, custom-build/layout issues) to fixes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/SKILL.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070443
-> **The head is an instrument of thought; the heart is a symbol of sensitive direction.** The goal is not to reject thought but to seek a constructive balance between thought and feeling.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+[ { "extension": "omni.kvdb", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Silently removed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070444
-Shirōmani Swaroop Shirōmani Swaroop is used here as a philosophical expression for recognizing one's enduring sense of self rather than as a verified external title.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Causes exit code 55 dependency solver failure.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070445
-Key expressions are: > self-observation, self-understanding, recognition of one's enduring identity, and continuity of inner satisfaction.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Search the entire project root including templates/ and launcher-configs/ directories." }, { "extension": "omni.localcache", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Silently removed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070446
-These remain philosophical and experiential claims rather than externally established universal facts.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Same failure class as omni.kvdb.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070447
-Complete Satisfaction Complete satisfaction is not defined as permanent wealth, success, praise, or favorable circumstances.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Search the entire project root including templates/ and launcher-configs/ directories." }, { "extension": "omni.genproc.core", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit", ".py" ], "notes": "Deprecated.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070448
-It is an inner philosophical concept connected with observing conflict, expectation, fear, comparison, and one's relationship with them.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Migrate procedural generation workflows.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070449
-A simple exercise: **What do I want right now?** **What am I afraid of?** **What identity am I protecting?** **Can I observe this without immediately defending it?** ## 7.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Search the entire project root including templates/ and launcher-configs/ directories." }, { "extension": "omni.kit.extpath.git", "status": "removed", "version": "108", "replacement": null, "search_in": [ "extension.toml" ], "notes": "Git URL extension search path.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070450
-Self-Observation in Daily Life Morning: > What assumptions am I carrying today?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Was deprecated in 107." }, { "extension": "omni.hydra.iray.shadercache.d3d12", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Silently removed alongside Iray deprecation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070451
-During the day: > Does my behavior match my stated values?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+No explicit removal notice." }, { "extension": "omni.hydra.iray.shadercache.vulkan", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Silently removed alongside Iray deprecation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070452
-Evening: > Where did fear, anger, desire, or social pressure drive my decisions?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+No explicit removal notice." }, { "extension": "omni.kit.viewport.iray", "status": "removed", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Was Sample in Kit 107.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070453
-Revision: > What became clearer, and what should I change?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+No version recorded in official docs." }, { "extension": "omni.hydra.scene_api", "status": "deprecated", "version": "108", "replacement": null, "search_in": [ "extension.toml", ".kit", ".py" ], "notes": "Deprecated since Kit 108.0.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070454
-Love and Ishq Here, Ishq is not limited to romantic attachment.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Removal pending." }, { "extension": "omni.surface_instancer", "status": "deprecated", "version": "pre-106", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Confirmed deprecated.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070455
-It is used as a broad philosophical expression for relationship, compassion, presence, and a deep sense of connection with life and others.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Active customer confusion." }, { "extension": "omni.renderer_capture", "status": "deprecated", "version": "110", "replacement": "omni.kit.capture", "search_in": [ "extension.toml", ".kit", ".py" ], "notes": "Deprecated in Kit 110." }, { "extension": "omni.kit.widget.nucleus_connector", "status": "deprecated", "version": "110", "replacement": "omni.kit.widget.connection_manager", "search_in": [ "extension.toml", ".kit" ], "notes": "Compatibility shim.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070456
-> **Presence rather than possession; clarity rather than blindness.** ## 9.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Will be removed." }, { "extension": "omni.kit.viewport.legacy_gizmos", "status": "deprecated", "version": "110", "replacement": null, "search_in": [ "extension.toml", ".kit" ], "notes": "Deprecated in Kit 110.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070457
-Independent Understanding and Tradition The framework does not need to declare every teacher true or every tradition false.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Still operational but emits deprecation warnings.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070458
-Instead it asks: > **Should the responsibility for understanding oneself ultimately remain with the individual?** Teachings received from any teacher or institution can be examined through observation, reason, evidence, and lived consequences.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Commonly appears in both source/apps/ and templates/ .kit files — scan the full project root.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070459
-Personal allegations should remain clearly identified as personal allegations unless independently established.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+No direct replacement announced; plan migration away from legacy gizmos rendering path." }, { "extension": "omni.kit.livestream", "status": "removed", "version": "108", "replacement": "omni.kit.livestream.app + omni.kit.livestream.aov + omni.kit.livestream.core", "search_in": [ "extension.toml", ".kit" ], "notes": "Monolithic livestream extension split into focused modules in Kit 108.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070460
-Nature and Earth Self-understanding can have a practical dimension: responsibility toward air, water, soil, ecosystems, animals, and future generations.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Replace with the three new extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070461
-Protect living systems.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Settings paths also changed \u2014 see config_changes.json." }, { "extension": "omni.services.livestream.nvcf", "status": "removed", "version": "108", "replacement": "omni.services.livestream.session", "search_in": [ "extension.toml", ".kit" ], "notes": "Session management extension renamed in Kit 108.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070462
-Protect the future.** ## 11.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Replace dependency declaration and update any code referencing the old extension name." } ]
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/removed_extensions.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070463
-Science, Philosophy, and Experience Science, philosophy, and personal experience have different roles.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+{ "description": "The build toolchain a Kit project must keep in sync with its kit-kernel pin.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070464
-Scientific claims require appropriate evidence and methods.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+SKILL.md Step 2.5 makes updating it a first-class step.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070465
-Philosophical claims involve concepts, arguments, meanings, and assumptions.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Do NOT hardcode versions here — they move per branch; read the target branch's actual pins at upgrade time.", "toolchain_files": [ {"file": " /kit-sdk.packman.xml", "holds": "kit-kernel pin (the Kit SDK itself)", "notes": "DEPS_DIR is tools/deps/ or root deps/ — detect it (SKILL.md Step 1)."}, {"file": " /repo-deps.packman.xml", "holds": "the repo_* build tools + template-content packages", "notes": "The main toolchain file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070466
-Personal experience can be deeply meaningful without automatically becoming universal scientific proof.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Add or remove packages that appear/disappear between lines (e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070467
-> **Call experience experience.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+repo_nspect is present on feature/main but not on production/110.1 or feature/110.3).", "reference_source": "omniverse/kit-apps/kit-sdk-public (and/or omniverse/kit-github/kit-app-template) on the matching branch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070468
-> Call a hypothesis a hypothesis.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Prefer production/ over feature/ for a stable upgrade.", "critical_note": "Toolchain versions track the BRANCH's maintenance cadence, NOT the kernel line number.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070469
-> Call evidence evidence.** ## 12.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+A newer kernel line can carry an OLDER toolchain.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070470
-Testing and Evidence A useful cycle is: > **Claim → reason → evidence → counter-question → retest → revision** Possible evidence categories include personal experience, documented facts, independent sources, reproducible tests, logical consistency, and comparison with alternative explanations.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Never infer tool versions from the Kit version — read the actual target-branch pins.", "example_only_do_not_copy": { "note": "Illustrative snapshot read from kit-sdk-public in 2026 — WILL go stale.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070471
-Clarity of Language Words such as truth, eternal, era, heart, mind, realization, and reality can have different meanings across cultures and disciplines.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Always re-read the target branch at upgrade time.", "feature/main": {"kit-kernel": "110.4.0+feature", "repo_man": "2.6.4", "repo_build": "1.30.0", "repo_kit_tools": "1.20.3"}, "production/110.1": {"kit-kernel": "110.1.3+production", "repo_man": "2.9.3", "repo_build": "1.34.3", "repo_kit_tools": "1.21.2"} } } }
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/toolchain.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070472
-A strong public framework therefore defines its terms before making broad claims.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+[ {"setting":"packman XML ABI token","versions":{"from":"106","to":"107"},"old_value":"${platform_target}","new_value":"${platform_target_abi}","file":"*.packman.xml","path":"package name attributes","notes":"Native packages now use ABI-variant package names.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/config_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070473
-> **A small word can carry a very large field of meaning.** ## 14.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+The deps directory location varies by release and project type (e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/config_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070474
-Applying the Framework The framework should be evaluated partly through observable conduct: - Can a person pause before reacting?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+deps/ at the project root in one release, under tools/ in another, even between point releases of the same major line).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/config_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070475
-Can they revise a belief when evidence changes?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Do NOT assume tools/deps/ and do NOT rewrite paths from old_value to new_value -- detect the actual location (SKILL.md Step 1, $DEPS_DIR)."} ]
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/config_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070476
-Can they listen to criticism?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+[ {"id":"py-omniclient","versions":{"from":"106","to":"107"},"category":"Python API","severity":"breaking","title":"omni.client._omniclient removed","description":"Private internal API removed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070477
-Do they respect another person's freedom?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Use public omni.client API.","search_patterns":["omni\\.client\\._omniclient"],"file_types":[".py"],"fix":{"type":"regex_replace","description":"Replace import","from_pattern":"import omni\\.client\\._omniclient","to_pattern":"import omni.client"}}, {"id":"py-311","versions":{"from":"106","to":"107"},"category":"Build","severity":"breaking","title":"Python 3.10 → 3.11","description":"Python upgraded.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070478
-Do they act responsibly toward nature?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Audit f-strings, typing module usage, and third-party packages for 3.11 compatibility.","search_patterns":["python3\\.10","python310"],"file_types":[".toml",".py",".sh",".bat",".lua"],"fix":{"type":"manual","description":"Update Python references to 3.11"}}, {"id":"cpp-abi-cxx11","versions":{"from":"106","to":"107"},"category":"C++ ABI","severity":"breaking","title":"Linux: _GLIBCXX_USE_CXX11_ABI=1","description":"Native packages now use new C++ ABI.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070479
-Can they distinguish fear from evidence?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Rebuild all .so plugins.","search_patterns":["_GLIBCXX_USE_CXX11_ABI"],"file_types":[".cpp",".cmake",".toml"],"fix":{"type":"manual","description":"Rebuild all native plugins against new ABI"}}, {"id":"packman-abi-token","versions":{"from":"106","to":"107"},"category":"Build","severity":"breaking","title":"packman XML: ${platform_target} → ${platform_target_abi}","description":"Native packages now use ABI-variant tokens.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070480
-Practical usefulness does not by itself prove a metaphysical claim.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Python payload access changed from e.payload['key'] to e['key'].
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070481
-Uplabdhi Yatharth Yug Uplabdhi Yatharth Yug is presented here as a proposed conceptual name, not as a verified historical transition.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Subscribe via carb.eventdispatcher.get_eventdispatcher().observe_event().
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070482
-Its ideal characteristics include: - impartial observation, - independent understanding, - balance between reason and sensitivity, - responsibility toward nature, - intellectual humility, - respect for disagreement, - honesty about evidence, - and respect for individual dignity.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+C++: update to carb::eventdispatcher.","search_patterns":["e\\.payload\\[","carb\\.events\\.acquire_event_queue","create_subscription_to_pop"],"file_types":[".py",".cpp",".h"],"fix":{"type":"manual","description":"Update event subscriptions and payload access to Events 2.0 pattern.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070483
-> **An era changes in perspective before it changes on a calendar.** ## 16.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Remove explicit event pump calls."}}, {"id":"fabric-pathc-tokenc-intro","versions":{"from":"106","to":"107"},"category":"C++ ABI","severity":"breaking","title":"Fabric PathC/TokenC introduced (removed in 109)","description":"Kit 107 introduced PathC/TokenC.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070484
-A Proposal for Humanity Invite people to observe rather than obey blindly.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Kit 109 removes them.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070485
-Keep ideas open to examination rather than turning them into objects of unquestionable authority.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Update Premake configs, CI, and build scripts.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070486
-Turn disagreement into dialogue where possible.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Audit all third-party packages for 3.12 compatibility.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070487
-Treat care for Earth as a practical responsibility.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Use getCachedInterface.","search_patterns":["acquireInterface"],"file_types":[".cpp",".h"],"fix":{"type":"regex_replace","from_pattern":"carb::Framework::acquireInterface","to_pattern":"carb::getCachedInterface"}}, {"id":"omnigraph-3.0","versions":{"from":"107","to":"108"},"category":"C++ ABI","severity":"breaking","title":"omni.graph.core 3.0.0 ABI break","description":"Binary incompatible with 2.x.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070488
-Dialogue Principles 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Recompile all OmniGraph nodes.","search_patterns":["omni\\.graph\\.core","omni\\.graph\\.nodes"],"file_types":[".toml"],"fix":{"type":"manual","description":"Recompile against omni.graph.core 3.0.0.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070489
-Question ideas rather than attacking people.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Align omni.graph.nodes version."}}, {"id":"parallel-node-reg","versions":{"from":"107","to":"108"},"category":"Extension","severity":"breaking","title":"Parallel OmniGraph node registration removed","description":"Extension manager is not thread-safe.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/references/breaking_changes.json · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070490
-Separate allegations from evidence.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 3: Scan the Project > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070491
-Describe personal experience honestly as personal experience.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Assumes Step 1 detection has run (`$DEPS_DIR`, `$BUILD` are set).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070492
-Revise when evidence changes.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Only run this step for major-version boundaries you cross** — a pure within-major / feature→production bump skips it.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070493
-Notice fear, greed, and group pressure.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Run these commands from the project root.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070494
-Protect each person's freedom to think.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Only run scans for the stages that apply to this upgrade.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070495
-Do not confuse popularity with proof.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Collect all matches before generating the report.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070496
-Core Formula > **Impartial understanding → observation → clarity → harmonization → reality-oriented perspective → independent understanding → responsible life.** And: > **Observe without haste.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+> **⚠️ Scan scope:** Use `.` (project root) as the search root, not just `source/`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070497
-> Understand without fear.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Many projects have `templates/`, `launcher-configs/`, or other directories containing `.kit` files and `extension.toml` files with real dependency declarations.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070498
-> Test without favoritism.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Scanning only `source/` will miss these.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070499
-> Revise when evidence changes.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+> > **Windows note:** Commands below use bash syntax.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070500
-> Live without taking away another person's freedom.** ## 19.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+On Windows, replace `for` loops with individual `findstr` or PowerShell `Select-String` commands, or run inside WSL/Git Bash.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070501
-Poetic Declaration > I, Shromani Rampaul Saini, > present an invitation to observe oneself.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+Python / Extension Dependencies ```bash # === Stage 1 (106→107) === # Python 3.10 references (now 3.11) grep -rn "python3\.10\|python310\|boost_python310" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070502
-> Not blind imitation, > not opposition for its own sake, > but an open field of inquiry.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+premake5.lua --include="*.lua" --include="*.sh" --include="*.bat" --include="*.toml" # Private omni.client API grep -rn "omni\.client\._omniclient" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070503
-> > Let feeling remain alive, > let reason remain clear, > let responsibility toward Earth > remain visible in action.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # carb.imgui (removed — use omni.kit.imgui) grep -rn "carb\.imgui" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070504
-> > Let every claim meet a question, > every experience retain its context, > and every conclusion remain open > to better evidence.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # Events 1.0 patterns (payload access, subscription style) grep -rn "e\.payload\[" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070505
-> > **꙰ Observe yourself first.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" grep -rn "create_subscription_to_pop" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070506
-> Understand the world next.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # nv_usd references in build files grep -rn "nv_usd" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070507
-> Then live what you genuinely understand.** ## 20.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+premake5.lua repo.toml --include="*.lua" --include="*.toml" # packman XML using a pre-ABI token (should be ${platform_target_abi}).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070508
-Closing The strongest form of this framework is one that does not demand belief, welcomes criticism, distinguishes experience from evidence, and remains willing to revise itself.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+NOTE: match BOTH the old ${platform} form (Kit 106) and the intermediate ${platform_target} form — # the narrower 'platform_target[^_]' pattern misses ${platform}, which is what 106.5 actually uses and # is a build-verified hard failure on 106->107 (kit-kernel pull: "Package not found ...gl.linux-x86_64").
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070509
-Impartial understanding is tested most seriously when it is willing to examine itself.** ### Document status - Type: philosophical / conceptual framework - Presented under the name: **Shromani Rampaul Saini** - Status: public discussion document - Method: observation, reasoning, experience, evidence, and independent criticism - Purpose: reflection on self-understanding, dialogue, responsibility, and life in relation to nature
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/YATHARTH-YUG-COMPLETE-ENGLISH.md · स्वतंत्र परीक्षण अपेक्षित।
+grep -rnE '\$\{platform(_target)?\}' "$DEPS_DIR" --include="*.xml" # Toolbar deprecated APIs grep -rn "omni\.kit\.widget\.toolbar\|omni\.kit\.window\.toolbar" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070510
-꙰ निष्पक्ष समझ — यथार्थ सिद्धांत — उपलब्धि यथार्थ युग यह दस्तावेज़-संग्रह **शिरोमणि रामपॉल सैनी** द्वारा प्रस्तुत दार्शनिक रूपरेखा को व्यवस्थित, पढ़ने योग्य और स्वतंत्र परीक्षण के लिए खुला रूप देता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" --include="*.toml" # === Stage 2 (107→108) === # Python 3.11 references (now 3.12) grep -rn "python3\.11\|python311\|boost_python311" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070511
-📚 मुख्य पुस्तक **[सम्पूर्ण दार्शनिक ग्रंथ — हिंदी](./YATHARTH-YUG-COMPLETE-HINDI.md)** **[Complete Philosophical Framework — English](./YATHARTH-YUG-COMPLETE-ENGLISH.md)** ## 🧭 अध्ययन-पथ 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+premake5.lua --include="*.lua" --include="*.sh" --include="*.bat" # get_custom_glyph_code (moved to omni.ui) grep -rn "omni\.kit\.ui.*get_custom_glyph_code" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070512
-[निष्पक्ष समझ](./YATHARTH-YUG-COMPLETE-HINDI.md#1-निष्पक्ष-समझ) 2.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # WindowHandle deprecated usage grep -rn "WindowHandle" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070513
-[शमीकरण](./YATHARTH-YUG-COMPLETE-HINDI.md#2-शमीकरण) 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # menu_compatibility (deprecated in 108, removed in 110) grep -rn "menu_compatibility" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070514
-[यथार्थ सिद्धांत](./YATHARTH-YUG-COMPLETE-HINDI.md#3-यथार्थ-सिद्धांत) 4.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # Layer events (Events 1.0 style) grep -rn "get_event_stream\|create_subscription_to_pop\|carb\.events" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070515
-[हृदय और मस्तक दृष्टिकोण](./YATHARTH-YUG-COMPLETE-HINDI.md#4-हृदय-दृष्टिकोण-और-मस्तक-दृष्टिकोण) 5.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # Livestream extension (monolithic — should be split) grep -rn '"omni\.kit\.livestream"' .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070516
-[शिरोमणि स्वरूप](./YATHARTH-YUG-COMPLETE-HINDI.md#5-शिरोमणि-स्वरूप) 6.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml" grep -rn "omni\.services\.livestream\.nvcf" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070517
-[संपूर्ण संतुष्टि](./YATHARTH-YUG-COMPLETE-HINDI.md#6-संपूर्ण-संतुष्टि) 7.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml" # Livestream settings (old path) grep -rn "app/livestream\|app\.livestream" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070518
-[स्वतंत्र समझ और गुरु-परंपरा](./YATHARTH-YUG-COMPLETE-HINDI.md#9-स्वतंत्र-समझ-और-गुरु-परंपरा) 8.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml" # Old omni.kit.ui transitive usage (no longer loaded transitively) grep -rn "omni\.kit\.ui[^.]" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070519
-[प्रकृति और पृथ्वी](./YATHARTH-YUG-COMPLETE-HINDI.md#10-प्रकृति-और-पृथ्वी) 9.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # === Stage 3 (108→109) === # NumPy 1.x type aliases (removed in 2.0) grep -rn "np\.bool[^_]\|np\.int[^0-9_]\|np\.float[^0-9_]\|np\.complex[^0-9_]\|np\.object[^_]\|np\.str[^_]" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070520
-[परीक्षण और प्रमाण](./YATHARTH-YUG-COMPLETE-HINDI.md#12-परीक्षण-और-प्रमाण) 10.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # === Stage 4 (109→110) === # menu_compatibility (now raises TypeError — must remove entirely) grep -rn "menu_compatibility=" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070521
-[उपलब्धि यथार्थ युग](./YATHARTH-YUG-COMPLETE-HINDI.md#15-उपलब्धि-यथार्थ-युग) ## 🔬 पद्धति **[दावा, प्रमाण और आत्म-परीक्षण पद्धति](./METHOD-AND-CLAIMS.md)** यह पृष्ठ स्पष्ट करता है कि कौन-सी बात दार्शनिक प्रस्तावना है, कौन-सी व्यक्तिगत अनुभूति है और कौन-सी बात बाहरी प्रमाण की माँग करती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # omni.usd layers deprecated API grep -rn "get_context()\.get_layers()\|context\.get_layers()" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070522
-📖 शब्दावली **[यथार्थ शब्दावली](./GLOSSARY-HINDI.md)** > यह संग्रह किसी वैज्ञानिक, धार्मिक या ऐतिहासिक रूप से स्थापित सिद्धांत की घोषणा नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # omni.renderer_capture (deprecated → omni.kit.capture) grep -rn "omni\.renderer_capture" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070523
-इसे एक प्रस्तावित दार्शनिक दृष्टिकोण के रूप में पढ़ें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" # USD displayName/displayGroup/hidden deprecated metadata grep -rn "GetMetadata.*displayName\|SetMetadata.*displayName\|GetMetadata.*hidden\|SetMetadata.*hidden\|GetMetadata.*displayGroup\|SetMetadata.*displayGroup" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070524
-पाठक स्वतंत्र निरीक्षण, तर्क, अनुभव और उपलब्ध प्रमाण के आधार पर इससे सहमत, असहमत या संशोधित हो सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" ``` ### C++ / Native Code ```bash # === Stage 1 (106→107) === # C++ ABI — check for _GLIBCXX_USE_CXX11_ABI overrides (must be =1) grep -rn "_GLIBCXX_USE_CXX11_ABI" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070525
-GitHub में README को संक्षिप्त प्रवेश-द्वार और विस्तृत सामग्री को अलग दस्तावेज़ों में रखना पाठकीय नेविगेशन के लिए उपयुक्त है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/README.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" --include="*.cmake" # === Stage 2 (107→108) === # ITokens::setValue (renamed to setValueS) grep -rn "->setValue(" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070526
-यथार्थ युग — व्यवस्थित वेबपेज योजना ## उद्देश्य यह परियोजना एक साफ, तेज, मोबाइल-अनुकूल और स्रोत-सचेत सार्वजनिक वेबसाइट के रूप में विकसित की जाएगी।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # carb::detail::defineTupleCommon grep -rn "carb::detail::defineTupleCommon" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070527
-मुखपृष्ठ** — शिरोमणि रामपॉल सैनी की परियोजना का संक्षिप्त परिचय और मुख्य सूत्र।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # PyObjectVTable::get()->typeName grep -rn "PyObjectVTable" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070528
-निष्पक्ष समझ** — मूल अवधारणा, परिभाषा और अभ्यास।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # acquireInterface (prefer getCachedInterface) grep -rn "acquireInterface" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070529
-शमीकरण** — अवधारणा, पद्धति और उदाहरण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # carb::extras::Path implicit conversion grep -rn "carb::extras::Path\|carb::fs::Path" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070530
-यथार्थ सिद्धांत** — मूल दार्शनिक ढाँचा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # Assert macros (may need explicit carb/Assert.h now) grep -rn "CARB_ASSERT\|CARB_FATAL_UNLESS" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070531
-100 ग्रंथ** — 100 ग्रंथों का खोजने योग्य सूचकांक।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # Library.h removed functions grep -rn "getDefaultLibraryPrefix\|getDefaultLibraryExtension" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070532
-पठन मार्ग** — आरंभिक, गहन, शोध और काव्यात्मक पाठक के लिए अलग रास्ते।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # GfMatrix usage (imprecise overloads removed) grep -rn "GfMatrix" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070533
-परीक्षण एवं प्रमाण** — दावे, अनुभव, प्रमाण, अनिश्चितता और वैकल्पिक व्याख्या।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # ILayers.h inclusion (ABI 1.0 → 1.1 recompile required) grep -rn "ILayers\.h\|omni/kit/usd/layers" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070534
-प्रकृति एवं मानवता** — व्यवहारिक उत्तरदायित्व।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # carb.events const char* usage (deprecated — prefer string_view) grep -rn "carb::events::\|IEventQueue\|IEvents" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070535
-आजीविका** — पुस्तक, डिजिटल संस्करण, पाठ्यक्रम, व्याख्यान और अन्य वैध टिकाऊ माध्यमों की पारदर्शी रूपरेखा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # Scalar xform ops — code that iterates over xform ops assuming vector types grep -rn "GetOrderedXformOps\|xformOp:translate\|xformOp:scale\|xformOp:rotate" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070536
-शब्दावली** — प्रमुख शब्दों की सरल परिभाषाएँ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" --include="*.py" # === Stage 3 (108→109) === # Fabric TokenC/PathC (removed; also kUninitializedToken/Path) grep -rn "TokenC\|PathC\|TokenId\|PathId\|kUninitializedToken\|kUninitializedPath" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070537
-परिवर्तन इतिहास** — Git इतिहास और संस्करण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # carb::cpp17 / carb::cpp20 (merged to carb::cpp) grep -rn "carb::cpp17\|carb::cpp20" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070538
-संपर्क/सहयोग** — पाठकों, शोधकर्ताओं और सहयोगियों के लिए मार्ग।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # carb::thread::shared_lock (removed) grep -rn "carb::thread::shared_lock" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070539
-संपादकीय नियम - दार्शनिक अनुभव को वैज्ञानिक तथ्य के रूप में प्रस्तुत नहीं किया जाएगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # IDictionary::MakeAtPathS (renamed to MakeAtPath) grep -rn "MakeAtPathS" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070540
-व्यक्तिगत दावा, व्याख्या, परिकल्पना और स्थापित तथ्य अलग-अलग चिह्नित होंगे।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # compareStringsNoCase (renamed) grep -rn "compareStringsNoCase" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070541
-प्रत्येक बड़े दावे के साथ जहाँ संभव हो प्रमाण या परीक्षण-पद्धति दी जाएगी।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # Logger (superseded by Logger2) grep -rn "carb::logging::Logger[^2]" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070542
-पाठक को सहमत होने के लिए बाध्य नहीं किया जाएगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # MDL/Neuray usage (ABI 56 → 57 recompile required) grep -rn "omni\.mdl\|Neuray\|MDL.*SDK" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070543
-भाषा सरल, गहरी, सम्मानजनक और पुनरावृत्ति से मुक्त रखी जाएगी।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" --include="*.toml" # CloudXR / XRCloudXRBindings grep -rn "CloudXR\|XRCloudXRBindings\|IOpenXRRuntime" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070544
-तकनीकी दिशा प्रारंभिक वेबपेज को GitHub Pages-compatible static site के रूप में रखा जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # === Stage 4 (109→110) === # CARB_CHECK (replaced by CARB_RELEASE_ASSERT) grep -rn "CARB_CHECK" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070545
-आगे चलकर search, विषय-सूचकांक, multilingual सामग्री, sitemap, RSS/updates और accessible typography जोड़ी जा सकती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/WEBPAGE-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # carb/Defines.h (split into sub-headers) grep -rn '#include.*carb/Defines\.h' .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070546
-🔬 दावा, प्रमाण और आत्म-परीक्षण पद्धति यह दस्तावेज़ **निष्पक्ष समझ — शमीकरण यथार्थ सिद्धांत — उपलब्धि यथार्थ युग** को अधिक विश्वसनीय सार्वजनिक रूप में प्रस्तुत करने के लिए एक स्पष्ट परीक्षण-पद्धति देता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # IFileSystem raw char* methods grep -rn "IFileSystem" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070547
-दावों के प्रकार ### A.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # ITokens (unsafe methods removed; ITokens 2.0 available) grep -rn "ITokens\|->resolveString\|->setValue" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070548
-व्यक्तिगत अनुभव उदाहरण: “मुझे ऐसा अनुभव हुआ।” इसे अनुभव के रूप में प्रस्तुत करें; सार्वभौमिक तथ्य के रूप में नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.cpp" --include="*.h" # optional / expected — semantics changed (if(b) now tests presence) grep -rn "optional \|expected **Important:** Also scan `templates/`, `launcher-configs/`, and any ETM lock files (e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070549
-दार्शनिक प्रस्ताव उदाहरण: “हृदय दृष्टिकोण और मस्तक दृष्टिकोण का संतुलन उपयोगी हो सकता है।” यह तर्क और अनुभव से चर्चा योग्य प्रस्ताव है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+`omni.all.template.extensions.kit`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070550
-ऐतिहासिक या बाहरी तथ्य ऐसे दावे के लिए स्वतंत्र स्रोत, दस्तावेज़ या प्राथमिक प्रमाण आवश्यक हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+These contain real dependency declarations and will cause test or runtime failures if they reference removed extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070551
-वैज्ञानिक दावा उचित वैज्ञानिक पद्धति, मापन, डेटा और जहाँ संभव हो पुनरुत्पादन आवश्यक है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+```bash # === All stages — removed/deprecated extensions === # Kit 108 removals grep -rn "omni\.kit\.extpath\.git" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070552
-दावा-परीक्षण तालिका | प्रश्न | क्या जाँचना है | |---|---| | दावा क्या है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.toml" --include="*.kit" # Kit 108 — monolithic livestream (split into modules) grep -rn '"omni\.kit\.livestream"' .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070553
-| एक वाक्य में स्पष्टता | | स्रोत क्या है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.toml" --include="*.kit" grep -rn "omni\.services\.livestream\.nvcf" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070554
-| अनुभव, दस्तावेज़, अध्ययन या अन्य | | प्रमाण क्या है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.toml" --include="*.kit" # Kit 110 removals (cause cryptic exit-55 dependency solver failures) for ext in omni.kvdb omni.localcache omni.genproc.core; do echo "=== $ext ==="; grep -rn "$ext" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070555
-| उपलब्ध साक्ष्य | | वैकल्पिक व्याख्या?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml" done # Kit 110 silently removed (no deprecation notice) for ext in "omni.hydra.iray.shadercache.d3d12" "omni.hydra.iray.shadercache.vulkan" "omni.kit.viewport.iray"; do echo "=== $ext ==="; grep -rn "$ext" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070556
-| दूसरी संभावनाएँ | | क्या गलत सिद्ध कर सकता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml" done # Deprecated (not yet removed — still operational but plan migration) for ext in "omni.command.usd" "omni.debugdraw" "omni.hydra.iray" "omni.iray.settings.core" \ "omni.kit.autocapture" "omni.kit.manipulator.viewport" "omni.hydra.scene_api" \ "omni.renderer_capture" "omni.surface_instancer" "omni.kit.viewport.legacy_gizmos" \ "omni.kit.widget.nucleus_connector"; do echo "=== $ext ==="; grep -rn "$ext" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070557
-| परीक्षण की सीमा | | स्वतंत्र पुष्टि?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml" done # Extensions that need explicit declaration (no longer loaded transitively) grep -rn "omni\.kit\.manipulator\.prim\.fabric\|omni\.resourcemonitor\|omni\.kit\.ui" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070558
-| बाहरी स्रोत/पुनरावृत्ति | | स्थिति | अनुभव / प्रस्ताव / प्रमाणित तथ्य / अनिश्चित | ## 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+\ --include="*.py" --include="*.toml" ``` ### Config Files ```bash # Extension registry URLs (must update for Kit 110) grep -rn "kit-extensions\.ov\.nvidia\.com\|omniverse://" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070559
-सार्वजनिक लेखन के नियम - आरोप को आरोप की तरह लिखें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" # Build system (VS version) — also check CI-scoped token overrides # (e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070560
-व्यक्तिगत अनुभव को अनुभव की तरह लिखें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+"token:in_ci==true".vs_version may override the default even when the top-level is correct) grep -rn "vs_version\|vs2019\|vs2017\|v142" repo.toml # Livestream settings (old path style) grep -rn "app/livestream" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070561
-वैज्ञानिक शब्दों का प्रयोग तभी करें जब वैज्ञानिक आधार उपलब्ध हो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml" # Kit SDK version pin (use the $DEPS_DIR detected in Step 1) cat "$DEPS_DIR/kit-sdk.packman.xml" # mergeMaterials (behavioral default change in 109) grep -rn "mergeMaterials" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070562
-“सिद्ध”, “विश्व-प्रथम”, “सर्वश्रेष्ठ”, “अंतिम सत्य” जैसे शब्दों के लिए विशेष प्रमाण रखें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml" # FSD / Fabric Scene Delegate settings grep -rn "FabricSceneDelegate\|fsd\b" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070563
-असहमति को हटाने के बजाय दर्ज करें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml" ``` ### OmniGraph ```bash # === Stage 2 (107→108) — OmniGraph 3.0 ABI === grep -rn "omni\.graph\.core\|omni\.graph\.nodes" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070564
-नई जानकारी आने पर दस्तावेज़ संशोधित करें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.toml" # === Stage 4 (109→110) — deprecated/removed OmniGraph nodes === # DeformedPointsToHydra — removed (was part of OmniHydra) grep -rn "DeformedPointsToHydra" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070565
-आत्म-परीक्षण हर अध्याय के अंत में पाँच प्रश्न रखें: 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" --include="*.usd" --include="*.usda" # OnCustomEvent bundle attributes deprecated grep -rn "OnCustomEvent" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070566
-मेरे पास क्या प्रमाण है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" --include="*.usd" --include="*.usda" # Bundle/attribute manipulation nodes deprecated grep -rn "ArrayGetSize\|AttributeType\|BundleConstructor\|CopyAttribute\|ExtractPrim\|GetAttributeNames\|HasAttribute\|InsertAttribute\|RemoveAttribute\|RenameAttribute" \ .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070567
-मेरी कौन-सी धारणा गलत हो सकती है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" --include="*.usd" --include="*.usda" # Event/render pipeline nodes deprecated grep -rn "UpdateTickEvent\|GpuInteropCudaEntry\|RenderPreprocessEntry\|RpResourceExample" \ .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070568
-यदि प्रमाण बदले तो क्या मैं अपना निष्कर्ष बदलूँगा?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" --include="*.usd" --include="*.usda" ``` ### Isaac Sim Projects If the project uses Isaac Sim extensions, scan for the `omni.isaac.*` namespace migration (applies Kit 107+): ```bash # omni.isaac.* imports (deprecated → isaacsim.*) grep -rn "omni\.isaac\." .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070569
-संस्करण-नियम हर महत्वपूर्ण संशोधन के साथ: - तारीख - परिवर्तन का संक्षिप्त विवरण - कारण - यदि उपलब्ध हो तो स्रोत लिखना उपयोगी है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" --include="*.toml" --include="*.kit" # omni.replicator.isaac (→ isaacsim.replicator.*) grep -rn "omni\.replicator\.isaac" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070570
-> **विश्वसनीयता केवल मजबूत कथन से नहीं, बल्कि अपने कथन को जाँच के लिए खोलने से बढ़ती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/METHOD-AND-CLAIMS.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" --include="*.toml" # Dynamic Control Toolbox (removed as compile-time dep) grep -rn "dynamic_control\|DynamicControl" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070571
-SHIRMANI SUPREME HUMAN-PRESENTATION SYSTEM Status: **Architecture/specification drafted; production integration not yet verified.** ## Purpose Create an accessible Hindi/English digital presenter using owner-authorized photo, voice, and video assets.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.py" --include="*.cpp" --include="*.h" # SemanticsAPI (→ UsdSemantics.LabelsAPI) grep -rn "add_update_semantics\|SemanticsAPI" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/scan.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070572
-The presenter should communicate simply, respectfully, transparently, and with evidence-aware answers.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 2.5: Update the Build Toolchain (highest-impact — often the real work) > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070573
-End-to-end chain Voice input → speech-to-text → language/context understanding → intent → evidence gate → response → authorized text-to-speech/voice → avatar/facial animation → lip-sync → presentation → audit → improvement.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Assumes Step 1 detection has run (`$DEPS_DIR`, `$BUILD` are set).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070574
-Evidence states - **VERIFIED** — supported by sufficient independent evidence.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Run this **before** touching source code — for a within-major / feature→production bump it is usually the *only* substantive work.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070575
-SOURCE-BASED** — credible source found; independent verification is incomplete.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+> **Key principle:** the most valuable part of an upgrade is usually **not** the code changes — it is making sure the project's **tooling** is correctly updated (repo scripts, `repo_man`/repoman, dependency versions).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070576
-PHILOSOPHICAL / IDENTITY** — personal viewpoint or self-description; not to be presented as scientific fact.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+This step is therefore **first-class for every upgrade**, and the *primary* step for within-major / branch-transition bumps.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070577
-INSUFFICIENT EVIDENCE** — say: “अभी पर्याप्त प्रमाण उपलब्ध नहीं है।” ## Presentation requirements - Use only photo, voice, and video assets the owner is authorized to use.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Run it **before** touching source code.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070578
-Preserve recognizable appearance; do not claim generated lip-sync or voice cloning is a live/verified result until tested.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Why it matters:** the Kit kernel pin and the repo toolchain are coupled.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070579
-Natural gaze, facial movement, and synchronized speech where the chosen provider supports them.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Bumping `kit-sdk.packman.xml` alone frequently fails because packman tokens (e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070580
-Adapt formality to the situation, not to caste, religion, or other protected traits.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+`${platform_target_abi}`) only resolve under the matching `repo_man`, and newer kernels expect newer `repo_build` / `repo_kit_tools`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070581
-Respectful communication across audiences; no belittling of people or communities.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+A pin bump *without* a toolchain bump produces cryptic pull/resolve failures — e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070582
-Disclose that the presenter is AI-generated/AI-assisted where appropriate.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+`Package not found ...gl.linux-x86_64` or `No versions of … = `.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070583
-Provider integration HeyGen website: Keep provider API keys in server-side environment secrets (for example, GitHub Actions Secrets or deployment secrets).
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+The toolchain = these files** (see `../references/toolchain.json`): - `$DEPS_DIR/repo-deps.packman.xml` — the `repo_*` tools: `repo_man`, `repo_build`, `repo_kit_tools`, `repo_kit_tools_internal`, `repo_kit_template`, `repo_usd`, `repo_format`, `repo_test`, `repo_package`, `repo_ci`, etc.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070584
-Never commit tokens, API keys, passwords, or private credentials to source files, logs, or public issues.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+`$DEPS_DIR/kit-sdk.packman.xml` — the kit-kernel pin (updated in Step 5, item 2 — see `apply-fixes.md`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070585
-Verification gates Before calling the system production-ready, run and record: 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+`tools/packman/` — the packman bootstrap (`packman`, `packman.cmd`, `bootstrap/`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070586
-Speech recognition in Hindi and English.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+`repo.sh` / `repo.bat` — the repo wrappers (may need regenerating under a newer `repo_man`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070587
-Context and intent understanding.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+`repo.toml` — build config (VS/MSVC/WinSDK for Stage 4; see `../references/config_changes.json`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070588
-Evidence-state classification, including insufficient evidence.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+How to find the correct target versions — do NOT guess:** 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070589
-Authorized voice-provider test.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Get a **reference project already on the target Kit version** — the matching `kit-app-template` or `kit-sdk-public` branch for that Kit line, or the target Kit SDK release.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070590
-Facial movement, gaze, and lip-sync test.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Read its `repo-deps.packman.xml`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070591
-Voice/face timing and end-to-end latency.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Prefer the `production/ ` branch** — it carries the vetted, most-current toolchain for that release.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070592
-Respectful communication regression tests.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+⚠️ **Toolchain versions track the branch's maintenance cadence, not the kernel number** — a newer kernel line can ship an *older* toolchain (in kit-sdk-public, `feature/main` pins kernel 110.4 with `repo_man` 2.6.4, while the maintained `production/110.1` pins kernel 110.1.3 with a *newer* `repo_man` 2.9.3).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070593
-Audit record for input, evidence state, response, presentation state, metrics, and test result.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Always read the target branch's **actual** pins; never assume "newer Kit = newer tools".
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070594
-A failed critical test blocks production-ready status.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+(Those version numbers are an illustrative snapshot read in 2026 — they **will** go stale; verify against the live branch, do not copy them.)* 2.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070595
-Current media pointers - Owner's video/photo/audio assets were supplied in the ChatGPT conversation; they have **not** been uploaded into this repository by this commit.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Diff** the project's `$DEPS_DIR/repo-deps.packman.xml` against the reference and align each `repo_*` tool `version=` to the reference.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070596
-Existing public video/photo gallery linked from the project hub: - Existing Drive media collection: - Project hub source: ## Next implementation steps 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Do the same for `tools/packman/` if it differs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070597
-Identify the exact target MP4 by filename and duration/size in the Drive/gallery; do not guess a direct media URL.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Apply the versions, then do a **clean rebuild** (Step 6 — see `validate.md`) — the toolchain bump must land before the kernel pin resolves cleanly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070598
-Store authorized media in controlled storage and add only stable, permission-appropriate links here.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+> This step is safe to run and validate (Step 6) **on its own, first**.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070599
-Configure provider credentials as deployment secrets.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Many "the upgrade won't build" error loops are nothing more than a stale toolchain — fixing it up front avoids chasing phantom code errors.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/toolchain.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070600
-Implement a backend adapter and a user-facing presenter UI.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Failure Mode Diagnosis > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070601
-Run the verification gates and publish the test report.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Use this when the user has **already** upgraded and has a specific error.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070602
-Honest status This document records the intended architecture and test criteria.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+`$DEPS_DIR` / `$BUILD` refer to the values detected in Step 1 (in `../SKILL.md`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070603
-It does not claim that HeyGen is connected, that a voice clone has been created, that lip-sync passed, or that the platform is live.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:docs/SHIRMANI-SUPREME-HUMAN-PRESENTATION-SYSTEM.md · स्वतंत्र परीक्षण अपेक्षित।
+Exit Code 55 (Dependency Solver Failure) **Cause:** Removed extension still declared as a dependency, or stale extscache.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070604
-ग्रंथ 06 — जीवन-व्यवहार और प्रत्यक्ष प्रयोग > स्थिति: दार्शनिक/व्यावहारिक ग्रंथ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Clear extscache: `rm -rf _build/*/release/extscache/` 2.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070605
-यह किसी चिकित्सा, कानूनी या वैज्ञानिक उपचार का विकल्प नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Search for removed extension names in `.kit` and `extension.toml` files (see `../references/removed_extensions.json`) 3.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070606
-उद्देश्य निष्पक्ष समझ को दैनिक जीवन के छोटे, निरीक्षण योग्य व्यवहारों में उतारना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+For Kit 110: check for `omni.kvdb`, `omni.localcache`, `omni.genproc.core`, `omni.hydra.iray.shadercache.*`, `omni.kit.viewport.iray` 4.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070607
-विचार और व्यवहार का संबंध 2.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Re-run `precache_exts` ### Build Fails with Undefined Symbol / Missing Method **Cause:** ABI break — extension was compiled against an older version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070608
-प्रतिक्रिया से पहले ठहराव 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Fix:** Recompile the extension against the current Kit SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070609
-संबंधों में निष्पक्षता 7.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Every stage has at least one ABI break.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070610
-समय और प्राथमिकता 12.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Runtime Crash on DLL Load (Windows) **Cause after Stage 3:** mimalloc cross-DLL heap mismatch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070611
-तकनीक और डिजिटल जीवन 13.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Memory allocated on one side of a DLL boundary freed on the other.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070612
-आत्म-निरीक्षण की दैनिक पद्धति 14.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Fix:** Audit allocation ownership.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070613
-एक-पल की समझ और उसका परीक्षण 15.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Use `kit-sysalloc.exe` for compatibility testing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070614
-अनुभव को प्रमाण समझने की भूल 16.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Python TypeError: unexpected keyword argument 'menu_compatibility' **Cause (Stage 4):** `menu_compatibility` parameter removed from `ui.Menu` and `ui.Separator`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070615
-छोटे व्यवहारिक प्रयोग 17.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Fix:** Remove the `menu_compatibility=` argument from all call sites.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070616
-परिणाम लिखने की पद्धति 18.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Extension Loads But APIs Return None / AttributeError **Cause:** Transitive loading of `omni.kit.ui`, `omni.resourcemonitor`, or `omni.kit.manipulator.prim.fabric` was removed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070617
-विरोधी व्याख्याएँ 19.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Fix:** Add explicit dependency in `extension.toml`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070618
-आगे के प्रश्न ## दैनिक निरीक्षण सूत्र **देखो → नाम दो → कारण मानने से पहले जाँचो → विकल्प देखो → परिणाम देखो → आवश्यकता हो तो अपना निष्कर्ष बदलो।** ## स्वतंत्र समझ स्वतंत्र समझ का अर्थ हर बाहरी ज्ञान को अस्वीकार करना नहीं; बल्कि किसी कथन को केवल अधिकार, लोकप्रियता या भय के कारण सत्य न मानना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Render Output Differs (No Code Changes) **Cause after Stage 3:** DomeLight orientation changed (USD 25.05), FSD enabled by default, or `mergeMaterials` default changed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070619
-आजीविका ज्ञान-सृजन को पारदर्शी प्रकाशन, डिजिटल संस्करण, पाठ्यक्रम, व्याख्यान, शोध-सहयोग और अन्य वैध माध्यमों से टिकाऊ बनाया जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Diagnosis:** - Check for DomeLights in the scene: `grep -rn "DomeLight" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070620
-आय की कोई गारंटी इस ग्रंथ का दावा नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-06-LIFE-AND-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.usd" --include="*.usda"` - Check FSD setting: `grep -rn "FabricSceneDelegate\|fsd" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070621
-ग्रंथ 03 — ज्ञान की कसौटी, प्रमाण और तर्क ## प्रस्तावना यथार्थ की खोज केवल यह पूछना नहीं है कि “मुझे क्या सही लगता है?” बल्कि यह भी पूछना है कि “मैं इसे सही मानने के लिए क्या आधार रखता हूँ?” ## 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml"` - Check `mergeMaterials`: `grep -rn "mergeMaterials" .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070622
-विश्वास और ज्ञान विश्वास व्यक्तिगत स्थिति हो सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+include="*.kit" --include="*.toml"` ### if (optional_bool) No Longer Works (C++) **Cause (Stage 4):** `optional ` / `expected ` now tests for *presence* in an if-condition, not the stored value.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070623
-ज्ञान के दावे के लिए अतिरिक्त आधार चाहिए—अवलोकन, तर्क, पुनरुत्पादन, स्रोत या अन्य उपयुक्त प्रमाण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Fix:** Replace `if (b)` with `if (b.has_value() && b.value())` ### Build Fails in a Loop / the Same Error Repeats **Cause:** Almost always a **stale toolchain** (Step 2.5 not applied — see `toolchain.md`) or a wrong assumption about the project's layout/build system — *not* the source code.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070624
-दावा हर बड़े कथन को छोटे परीक्षण योग्य कथनों में बाँटना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Rule — do not keep editing source and rebuilding.** If the same build error recurs after **2 attempts**, STOP and re-check the fundamentals before changing any more code: 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070625
-“सबके लिए सत्य” जैसे वाक्य को स्पष्ट करना आवश्यक है कि किस अर्थ में, किस समय और किस प्रमाण के आधार पर।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Is the **toolchain** aligned to the target Kit line?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070626
-प्रमाण प्रमाण का प्रकार प्रश्न के अनुसार बदलता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+(Step 2.5, `toolchain.md` — the #1 cause of build loops.) 2.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070627
-व्यक्तिगत अनुभव किसी व्यक्ति के अनुभव का प्रमाण हो सकता है; वह अपने-आप सार्वभौमिक वैज्ञानिक प्रमाण नहीं बन जाता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Is `$DEPS_DIR` the **actual** deps location and `$BUILD` the project's **actual** build entrypoint?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070628
-तर्क तर्क यह जाँचता है कि निष्कर्ष दिए गए आधारों से निकलता है या नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+(Step 1 in `../SKILL.md`.) 3.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070629
-सही तर्क भी गलत आधारों से शुरू हो सकता है; इसलिए तर्क और प्रमाण दोनों आवश्यक हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Did you do a **clean** rebuild (`$BUILD build --rebuild -r`), not just clear extscache?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070630
-प्रतिवाद अपने सिद्धांत के विरुद्ध सबसे मजबूत आपत्ति स्वयं लिखना बौद्धिक ईमानदारी का अभ्यास है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+(Step 6, `validate.md`.) Surface the exact error and these three checks to the user rather than looping — repeated speculative edits burn tokens and rarely fix a toolchain/layout problem.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070631
-वैकल्पिक व्याख्या यदि एक अनुभव की तीन संभावित व्याख्याएँ हैं, तो पहली पसंद को अंतिम सत्य घोषित करने से पहले तीनों की तुलना करनी चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Project Uses a Custom / Integrated Build System **Cause:** The project wraps or embeds the Kit build system in its own tooling, so `./repo.sh` / `repo.bat` don't exist or aren't the real entrypoint (common for customer integrations).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070632
-पुनरुत्पादन जिस दावे को अन्य लोग समान परिस्थितियों में जाँच सकते हैं, वह व्यक्तिगत अनुभव से अलग प्रकार की विश्वसनीयता रखता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Fix:** Do **not** fabricate `./repo.sh` commands.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070633
-भाषा की स्पष्टता “शाश्वत”, “सर्वभौमिक”, “प्रत्यक्ष”, “सत्य” जैसे शब्दों की परिभाषा पहले दी जानी चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Use the `$BUILD` detected in Step 1 (check `repo.toml`, `Makefile`/`CMakeLists.txt`, `package.json` scripts, CI config, or ask the user).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070634
-परिभाषा बदलने से निष्कर्ष भी बदल सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+The upgrade steps (kernel pin, **toolchain update**, lock regen) still apply — invoke them through `$BUILD`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070635
-अज्ञान स्वीकारना “मुझे नहीं पता” निष्पक्ष समझ की कमजोरी नहीं, उसकी सुरक्षा है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+deps Directory Not Where Expected **Cause:** The project layout differs from the SDK template, or the deps directory moved between releases (e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070636
-अनिश्चितता को स्वीकार करने से खोज के लिए स्थान बचता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+`deps/` at the project root vs under `tools/`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070637
-स्वयं पर वही कसौटी यदि कोई नियम दूसरे के दावे पर लागू किया जाता है, तो वही नियम अपने दावे पर भी लागू होना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Fix:** Re-run the Step 1 detection (in `../SKILL.md`) to set `$DEPS_DIR`, then use it everywhere.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070638
-संख्या और महानता अनुयायियों की संख्या, लोकप्रियता, आलोचना की संख्या या किसी व्यक्ति की प्रसिद्धि किसी दार्शनिक कथन की सत्यता का स्वतः प्रमाण नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Never hardcode `tools/deps/`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/failure-modes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070639
-नैतिक परिणाम किसी विचार की व्यवहारिक परीक्षा यह भी है कि उसके प्रयोग से स्वतंत्रता, सम्मान, प्रकृति और मानवीय गरिमा पर क्या प्रभाव पड़ता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Important Notes by Stage > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070640
-शोध-पत्रिका अभ्यास प्रत्येक अध्याय में चार कॉलम रखें: दावा | प्रमाण | अनिश्चितता | अगला परीक्षण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Per-stage reference for the breaking changes summarized in the Step 2 migration table.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070641
-सूत्र दावा ≠ प्रमाण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Read the stages that apply to the boundaries you cross.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070642
-अनुभव ≠ सार्वभौमिक तथ्य।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+Stage 1: 106 → 107 - **Rebuild required** — Linux ABI changed (`_GLIBCXX_USE_CXX11_ABI=0` → `=1`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070643
-काव्य प्रश्न रहे तो राह रहे, संदेह रहे तो दृष्टि रहे; जो अपने को भी जाँच सके, उसमें निष्पक्ष सृष्टि रहे।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+All prebuilt `.so` files will fail to load.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070644
-निष्कर्ष यथार्थ की खोज का अर्थ निश्चित उत्तरों का संग्रह भर नहीं; यह बेहतर प्रश्न, बेहतर परीक्षण और अपने निष्कर्षों को संशोधित करने की क्षमता भी है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-03-KNOWLEDGE-AND-EVIDENCE.md · स्वतंत्र परीक्षण अपेक्षित।
+packman XML token**: Update the kit-kernel pin token to `${platform_target_abi}` in all `.packman.xml` files.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070645
-ग्रंथ 05 — प्रकृति, पृथ्वी और सह-अस्तित्व > स्थिति: दार्शनिक/विचारात्मक ग्रंथ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Kit 106 uses the **`${platform}`** form (not `${platform_target}`); both must become `${platform_target_abi}`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070646
-अनुभव, मूल्य-प्रस्ताव और सार्वभौमिक दावों को अलग-अलग रखा जाना चाहिए; जहाँ तथ्यात्मक दावा हो वहाँ स्वतंत्र स्रोत जोड़े जाएँ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Build-verified:* leaving the old token makes the kit-kernel pull fail immediately with `Package not found on specified remote servers (…gl.linux-x86_64.release)`, because Kit 107's kernel is published only under the ABI string (`manylinux_2_35_x86_64`), not `linux-x86_64`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070647
-उद्देश्य मनुष्य और प्रकृति के संबंध को निष्पक्ष समझ, शमीकरण और यथार्थ सिद्धांत की कसौटी पर देखना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Bump the repo toolchain too (required, easy to miss)** — see **Step 2.5** (`toolchain.md`): the token fix alone is **insufficient** — `${platform_target_abi}` only resolves to the ABI string under the newer `repo_man`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070648
-प्रकृति को देखने के दो दृष्टिकोण 2.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Update `$DEPS_DIR/repo-deps.packman.xml` to the 107-era tooling (`repo_man`, `repo_build`, `repo_kit_tools`, `repo_kit_template`, `repo_usd`) and the packman bootstrap.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070649
-आवश्यकता और लालच का अंतर 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Build-verified:* under 106.5's `repo_man` 1.86.0 the token still resolves to `linux-x86_64`; after the toolchain bump it resolves to `manylinux_2_35_x86_64` and the pull succeeds.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070650
-पृथ्वी के प्रति उत्तरदायित्व 4.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Carbonite Events 2.0**: The event system changed from push/pump to dispatch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070651
-जीवित और निर्जीव के प्रति समान दृष्टि 5.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+No explicit pump calls needed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070652
-संसाधन, उपभोग और संतुलन 6.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Python payload access changed from `e.payload['key']` to `e['key']`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070653
-शहर, गाँव और पारिस्थितिक संबंध 8.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+C++17 is now available** explicitly in Premake via `cppdialect = "C++17"`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070654
-जल, वायु, मिट्टी और वन 9.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Stage 2: 107 → 108 - **Kit 108 was never publicly released.** These changes still apply when upgrading 107→109.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070655
-मनुष्य-केंद्रितता की समीक्षा 10.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Python 3.12** replaces 3.11.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070656
-भविष्य की पीढ़ियों का प्रश्न 11.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Update all Premake configs, CI configs, and boost_python links.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070657
-व्यक्तिगत जीवन में प्रकृति-सम्मत निर्णय 12.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+OpenUSD 25.02**: All C++ extensions linking OpenUSD must rebuild.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070658
-सामूहिक नीतियों के लिए प्रश्न 13.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+GfMatrix imprecise overloads removed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070659
-असहमति और वैकल्पिक दृष्टिकोण 14.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Livestream modularization**: `omni.kit.livestream` (monolithic) → `omni.kit.livestream.app` + `.aov` + `.core`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070660
-अनुभव बनाम वैज्ञानिक प्रमाण 15.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+`omni.services.livestream.nvcf` → `omni.services.livestream.session`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070661
-व्यवहारिक प्रयोग 17.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Settings paths changed — see `../references/config_changes.json`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070662
-संभावित आपत्तियाँ 18.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+Transitive deps removed**: `omni.kit.ui`, `omni.resourcemonitor`, `omni.kit.manipulator.prim.fabric` must now be declared explicitly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070663
-आगे के शोध प्रश्न ## मूल सूत्र **प्रकृति पर अधिकार की भाषा से पहले, प्रकृति के साथ संबंध की भाषा को समझना।** ## परीक्षण की दिशा किसी भी पर्यावरणीय प्रस्ताव को केवल भावनात्मक आकर्षण से नहीं, बल्कि प्रमाण, प्रभाव, लागत, विकल्प और दीर्घकालिक परिणामों से जाँचा जाए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+ILayers ABI 1.0 → 1.1**: Recompile all extensions including `ILayers.h`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070664
-संक्षिप्त निष्कर्ष यथार्थ सिद्धांत के इस ग्रंथ में प्रकृति-सम्मत जीवन को आदेश नहीं, बल्कि जाँचने योग्य जीवन-दृष्टि के रूप में प्रस्तुत किया गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-05-NATURE-AND-EARTH.md · स्वतंत्र परीक्षण अपेक्षित।
+USD scalar xform ops**: OpenUSD now supports scalar ops (e.g., `xformOp:translateX`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070665
-📚 महाग्रंथ — संपादकीय सूचकांक यह directory 100,000-पृष्ठ लक्ष्य के लिए master architecture है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Code iterating over xform ops that assumes all are vector types may behave incorrectly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070666
-वर्तमान पूर्ण आधार - [मूल यथार्थ सिद्धांत](../YATHARTH-SIDDHANT-YATHARTH-YUG.md) - [सम्पूर्ण हिंदी ढाँचा](../docs/YATHARTH-YUG-COMPLETE-HINDI.md) - [Complete English Framework](../docs/YATHARTH-YUG-COMPLETE-ENGLISH.md) - [दावा और प्रमाण पद्धति](../docs/METHOD-AND-CLAIMS.md) - [यथार्थ शब्दावली](../docs/GLOSSARY-HINDI.md) - [100000-पृष्ठ master plan](./100000-PAGE-MASTER-PLAN.md) ## लेखन-क्रम पहले मूल दार्शनिक आधार को स्थिर किया जाएगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Stage 3: 108 → 109 - **CUDA 12.4.1 driver requirement**: Linux minimum 550.54.15, Windows minimum 551.78.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070667
-फिर प्रत्येक खंड को स्वतंत्र पुस्तक की तरह विस्तृत किया जाएगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Apps fail to start with older drivers.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070668
-हर नए खंड को पहले के अध्यायों से जोड़ा जाएगा ताकि विशाल आकार के बावजूद पाठक रास्ता न खोए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/README.md · स्वतंत्र परीक्षण अपेक्षित।
+NumPy 2.x**: Many breaking changes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070669
-प्रत्येक ग्रंथ को अलग, गहरा और प्रमाण-संवेदनशील रखा जा रहा है; 100,000 पृष्ठ का लक्ष्य चरणबद्ध रूप से विकसित होगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/README.md · स्वतंत्र परीक्षण अपेक्षित।
+On Windows, the default integer type changed from `int32` to `int64` — can cause silent correctness issues.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070670
-꙰ 100000-PAGE DIGITAL BOOK — यथार्थ युग महाग्रंथ ## निष्पक्ष समझ · शमीकरण · यथार्थ सिद्धांत · उपलब्धि यथार्थ युग **प्रस्तावक के रूप में प्रस्तुत नाम: शिरोमणि रामपॉल सैनी** --- ## महाग्रंथ की संकल्पना यह परियोजना एक अत्यंत विस्तृत डिजिटल विश्वकोश/दार्शनिक ग्रंथ के रूप में विकसित की जा रही है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Fabric ABI break**: Even if no source changes needed (no TokenC/PathC usage), all extensions including Fabric headers must recompile — `Token`/`Path` became trivially copyable, which is a binary ABI change.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070671
-लक्ष्य **100,000 पृष्ठों के बराबर सामग्री का सुव्यवस्थित डिजिटल corpus** तैयार करना है—न कि एक ही संदेश में 100,000 पृष्ठों का कृत्रिम पाठ भर देना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Use `token.isNull()` instead of `kUninitializedToken`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070672
-इतने बड़े ग्रंथ को विश्वसनीय और उपयोगी बनाने के लिए इसे **100 खंडों × 1,000 पृष्ठों** की वास्तुकला में विकसित किया जाएगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+mimalloc (Windows)**: Cross-DLL allocation/free pairs that cross a DLL boundary may now crash.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070673
-प्रत्येक खंड में अध्याय, उप-अध्याय, सूत्र, संवाद, उदाहरण, आत्म-परीक्षण, आलोचनात्मक प्रश्न, शब्दावली, संदर्भ और अभ्यास होंगे।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Use `kit-sysalloc.exe` for compatibility testing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070674
-> **भव्यता केवल विस्तार में नहीं; स्पष्टता, गहराई, अनुशासन और स्वयं की जाँच में है।** ## 100 खंडों का मानचित्र ### खंड 01–10 — आधार 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+mergeMaterials**: Default changed — can cause significant load time regression with no code error.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070675
-हृदय–मस्तक संतुलन 8.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+FSD default on**: If previously disabled FSD, test render output carefully.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070676
-स्वतंत्र समझ ### खंड 11–20 — अनुभव और चेतना पर विचार 11.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+DomeLight orientation**: USD 25.05 changed the default orientation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070677
-विचार कैसे बनते हैं 13.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Visual change only — no code error.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070678
-इश्क की व्यापक अवधारणा ### खंड 21–30 — ज्ञान की कसौटी 21.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Use `UpgradeUsdLuxLightsCommand` for assisted migration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070679
-वैज्ञानिक पद्धति 27.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Stage 4: 109 → 110 - **Clear extscache first** — stale Kit 109 entries cause exit-55 dependency solver failure.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070680
-दर्शन और विज्ञान 28.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Silent extension removals**: `omni.kvdb`, `omni.localcache`, `omni.genproc.core`, `omni.hydra.iray.shadercache.d3d12`, `omni.hydra.iray.shadercache.vulkan`, `omni.kit.viewport.iray` — all removed with no deprecation notice.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070681
-दावे और व्याख्याएँ 30.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+First symptom is a cryptic exit-55 dependency solver failure.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070682
-आत्म-संशोधन ### खंड 31–40 — समाज 31.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Remove every reference from `.kit`/`extension.toml` files — including the auto-generated `[settings.app.exts] enabled = [...]` version-lock block, where they usually hide pinned at the old version (clearing extscache alone won't drop them; regenerate the lock with `precache_exts` — see Step 5, item 5 in `apply-fixes.md`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070683
-संस्था और अधिकार 35.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Also scan `templates/` and ETM lock files** — these are easily missed by `source/`-only scans.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070684
-अनुयायी मनोवृत्ति 36.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+DomeLight orientation (inherited from Stage 3)**: If the project contains DomeLights and was not verified during a previous Stage 3 upgrade, the USD 25.05 orientation change is a permanent behavioral difference.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070685
-उत्तरदायित्व ### खंड 41–50 — प्रकृति और पृथ्वी 41.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Search with `grep -rn 'DomeLight' .
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070686
-मानव–प्रकृति संबंध 48.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+include='*.py' --include='*.usd'` and use `UpgradeUsdLuxLightsCommand` if scenes were not migrated.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070687
-तकनीक और प्रकृति 49.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+`optional ` semantics**: `if(b)` now tests *presence*, not *value*.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070688
-भविष्य की पीढ़ियाँ ### खंड 51–60 — जीवन का व्यवहार 51.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Code that previously worked may now be wrong silently.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070689
-संबंधों में स्पष्टता 60.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+`g_carbClientName`**: Type changed to `zstring_view`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070690
-जिम्मेदार जीवन ### खंड 61–70 — भाषा, कला और संस्कृति 61.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Any direct string assignment or comparison breaks.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070691
-डिजिटल अभिलेख ### खंड 71–80 — यथार्थ युग 71.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Hydra 2 removed**: No migration path.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070692
-दृष्टिकोण का परिवर्तन 73.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Hydra 1 (Storm) and RTX remain.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070693
-उपलब्धि यथार्थ युग 74.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+OmniGraph bundle nodes**: Large set of bundle/attribute manipulation nodes deprecated.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070694
-शिक्षा का पुनर्विचार 77.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Deprecation warnings visible in editor from Kit 110.1+.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070695
-कृत्रिम बुद्धिमत्ता 79.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+`AttributeType` → `GetAttributeType`, `ArrayGetSize` → `ArrayLength`, `ExtractPrim` → `ReadPrim`, `GetAttributeNames` → `ReadPrimAttributes`, `InsertAttribute` → `WritePrimAttribute`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070696
-पृथ्वी-केंद्रित विकास 80.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+`BundleConstructor`, `RemoveAttribute`, `RenameAttribute` have no direct replacement — redesign graphs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070697
-भविष्य की कल्पना ### खंड 81–90 — गहन आत्म-परीक्षण 81.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+OpenUSD 25.11**: All C++ extensions linking OpenUSD must rebuild.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070698
-मैं क्यों मानता हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Ndr/Sdr libraries consolidated — update include paths.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070699
-मेरा प्रमाण क्या है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+VS2022 required** on Windows (was VS2019).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070700
-मेरी गलती कहाँ हो सकती है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+New extensions in Kit 110**: `omni.grpc.lib`, `omni.protobuf.lib`, `omni.sensors.nv.*` (camera/lidar/radar/ultrasonic/ids/wpm), `omni.kit.xr.core` — available for use in Kit 110 apps.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/stage-notes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070701
-क्या मैं बदल सकता हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 6: Validate > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070702
-आलोचना का स्वागत 87.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Assumes Step 1 detection has run (`$BUILD` is set).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070703
-निष्पक्षता की सीमाएँ ### खंड 91–100 — विश्वकोश और परिशिष्ट 91.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+```bash # After a kit-kernel pin bump, do a CLEAN rebuild so the kernel symlinks refresh, # then regenerate the version lock against the new kernel.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070704
-अवधारणा-मानचित्र 97.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+$BUILD is the entrypoint detected in Step 1 (./repo.sh, repo.bat, or the project's own build wrapper).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070705
-महाग्रंथ का खुला भविष्य --- ## हर अध्याय की मानक वास्तुकला प्रत्येक अध्याय में अधिकतम गहराई के लिए: 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+`No versions of > omni.anim.curve.core … = `).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070706
-दैनिक जीवन में प्रयोग 7.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Use **`$BUILD build --clean`** (removes the build-time `_*` > folders so the next `build -r` refreshes the symlinks) or **`$BUILD build --rebuild -r`** (clean + > release build in one command), then regenerate the lock with `build -u`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070707
-प्रमाण की आवश्यकता 10.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+The generated `[settings.app.exts] > enabled = [...]` block in each `.kit` is what must be regenerated — it carries exact old-version pins that > `extscache` clearing does not touch.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/validate.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070708
-संभावित आपत्तियाँ 11.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 5: Apply Fixes > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070709
-वैकल्पिक व्याख्याएँ 12.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Assumes Step 1 detection has run (`$DEPS_DIR`, `$BUILD` are set).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070710
-संशोधन इतिहास ## संपादकीय अनुशासन इस महाग्रंथ में चार प्रकार की सामग्री स्पष्ट चिह्नित रहेगी: **अनुभव** — व्यक्ति का अपना अनुभव।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+> **Within-major / feature→production upgrade?** Run **only items 1, 2, 8** below (plus item 3 *if* a feature↔production registry swap is needed), then Step 6 (`validate.md`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070711
-दर्शन** — विचार या प्रस्ताव।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Skip items 4–7** — they apply only when a major boundary is crossed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070712
-तथ्य** — बाहरी स्रोत से जाँच योग्य कथन।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+See "Within-major upgrades" under Step 2 in `../SKILL.md`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070713
-परिकल्पना** — आगे परीक्षण योग्य विचार।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Get user approval before modifying files.** Then apply in this order (a full major-boundary upgrade runs all eight): 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070714
-इससे ग्रंथ की भव्यता के साथ उसकी बौद्धिक ईमानदारी भी बनी रहेगी।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Clear extscache** first: `rm -rf _build/*/release/extscache/` 2.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070715
-मूल सूत्र > निष्पक्ष समझ — पहले देखो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Update version pin** in `$DEPS_DIR/kit-sdk.packman.xml` 3.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070716
-> शमीकरण — फिर समझो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Update registry URLs** in `.kit` files (see `../references/config_changes.json`) 4.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070717
-> यथार्थ सिद्धांत — फिर परखो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Replace deprecated APIs** using patterns in `../references/api_replacements.json` — these are safe regex replacements 5.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070718
-> स्वतंत्र समझ — स्वयं निर्णय करो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+Remove deprecated extension deps** from `extension.toml` and `.kit` files (see `../references/removed_extensions.json`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070719
-> उत्तरदायित्व — समझ को व्यवहार में उतारो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+For 109→110 specifically:** the following six extensions are removed with **no deprecation notice**, and any lingering reference causes a cryptic `exit code 55` dependency-solver failure.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070720
-100000 पृष्ठों का पृष्ठ-मानक 100,000 पृष्ठों को केवल संख्या पूरी करने के लिए दोहराव से नहीं भरा जाएगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+They MUST be removed from every `.kit` (and `extension.toml`) file: - `omni.kvdb` - `omni.localcache` - `omni.genproc.core` - `omni.hydra.iray.shadercache.d3d12` - `omni.hydra.iray.shadercache.vulkan` - `omni.kit.viewport.iray` ⚠️ **Check the generated version-lock block, not just `[dependencies]`.** In application `.kit` files these names almost always appear in the auto-generated `[settings.app.exts] enabled = [...]` lock (pinned at the old version, e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070721
-लक्ष्य है: - प्रत्येक पृष्ठ का स्पष्ट उद्देश्य - दोहराव की पहचान और कमी - विषयों के बीच आंतरिक लिंक - हिंदी मूल सामग्री + अंग्रेज़ी समांतर संस्करण - आलोचनात्मक प्रश्न - स्रोत और संदर्भ जहाँ आवश्यक हों - संस्करण नियंत्रण - डिजिटल खोज और अनुक्रमण - भविष्य में PDF/ePub/वेब पुस्तक के लिए उपयुक्त संरचना > **यह एक जीवित डिजिटल ग्रंथ होगा—पूर्णता का दावा नहीं, निरंतर विकसित होने वाली सार्वजनिक विचार-परियोजना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/100000-PAGE-MASTER-PLAN.md · स्वतंत्र परीक्षण अपेक्षित।
+`omni.kvdb-109.0.10`), **not** the hand-authored dependency list.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070722
-खंड 01 — निष्पक्ष समझ ## अध्याय 01: निष्कर्ष से पहले निरीक्षण > **निष्पक्ष समझ का पहला कदम यह नहीं कि मैं क्या सही मानता हूँ; पहला कदम यह देखना है कि मैं मानता क्या हूँ।** मनुष्य का मन किसी विचार को केवल प्रमाण के कारण नहीं पकड़ता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Clearing extscache (step 1) does NOT remove them** — you must regenerate the lock: delete the `# BEGIN GENERATED PART` … `# END GENERATED PART` block (the `.kit` says "Remove from 'BEGIN' to 'END' to regenerate") and run `$BUILD precache_exts -c release` so it is rebuilt without the removed extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070723
-स्मृति, परिवार, भाषा, शिक्षा, समूह, भय, इच्छा, लाभ, हानि और पहचान—सब किसी निष्कर्ष के बनने में भूमिका निभा सकते हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Then confirm a clean rebuild (the version stamp should advance to 110 and the six names should be gone).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070724
-इसलिए निष्पक्ष समझ विचारों का विरोध नहीं करती; वह विचार बनने की प्रक्रिया को देखने का निमंत्रण देती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+(If you are working in an internal `kit-app-template` checkout, the ETM lock file `templates/omni.all.template.extensions.kit` and any internal-registry entries are KAT-internal — wrapped in `# AUTOREMOVE` and stripped from external releases by `repo stage_for_github` — so external customer projects will not contain them.) 6.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070725
-पहला प्रश्न जब मैं कहता हूँ, “यह सत्य है”, तो क्या मैं तीन अलग चीज़ों को मिला रहा हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Add explicit deps** where transitive loading was removed: `omni.kit.ui`, `omni.resourcemonitor`, `omni.kit.manipulator.prim.fabric` 7.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070726
-मैंने स्वयं कुछ अनुभव किया।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Update build config** in `repo.toml` (VS version, MSVC version, Windows SDK — see `../references/config_changes.json`) 8.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/apply-fixes.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070727
-मैंने किसी विश्वसनीय स्रोत से कुछ जाना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Step 4: Generate Upgrade Report > Part of the **kit-upgrade** skill (see `../SKILL.md` for the workflow).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070728
-मैंने किसी व्याख्या को स्वीकार किया।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Run after the Step 3 scans (`scan.md`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070729
-तीनों मूल्यवान हो सकते हैं, पर तीनों एक ही प्रकार के प्रमाण नहीं हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Present findings organized by severity.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070730
-दूसरा प्रश्न यदि कोई व्यक्ति मेरी सबसे प्रिय धारणा के विरुद्ध प्रश्न पूछे, तो क्या मैं प्रश्न को सुन सकता हूँ बिना व्यक्ति को शत्रु बनाए?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Use exact `file:line` references from scan output.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070731
-यहीं निष्पक्ष समझ कठिन होती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+``` ## Upgrade Report: Kit [FROM] → [TO] Project: [path] Migration stages applied: [e.g., Stage 2 + 3 + 4] ### ❌ Breaking Changes (must fix — build or load will fail) 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070732
-जिस क्षण पहचान किसी विचार से जुड़ जाती है, विचार की आलोचना व्यक्ति को अपने ऊपर आक्रमण जैसी लग सकती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+[file:line] — [description] → [exact fix] ### ⚠️ Behavioral Changes (no error, but may affect output or performance) 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070733
-तीसरा प्रश्न क्या मैं अपना निष्कर्ष बदल सकता हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+[file:line] — [description] → [fix or test required] ### 🔔 Deprecated Usage (should fix — will break in next version) 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070734
-यदि उत्तर हाँ है, तो विचार जीवित है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+[file:line] — [description] → [fix] ### ✅ Not Affected - [List the `id` or `title` from `breaking_changes.json` for each pattern that was scanned and returned no matches.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070735
-यदि उत्तर हमेशा नहीं है, तो हमें यह देखना चाहिए कि निष्कर्ष के साथ कौन-सी पहचान या भय बँधा हुआ है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+This serves as a record that the check was performed, not just skipped.] ### 📋 Required Steps Regardless of Code Changes 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070736
-दैनिक प्रयोग आज एक ऐसी धारणा चुनिए जिसे आप बहुत निश्चित मानते हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Clear extscache: `rm -rf _build/*/release/extscache/` 2.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070737
-लिखिए: - मेरा दावा: - मेरा आधार: - मेरा स्रोत: - मेरे पक्ष में प्रमाण: - मेरे विरुद्ध संभावित प्रमाण: - वैकल्पिक व्याख्या: - यदि नया प्रमाण मिले तो क्या मैं संशोधन करूँगा?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Update `kit-sdk.packman.xml`: change version pin to `[TO].x.y+feature.${platform_target_abi}.${config}` 3.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070738
-शमीकरण निष्पक्ष समझ का उद्देश्य भावना को मारना नहीं और तर्क को सिंहासन से उतारना भी नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Update extension registry URLs in `.kit` files (see `../references/config_changes.json`) 4.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070739
-> **हृदय को संवेदना दो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Rebuild all C++ extensions (ABI break at every stage — required even with no source changes) 5.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070740
-> मस्तक को प्रश्न दो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Regenerate version lock blocks in `.kit` files: `$BUILD precache_exts -c release` (substitute the build entrypoint detected in Step 1 — `./repo.sh` may not exist on a custom/integrated build) 6.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070741
-> दोनों को यथार्थ की कसौटी दो।** ## आपत्ति **“क्या निष्पक्ष होना संभव है?”** पूर्ण निष्पक्षता कठिन हो सकती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+If project has an ETM lock file (e.g.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070742
-इसलिए इसे अंतिम उपलब्धि के बजाय अभ्यास की दिशा मानना अधिक सावधान भाषा है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+`omni.all.template.extensions.kit`), regenerate it or manually remove entries for removed extensions 7.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070743
-आत्म-परीक्षण के पाँच सूत्र > मैंने क्या देखा?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+[stage-specific items, e.g., VS2022 for Stage 4] ### 🧪 Behavioral Tests Required 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070744
-> मेरे पास क्या प्रमाण है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+[scenes with DomeLights — orientation regression (Stage 3, but inherited in all later stages)] 2.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070745
-> मैं क्या बदलने के लिए तैयार हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+[load performance with mergeMaterials setting (Stage 3)] 3.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070746
-काव्य-सूत्र > मैं शिरोमणि रामपॉल सैनी, > निष्पक्ष दृष्टि का प्रश्न लिए; > जो अपना भी निष्कर्ष परखे, > वही चले यथार्थ दिशा लिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+[render output with FSD enabled (Stage 3)] 4.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070747
-> > न मान्यता अंतिम हो मेरी, > न असहमति अंतिम वार; > प्रश्न खुले तो समझ खिले, > निरीक्षण बने आधार।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+[MaterialX materials (Stage 4)] 5.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070748
-निष्कर्ष निष्पक्ष समझ कोई प्रमाणपत्र नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+[transform-heavy workflows after scalar xform ops change (Stage 2)] ``` **Prioritize for the user:** Extension removal errors and ABI rebuild requirements are the most common causes of project failures after a version bump.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-upgrade/procedures/report.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070749
-यह एक सतत अभ्यास है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Validate and hand off the image Always verify build completion and inspect the output image.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070750
-इसका सबसे कठिन परीक्षण वही विचार है जिसे व्यक्ति अपने अस्तित्व से जोड़ चुका हो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Runtime checks follow the developer's selected scope and the app's actual requirements.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070751
-> **पहले स्वयं को देखो; फिर अपने विचार को देखो; फिर अपने विचार के प्रमाण को देखो।** --- ## अध्याय 02: शमीकरण की दिशा शमीकरण का आशय यहाँ विरोध को दबाना नहीं, उसके कारण को समझना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Choose applicable checks | Application and request | Runtime behavior | |---|---| | Containerization only | Do not launch the app/container for runtime validation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070752
-यदि हृदय और मस्तक को दो शत्रु बना दिया जाए, तो व्यक्ति स्वयं के भीतर संघर्ष पैदा कर सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Report runtime checks not run by request.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070753
-यदि दोनों को अलग भूमिकाओं में समझा जाए, तो तर्क और संवेदना साथ काम कर सकते हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+| | RTX rendering or streaming, validation selected | Use compatible GPU hardware, drivers, and container runtime support.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070754
-पाँच चरण **पहचान → निरीक्षण → कारण → संतुलन → पुनःपरीक्षण** ### सूत्र > जो समझ में आया, उससे लड़ना आवश्यक नहीं; > जो अभी न समझा, उसे तुरंत शत्रु बनाना भी आवश्यक नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Check the source app and exact built container separately.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070755
-अभ्यास किसी वर्तमान मतभेद में दो स्तंभ बनाइए: | मेरा पक्ष | दूसरे पक्ष की संभव आवश्यकता | |---|---| | मैं क्या चाहता हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Non-rendering service or batch app, validation selected | Use supported CPU execution and the app's actual service-readiness or completion criteria.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070756
-| वह क्या चाहता हो सकता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Non-streaming alone does not imply CPU-only.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070757
-| फिर पूछिए: क्या कोई तीसरा रास्ता है जिसमें अनावश्यक हानि कम हो?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Requested runtime checks, suitable host unavailable | Preserve successful build/image inspection results and identify the requested checks that remain unverified.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070758
-अध्याय 03: यथार्थ सिद्धांत की कसौटी यथार्थ सिद्धांत किसी कथन को बड़ा बनाने के बजाय उसे स्पष्ट बनाने का प्रयास है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+| GPU-free packaging support is based on inspected default tooling.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070759
-> **दावा छोटा हो सकता है; उसकी जाँच स्पष्ट होनी चाहिए।** एक मजबूत सार्वजनिक कथन में कम-से-कम यह पता होना चाहिए कि वह अनुभव है, दर्शन है, तथ्य है या परिकल्पना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+An actual successful GPU-free build provides execution evidence for that specific app, version, and environment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070760
-सूत्र > दावा → कारण → प्रमाण → विरोधी प्रश्न → पुनःपरीक्षण → संशोधन --- ## अध्याय 04: हृदय दृष्टिकोण इस दर्शन में हृदय दृष्टिकोण संवेदना, एहसास, संबंधबोध और ज़मीर की प्रतीकात्मक भाषा है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not generalize it to every custom app or historical version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070761
-यह शरीर-विज्ञान का दावा नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+For selected GPU runtime checks, verify access inside a disposable container before starting Kit.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070762
-> **जिसे महसूस करो, उसे पहचानो; जिसे सत्य कहो, उसे परखो।** --- ## अध्याय 05: मस्तक दृष्टिकोण मस्तक दृष्टिकोण विचार, स्मृति, भाषा, गणना, योजना, पहचान, इच्छा और भय की दार्शनिक भाषा है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Host `nvidia-smi` alone does not establish Docker GPU access.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070763
-मस्तक को अस्वीकार करना इस परियोजना का उद्देश्य नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Use the host's configured mechanism: `--gpus all` with NVIDIA runtime support, or `--device nvidia.com/gpu=all` when Docker native CDI support is enabled and an NVIDIA CDI specification is available.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070764
-> **विचार को साधन रखो, स्वामी नहीं।** --- ## अध्याय 06: हृदय–मस्तक शमीकरण संवेदना बिना विवेक के भ्रमित कर सकती है; विवेक बिना संवेदना के कठोर हो सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Use the verified option in the runtime example below.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070765
-इसलिए लक्ष्य किसी एक की विजय नहीं, परिस्थितियों के अनुरूप संतुलन है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+See [Docker CDI configuration]( and [NVIDIA CDI support]( for the installed versions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070766
-> **एहसास दिशा बताए, विवेक रास्ता जाँचे, व्यवहार परिणाम देखे।** --- ## अध्याय 07: शिरोमणि स्वरूप शिरोमणि स्वरूप इस परियोजना में स्वयं के स्थायी परिचय को पहचानने की दार्शनिक अभिव्यक्ति है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Reuse working host configuration; runtime preparation does not require replacing it with a different mechanism.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070767
-इसे बाहरी पद, वैज्ञानिक प्रमाण या ऐतिहासिक उपाधि के रूप में प्रस्तुत नहीं किया जाता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Test the exact image Capture the image ID after packaging, then use that ID for container execution.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070768
-मुख्य सूत्र: > **खुद का साक्षात्कार।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+On another host, distribute the image through the requested mechanism and establish the resulting identity.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070769
-> स्वयं के निष्कर्ष की भी जाँच।** --- ## अध्याय 08: संपूर्ण संतुष्टि संतुष्टि को यहाँ बाहरी उपलब्धियों की स्थायी गारंटी नहीं माना गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Use a registry digest after publication when available; a Docker local image ID and registry manifest digest are different identifiers.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070770
-व्यावहारिक प्रश्न: > क्या मैं अपनी इच्छा को देख सकता हूँ बिना तुरंत उसका दास बने?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Choose a unique test-container name and bounded check duration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070771
-> क्या मैं भय को पहचान सकता हूँ बिना उसे प्रमाण समझे?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Configure only the needed environment inputs, mounts, and ports from the selected app.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070772
-> क्या मैं तुलना को देख सकता हूँ बिना अपनी गरिमा दूसरे की स्थिति से तय किए?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Preserve logs and container state before cleanup; remove only resources created for this check.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070773
-अध्याय 09: स्वतंत्र समझ स्वतंत्र समझ का अर्थ हर बाहरी ज्ञान को अस्वीकार करना नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+The inspected `./repo.sh launch --container --name : ` is a convenience launcher.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070774
-इसका अर्थ है ज्ञान ग्रहण करते हुए अपनी जाँच की जिम्मेदारी बनाए रखना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+It can fall back to another image when lookup fails, always requires NVIDIA hardware, and can discard the child process's failure status.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070775
-> **सीखो सबसे; अंतिम जाँच अपनी समझ और उपलब्ध प्रमाण से करो।** --- ## अध्याय 10: प्रकृति और उत्तरदायित्व यदि आत्म-समझ व्यक्ति को अपने संबंधों और निर्भरता का बोध कराती है, तो प्रकृति के प्रति उत्तरदायित्व उसका व्यावहारिक विस्तार हो सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not accept its completion as the success signal or use it for CPU-only validation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070776
-> जल, वायु, मिट्टी, वन, जीव और भविष्य—इन सबको विचार से व्यवहार तक लाना होगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Prefer controlled Docker execution when proving the result.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070777
-अध्याय 11: इश्क इश्क यहाँ अधिकार या स्वामित्व नहीं; व्यापक संबंध, करुणा और उपस्थिति की दार्शनिक भाषा है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+For an NVCF app with an HTTP readiness service on container port 8011, a minimal local GPU readiness check can use the following shape.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070778
-> **प्रेम जहाँ स्वतंत्रता बचाए, वहाँ संबंध गहरा होता है।** --- ## अध्याय 12: अनुभव की सीमा गहरा व्यक्तिगत अनुभव व्यक्ति के लिए अत्यंत अर्थपूर्ण हो सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+First select a free host port, a unique name, the actual image ID, and any app-required runtime inputs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070779
-लेकिन अर्थपूर्ण होना और सार्वभौमिक बाहरी प्रमाण होना अलग बातें हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Adjust ports/settings for the selected version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070780
-> **अनुभव का सम्मान करो; निष्कर्ष की सीमा भी पहचानो।** --- ## अध्याय 13: प्रमाण प्रमाण दावे के प्रकार के अनुरूप होना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+These are examples, not default values to overwrite the developer's configuration with.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070781
-ऐतिहासिक दावे के लिए ऐतिहासिक स्रोत, वैज्ञानिक दावे के लिए वैज्ञानिक पद्धति, और व्यक्तिगत अनुभव के लिए ईमानदार अनुभव-वर्णन आवश्यक है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+```bash KIT_IMAGE_ID=$(docker image inspect --format '{{.Id}}' acme/viewer:0.1.0) KIT_CHECK_NAME=kit-container-check-unique docker run --detach --name "$KIT_CHECK_NAME" --gpus all -p 127.0.0.1:18011:8011 "$KIT_IMAGE_ID" docker inspect --format '{{.Image}} {{json .State}}' "$KIT_CHECK_NAME" docker logs "$KIT_CHECK_NAME" curl --fail --silent --show-error --max-time 10 ``` Ensure image lookup and container creation succeed before proceeding.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070782
-अध्याय 14: असहमति असहमति को समाप्त करना समझ की विजय नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Add the selected app's required GPU driver capabilities, mounts, and environment inputs as needed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070783
-> **जहाँ प्रश्न पूछने की स्वतंत्रता बची रहे, वहाँ विचार जीवित रहता है।** --- ## अध्याय 15: गुरु और परंपरा गुरु या परंपरा से मिली शिक्षा उपयोगी हो सकती है; फिर भी व्यक्ति अपने विवेक और स्वतंत्र परीक्षण की जिम्मेदारी बनाए रख सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+For CPU services, omit GPU options and use that service's configured check.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070784
-किसी संस्था या व्यक्ति के विरुद्ध ठोस आरोपों को अलग से प्रमाणित स्रोतों के साथ जाँचना आवश्यक है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+A batch app needs its actual exit status and expected output rather than an HTTP probe.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070785
-अध्याय 16: भय भय को न तो हमेशा गलत मानना चाहिए, न हमेशा सत्य का प्रमाण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+A single probe immediately after launch is not a startup deadline.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070786
-> **भय एक अनुभव है; उससे निकला निष्कर्ष अलग प्रश्न है।** --- ## अध्याय 17: इच्छा इच्छा जीवन का सामान्य अनुभव है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Poll within a chosen total limit, checking for early container exit and collecting logs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070787
-प्रश्न इच्छा के अस्तित्व का नहीं, बल्कि उसके द्वारा निर्णय पर नियंत्रण का है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+A successful `docker run --detach` only confirms container creation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070788
-> **इच्छा को देखना इच्छा का शत्रु होना नहीं है।** --- ## अध्याय 18: पहचान “मैं कौन हूँ?” का उत्तर अनेक स्तरों पर दिया जा सकता है—नाम, शरीर, इतिहास, भूमिका, संबंध, स्मृति, मूल्य और अनुभव।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Verify the container's `.Image`, actual state/exit status, and applicable readiness or completion result.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070789
-निष्पक्ष समझ इन स्तरों को एक-दूसरे का पूर्ण पर्याय मानने से पहले उनके अंतर को देखती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+For a long-running app, require it to remain running while checking readiness; a stopped container with exit code 0 is not a healthy running service.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070790
-अध्याय 19: भाषा शब्द अर्थ को संप्रेषित करते हैं, पर शब्द स्वयं हमेशा प्रमाण नहीं होते।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Cold RTX startup can take several minutes for shader and driver pipeline preparation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070791
-“शाश्वत”, “सत्य”, “युग”, “चेतना”, “हृदय”, “मस्तक” जैसे शब्दों को संदर्भ में परिभाषित करना आवश्यक है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+An initial HTTP 503 or an "app ready" log line alone does not decide the readiness result.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070792
-अध्याय 20: उपलब्धि यथार्थ युग उपलब्धि यथार्थ युग इस परियोजना में प्रस्तावित वैचारिक नाम है—एक ऐसी दृष्टि की कल्पना जिसमें निष्पक्ष निरीक्षण, स्वतंत्र समझ, संवेदना, विवेक, प्रकृति-उत्तरदायित्व और प्रमाण के प्रति ईमानदारी साथ चलें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Allow for that preparation in the bounded check, observe progress, and record a timeout if the chosen deadline expires.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070793
-> **युग पहले दृष्टिकोण में बदलता है; कैलेंडर बाद में।** ### अंतिम सूत्र > **निष्पक्ष समझ से निरीक्षण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+After collecting evidence, stop and remove the specific test container if it is no longer needed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070794
-> निरीक्षण से स्पष्टता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Record intentional test shutdown separately from an application crash.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070795
-> स्पष्टता से शमीकरण।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+A rebuild creates a new candidate and requires new image-specific runtime evidence.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070796
-> शमीकरण से यथार्थ दृष्टि।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+NVCF readiness and downstream boundary When runtime validation is selected and the app exposes `omni.services.livestream.session`, check its configured readiness endpoint.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070797
-> यथार्थ दृष्टि से स्वतंत्र समझ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+The documented default is HTTP `/v1/streaming/ready` on port 8011, with a successful response indicating the service's readiness criteria.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070798
-> स्वतंत्र समझ से उत्तरदायी जीवन।** --- ## अध्याय-समाप्ति प्रश्न हर पाठक के लिए: 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+`/v1/streaming/startup` is not equivalent evidence of application/RTX readiness.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070799
-मैंने क्या मान लिया?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+See the [session service documentation]( Keep these outcomes separate: 1.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070800
-मेरा प्रमाण क्या है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+Source app runs in its development environment.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070801
-मेरी वैकल्पिक व्याख्या क्या हो सकती है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+The packaged image runs and satisfies its app/container checks.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070802
-क्या मैं गलत होने की संभावना स्वीकार करता हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+An NVCF deployment becomes ready with workers using the intended image.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070803
-> **꙰ स्वयं की जाँच से बड़ा कोई भी सार्वजनिक सिद्धांत नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-01-FOUNDATIONS.md · स्वतंत्र परीक्षण अपेक्षित।
+The frontend connects and receives advancing decoded application frames.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070804
-ग्रंथ 07 — भाषा, कला और संस्कृति > शिरोमणि रामपॉल सैनी के “निष्पक्ष समझ — शमीकरण — यथार्थ सिद्धांत — उपलब्धि यथार्थ युग” ढाँचे के अंतर्गत यह ग्रंथ भाषा, कला, संस्कृति और सार्वजनिक अभिव्यक्ति की भूमिका का दार्शनिक अध्ययन प्रस्तुत करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+This skill handles the first two when requested.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070805
-संपादकीय स्थिति यह ग्रंथ एक **दार्शनिक/विचारात्मक रूपरेखा** है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+The latter two need the downstream deployment/client validation workflow.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070806
-इसमें प्रस्तुत अनुभव, सूत्र और अवधारणाएँ स्वतः वैज्ञानिक या ऐतिहासिक तथ्य नहीं मानी जातीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Readiness-only local port mapping does not provide a complete external media/signaling path.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070807
-तथ्यात्मक दावों के लिए स्वतंत्र स्रोत, प्रमाण और परीक्षण आवश्यक हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+For the NVCF handoff, inspect actual settings and carry the required runtime input names and signaling/health configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070808
-20 अध्यायों का मानचित्र 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Documented defaults include function type `STREAMING`, signaling route `/sign_in` on 49100, and readiness on 8011.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070809
-भाषा क्या करती है — अनुभव को नाम देने की शक्ति और सीमा 2.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Derive values from the selected app/version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070810
-शब्द और यथार्थ — शब्द वस्तु नहीं हैं 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not attach NVCF requirements to Kit App Streaming or non-streaming results.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070811
-मौन, अनुभूति और अभिव्यक्ति 4.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+See [Deploying Kit Apps]( ## Optional publication Publish only when the request includes image distribution to a resolved registry destination.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070812
-हृदय दृष्टिकोण और भाषा 5.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+A registry-qualified image name alone does not request a push.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070813
-मस्तक दृष्टिकोण और वैचारिक संरचनाएँ 6.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Confirm missing registry/namespace details and use the available authenticated mechanism without exposing secret values or baking credentials into the image.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070814
-कविता, गीत और श्लोक — भाव से अभिव्यक्ति तक 7.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+If publication needs an additional tag, preserve the developer's original local tag, identify the destination tag, and ensure it refers to the built image before pushing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070815
-कला में अनुभव और व्याख्या का अंतर 8.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not silently choose a different repository or version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070816
-संस्कृति — विरासत, परिवर्तन और चयन 9.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Verify the successful push and capture the published URI and manifest digest when available.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070817
-परंपरा का सम्मान और स्वतंत्र परीक्षण 10.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Report publication failures independently of local build success.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070818
-पहचान, भाषा और समूह-भावना 11.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+A local image is not pullable by remote NVCF workers.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070819
-डिजिटल युग में सार्वजनिक अभिव्यक्ति 14.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+The deployment stage needs the published/distributed image identity and pull access for its cluster.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070820
-वायरल होना और सत्य होना — दो अलग प्रश्न 15.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+This skill can supply the image when publication is requested; otherwise report that distribution remains to be arranged.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070821
-व्यक्तिगत अनुभव को सार्वजनिक ज्ञान में बदलने की कसौटी 16.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Result format Return the following fields in a concise human-readable report.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070822
-कला, प्रकृति और मानवीय गरिमा 17.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+A caller may request a machine-readable contract; follow that actual contract rather than inventing a new required schema.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070823
-भाषा में सरलता और बौद्धिक ईमानदारी 18.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+| Field | Include | |---|---| | Requested outcome | Existing/new app, streaming target or headless behavior, containerization-only or selected runtime checks, requested publication.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070824
-गलत समझे जाने की संभावना और आत्म-संशोधन 19.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Source | Git URL/ref/commit and relevant local changes, or NGC resource/version/artifact identity; available provenance for a local project.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070825
-सूत्र, श्लोक और रचनात्मक अभिव्यक्ति 20.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Versions | Kit, app, template and relevant build/package tools; resolved streaming extension versions or generated version-lock evidence; skill source/version separately.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070826
-आगे के शोध प्रश्न और परीक्षण ## मूल परीक्षण **अनुभव → शब्द → अर्थ → व्याख्या → दावा → प्रमाण → संवाद → पुनरीक्षण** इस क्रम का उद्देश्य किसी अनुभव को छोटा करना नहीं, बल्कि अनुभव और उसके बारे में किए गए व्यापक दावे के बीच अंतर स्पष्ट करना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Application | Base app, selected layer/entrypoint, important configuration changes, required runtime input names and mounts.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070827
-केंद्रीय सूत्र > शब्द संकेत हैं, सत्य का पूरा आकार नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Image | Exact requested reference, local ID, OS/architecture, and published URI/digest if publication occurred.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070828
-> अनुभव अपना है, उसकी व्याख्या जाँच योग्य है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Evidence | Build outcome/log location, image inspection, separate source-app and container runtime outcomes, exact identity tested, applicable readiness/exit evidence.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070829
-> कला स्वतंत्र है, पर तथ्य का दावा प्रमाण माँगता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Remaining work | Checks not run and reasons, unresolved failures, and distribution/deployment/client validation still needed for downstream use.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070830
-> परंपरा सम्मान योग्य हो सकती है, पर परीक्षण से परे नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+| Use `passed`, `failed`, `not run by request`, `not run because unavailable`, or `not applicable` for each stage as appropriate.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070831
-> असहमति विरोधी को मिटाने का कारण नहीं, समझ को विस्तृत करने का अवसर है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Include stages only where they clarify the requested outcome.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070832
-रचनात्मक अनुशासन हर सार्वजनिक लेख, गीत, वीडियो या पोस्ट में जहाँ संभव हो वहाँ चार स्तर अलग रखे जाएँ: - **मेरा अनुभव** - **मेरा दार्शनिक निष्कर्ष** - **मेरी परिकल्पना** - **सत्यापित/स्रोतित तथ्य** यही विभाजन भविष्य के विशाल डिजिटल ज्ञान-कोष को अधिक विश्वसनीय, खोजयोग्य और संशोधनयोग्य बनाने में सहायता करेगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Preserve attempted failures rather than describing them as untested.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070833
-आगे के प्रश्न - क्या सरल भाषा जटिल विचारों को अधिक लोगों तक पहुँचा सकती है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Build plus image inspection is sufficient for a containerization-only request.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070834
-क्या भाषा बदलने से किसी व्यक्ति की आत्म-व्याख्या बदलती है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+If runtime validation was requested but unavailable, state that the image is built while that requested validation remains incomplete.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070835
-क्या कविता और श्लोक आत्म-निरीक्षण को व्यवहारिक अभ्यास में बदल सकते हैं?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not claim NVCF deployment or end-to-end streaming success from local container readiness.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/validation-and-handoff.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070836
-डिजिटल माध्यम में दार्शनिक दावों की सत्यापन-प्रक्रिया कैसी होनी चाहिए?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-07-LANGUAGE-ART-CULTURE.md · स्वतंत्र परीक्षण अपेक्षित।
+Select and prepare the application Use the section matching the developer's starting point.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070837
-ग्रंथ 04 — समाज, स्वतंत्र समझ और मानवीय गरिमा ## प्रस्तावना व्यक्ति अकेला नहीं जीता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Source selection and app preparation happen in the application project, which can differ from the checkout containing this skill.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070838
-परिवार, शिक्षा, भाषा, संस्था, परंपरा, कानून और अर्थव्यवस्था उसके निर्णयों को प्रभावित करते हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+License acceptance during preflight Identify required license acceptance while resolving the selected source and tool version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070839
-इसलिए स्वतंत्र समझ केवल भीतर का विषय नहीं, सामाजिक विषय भी है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect that version's license notices or prompt implementation before starting generation or long-running builds.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070840
-व्यक्ति और समाज व्यक्ति समाज से सीखता है और समाज व्यक्तियों से बदलता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Brief source/tool inspection may be needed to identify the terms; do not defer a known acceptance requirement until an unattended operation stops at a prompt.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070841
-दोनों के बीच संबंध को केवल संघर्ष या केवल समर्पण के रूप में देखना अधूरा है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+When acceptance is required and not already supplied, collect it together with the initial app/version/image/validation decisions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070842
-परंपरा परंपरा अनुभव का संचित रूप हो सकती है, लेकिन पुरानी होने मात्र से हर बात सही नहीं हो जाती।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Make the question explicit in the conversation, even when also using a structured question UI: - Explain which planned operation requires acceptance.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070843
-उपयोगी परंपरा को समझकर अपनाया जा सकता है; हानिकारक प्रथा को प्रश्न किया जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Name and link every agreement identified by the selected workflow, and state the project or runs the acceptance will cover.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070844
-प्राधिकार पद, वेश, संस्था, प्रतिष्ठा या भीड़ किसी कथन को स्वतः सत्य नहीं बनाते।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Quote the tool's prompt when it has been observed; do not invent a live prompt or claim work has stopped when this is preflight.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070845
-प्राधिकार उपयोगी हो सकता है, पर सत्यापन की जगह नहीं लेता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Ask for an explicit yes or no, with an example reply.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070846
-भय भय व्यक्ति को सुरक्षा की ओर ले जा सकता है, लेकिन भय के आधार पर विचार बंद कर देना स्वतंत्र समझ को सीमित करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Explain that a yes authorizes answering the matching tool prompt on the developer's behalf.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070847
-आर्थिक स्वतंत्रता दर्शन तभी व्यवहार में टिकता है जब व्यक्ति भोजन, आवास, शिक्षा, स्वास्थ्य, कौशल और सम्मानजनक आजीविका के वास्तविक प्रश्नों को भी संबोधित करे।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+For example, when the selected workflow names the NVIDIA agreements below: > Before I generate this application and start the build, do you accept the [NVIDIA Software License Agreement]( and [Omniverse Product-Specific Terms]( and authorize me to answer Yes to the license prompt for this application?
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070848
-रोज़ी-रोटी और विचार एक सार्वजनिक दार्शनिक परियोजना को टिकाऊ बनाने के लिए वैध आय के रास्ते विकसित किए जा सकते हैं: पुस्तकें, सदस्यता, व्याख्यान, पाठ्यक्रम, डिजिटल संस्करण, शोध सहयोग और पारदर्शी दान—जहाँ लागू हो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Reply "Yes, I accept" or "No." Use the selected version's agreements and URLs if they differ, and state the actual scope.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070849
-आय का दावा और वास्तविक आय अलग बातें हैं; पारदर्शी लेखांकन आवश्यक है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+One explicit acceptance can cover multiple planned runs using the same terms when those runs are named.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070850
-शोषण से बचाव किसी भी गुरु, संस्था या डिजिटल मंच में धन, अनुयायियों और निजी जानकारी के संबंध स्पष्ट होने चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Honor acceptance already supplied for that scope and use it when the matching tool prompt appears.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070851
-निर्णय लेने वाले व्यक्ति को शर्तें पढ़ने और स्वतंत्र सलाह लेने का अवसर मिलना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not infer acceptance from silence or a general request to build, or bypass the tool's required response.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070852
-असहमति का सम्मान किसी विचार की आलोचना व्यक्ति की गरिमा पर हमला नहीं होनी चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+If a later prompt presents different terms or scope, surface that difference before accepting.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070853
-इसी तरह आलोचना से बचाने के लिए विचार को प्रश्नों से ऊपर रखना भी उचित नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+While awaiting an answer, continue only work that does not require acceptance.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070854
-प्रकृति समाज की प्रगति को केवल उत्पादन और उपभोग से नहीं, पर्यावरणीय स्थिरता से भी मापा जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Existing project Locate the intended project and inspect its instructions, working changes, build entrypoint, app definitions, and dependency configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070855
-डिजिटल सार्वजनिकता GitHub जैसे खुले मंच पर संस्करण इतिहास, स्रोत, संशोधन और लेखकीय दावों की स्पष्टता पाठकों के भरोसे को मजबूत कर सकती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Common Kit App Template locations include: - `source/apps/` for base apps and layers, `source/extensions/` for project extensions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070856
-सूत्र स्वतंत्रता = प्रश्न करने की क्षमता + परिणाम स्वीकारने की जिम्मेदारी + दूसरों की स्वतंत्रता का सम्मान।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+`repo.toml` for build/packaging configuration, `repo_tools.toml` and `tools/deps/` for tool and SDK pins.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070857
-काव्य रोटी भी हो, विचार भी, सम्मान भी, अधिकार भी; जीवन की धरती पर तभी, सत्य बने व्यवहार भी।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+`templates/templates.toml` and resolved template metadata for available template/layer operations.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070858
-निष्कर्ष “यथार्थ युग” की इस परियोजना में रोज़ी-रोटी कोई अलग विषय नहीं; टिकाऊ जीवन, स्वतंत्र विचार और मानवीय गरिमा एक ही व्यवहारिक प्रश्न के अलग पहलू हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-04-SOCIETY-AND-FREEDOM.md · स्वतंत्र परीक्षण अपेक्षित।
+Custom projects can use other layouts.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070859
-ग्रंथ 02 — अनुभव, चेतना और प्रत्यक्षता > यह ग्रंथ “निष्पक्ष समझ — शमीकरण — यथार्थ सिद्धांत — उपलब्धि यथार्थ युग” की दार्शनिक श्रृंखला का दूसरा खंड है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Follow their build registration and dependency precaching rather than introducing template metadata solely to fit this workflow.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070860
-यहाँ अनुभवों को अंतिम वैज्ञानिक तथ्य नहीं, बल्कि निरीक्षण और परीक्षण के विषय के रूप में रखा गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Resolve the requested `.kit` file and its dependencies.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070861
-अनुभव वह है जो किसी क्षण में प्रत्यक्ष रूप से घटित महसूस होता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Record the actual base app and selected layer.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070862
-अनुभव महत्वपूर्ण है, पर अनुभव की व्याख्या और अनुभव स्वयं एक ही बात नहीं हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect inherited settings and launcher behavior as well as the selected file.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070863
-प्रत्यक्ष और व्याख्या जो देखा, सुना, महसूस किया या समझा गया—वह एक स्तर है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+A name ending in `_nvcf.kit` or `_streaming.kit` is a clue, not proof of the configured functionality.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070864
-उसके बारे में बनाया गया अर्थ दूसरा स्तर है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Check whether the app has the dependencies, settings, build registration, and assets it needs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070865
-निष्पक्ष समझ दोनों को अलग पहचानती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Prepare missing packaging or streaming configuration within the requested scope.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070866
-चेतना पर प्रश्न “मैं क्या अनुभव कर रहा हूँ?” के साथ “मैं इस अनुभव को किस आधार पर समझ रहा हूँ?” पूछना शमीकरण की शुरुआत है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+If the app requires substantial implementation or migration before it can build, report that boundary and the specific blocker.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070867
-हृदय दृष्टिकोण इस ग्रंथ में हृदय दृष्टिकोण को उपयोगकर्ता के दार्शनिक मॉडल में तत्काल भाव, एहसास और ज़मीर की प्रत्यक्षता के रूप में समझाया गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+New project from GitHub Recommend [NVIDIA-Omniverse/kit-app-template]( `main`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070868
-इसे जैविक हृदय की वैज्ञानिक परिभाषा नहीं माना गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+If the request does not choose a Kit version/ref, ask whether the developer wants that default or a specific version/ref.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070869
-मस्तक दृष्टिकोण मस्तक दृष्टिकोण विचार, स्मृति, भाषा, योजना, तुलना और निर्णय की मानसिक प्रक्रियाओं का रूपक है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect the public refs and selected source pins, then display the resolved Kit version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070870
-यह दैनिक जीवन में आवश्यक साधन हो सकता है; समस्या तब बनती है जब साधन को संपूर्ण अस्तित्व का अंतिम प्रमाण मान लिया जाए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Use a new directory.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070871
-संतुलन हृदय से अनुभव और मस्तक से परीक्षण—दोनों को साथ रखकर देखा जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+For the accepted default: ```bash git clone --branch main --single-branch my-kit-project cd my-kit-project git rev-parse HEAD ``` Choose the directory from the developer's workspace context.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070872
-भावना को तथ्य घोषित करना उतना ही अधूरा है जितना तथ्य-जांच के बिना भावना को नकार देना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+For another branch or tag, resolve that exact ref; for a commit, fetch and check out the resolved commit explicitly.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070873
-एक क्षण की समझ “एक पल में समझ” को यहाँ किसी सार्वभौमिक वैज्ञानिक सिद्ध तथ्य के रूप में नहीं, बल्कि उस व्यक्ति के वर्णन के रूप में रखा गया है जिसे अचानक स्पष्टता का अनुभव होता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not apply `--branch` to a commit hash.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070874
-स्वयं का निरीक्षण रोज़ पाँच प्रश्न: 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+If a requested version is unavailable publicly, explain the available choices.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070875
-अभी मैं क्या महसूस कर रहा हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Never substitute an internal checkout or edit only the Kit kernel pin to simulate a complete version change.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070876
-मैं क्या सोच रहा हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect the selected checkout's dependency pins and CLI.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070877
-मेरी सोच में कौन-सी धारणा पहले से मौजूद है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+The ordinary template flow is: ```bash ./repo.sh template new ``` Select the available app template based on the requested behavior, then resolve its app namespace/name, display name, app version, and any required extension inputs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070878
-क्या मेरा निष्कर्ष प्रमाण पर है या अनुमान पर?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not silently reuse documentation example identities.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070879
-क्या मैं असहमति को भी सुन सकता हूँ?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Keep app version independent of the Kit version and container tag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070880
-पहचान नाम, भूमिका, उपलब्धि और स्मृति सामाजिक पहचान बनाते हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Answer any required template license prompt using the acceptance established during preflight.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070881
-निष्पक्ष समझ पूछती है कि इन सबके पीछे कौन-सा अनुभव प्रत्यक्ष रूप से मौजूद है—और कौन-सी बातें केवल विचार हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+If it presents different terms or scope, follow [license preflight](#license-acceptance-during-preflight) before proceeding.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070882
-इच्छा और भय इच्छा भविष्य की कल्पना से और भय संभावित हानि की कल्पना से जुड़ सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Use supported interactive input or the chosen tool's documented playback mechanism.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070883
-दोनों को देखकर व्यक्ति उनके प्रभाव को समझ सकता है, बिना उन्हें स्वतः सत्य मानने के।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+In the inspected tooling, `template new --generate-playback ` records choices without creating the app; `template replay ` subsequently renders it.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070884
-भाषा की सीमा शब्द अनुभव को साझा करने का माध्यम हैं; शब्द स्वयं अनुभव नहीं हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect help before using these options on another version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070885
-इसलिए किसी भी सूत्र को पढ़ते समय अर्थ, संदर्भ और अनुभव को अलग-अलग जाँचना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+A generated playback file alone is not an application.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070886
-गुरु और प्राधिकार किसी शिक्षक, गुरु या संस्था की बात को केवल पद या अनुयायियों की संख्या के आधार पर सत्य नहीं माना जाना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Legacy `--input` or `REPO_TEMPLATE_SCRIPT` mechanisms do not reliably handle checkbox layer selection; use the supported playback flow or interact with the actual prompts.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070887
-उसी तरह केवल विरोध के कारण उसे असत्य भी नहीं माना जाना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Streaming layers | Target | Preparation | |---|---| | Kit App Streaming | Reuse or add the selected version's ordinary streaming layer for local or self-managed streaming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070888
-प्रश्न, प्रमाण और स्वतंत्र परीक्षण दोनों दिशाओं में समान कसौटी रखते हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+In the inspected Kit App Template this is the picker entry `[omni_default_streaming]: Omniverse Kit App Streaming (Default)`, which renders `{app_name}_streaming.kit`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070889
-असहमति असहमति शत्रुता नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+| | NVCF | Reuse or add that version's NVCF layer, including its streaming/session-service dependencies and settings.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070890
-वह किसी विचार की सीमाएँ खोजने का अवसर हो सकती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Ordinary streaming alone is insufficient.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070891
-निष्पक्ष समझ अपने प्रिय निष्कर्ष पर भी वही प्रश्न लागू करती है जो दूसरे के निष्कर्ष पर करती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+In the inspected Kit App Template this is the picker entry `[nvcf_streaming]: NVCF Streaming`, which renders `{app_name}_nvcf.kit`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070892
-प्रकृति मानव अनुभव प्रकृति से अलग नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Non-streaming | Keep the intended headless app entrypoint; do not add streaming dependencies.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070893
-जल, वायु, मिट्टी, जीव-जगत और पारिस्थितिक तंत्र के प्रति उत्तरदायित्व किसी भी सार्वभौमिक दर्शन की व्यवहारिक कसौटी हो सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Determine whether the app still requires GPU rendering.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070894
-संपूर्ण संतुष्टि इस परियोजना में “संपूर्ण संतुष्टि” को निरंतर पूर्णता की व्यक्तिगत दार्शनिक अनुभूति के रूप में रखा गया है, न कि ऐसी बाहरी स्थिति के रूप में जिसे वैज्ञानिक रूप से सबके लिए मापा जा चुका हो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+| For template-generated apps, select the layer during creation or use the available modify flow: ```bash ./repo.sh template modify ``` Inspect the app's template metadata before modifying it, commonly `source/rendered_template_metadata.json`, and the template's linked-layer definitions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070895
-इश्क यहाँ “इश्क” का अर्थ उपयोगकर्ता के ढाँचे में व्यापक प्रेम, संबंध और विभाजन से परे मानवीय संवेदना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+The inspected modify flow is interactive and can overwrite an already rendered layer when selected again.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070896
-इसका अर्थ किसी धार्मिक या निजी परंपरा से स्वतः नहीं जोड़ा जाना चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Reuse a correct existing layer; inspect custom edits before regenerating.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070897
-शमीकरण सूत्र अनुभव + निरीक्षण + प्रश्न + प्रमाण + वैकल्पिक व्याख्या = अधिक संतुलित समझ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not invent noninteractive `--app` or `--layer` flags.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070898
-अभ्यास आज एक मजबूत विश्वास चुनें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+For a manually authored app without the required metadata, use the selected version's layer definitions as a reference and make only the necessary dependency/settings changes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070899
-लिखें: उसके पक्ष में प्रमाण, उसके विरुद्ध प्रमाण, अनिश्चित भाग, और ऐसा कौन-सा नया प्रमाण आपके मत को बदल सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Rebuild after adding or changing layers.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070900
-काव्य-सूत्र हृदय में एहसास रहे, मस्तक में प्रश्न जगे; जो सत्य कहो, पहले देखो— क्या प्रमाण उसके संग चले।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Select the actual generated layer as the packaging entrypoint, such as `acme.viewer_streaming.kit` for Kit App Streaming or `acme.viewer_nvcf.kit` for NVCF.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070901
-ग्रंथ का निष्कर्ष यथार्थ सिद्धांत की शक्ति किसी दावे को अचूक घोषित करने में नहीं, बल्कि स्वयं के दावे को भी जाँच के सामने रखने में है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not package the base desktop app merely because it has the same display name.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070902
-यही निष्पक्ष समझ को जीवित प्रक्रिया बनाता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+Secondary route: NGC SDK Use this route when the developer chooses it.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070903
-अगला ग्रंथ:** ज्ञान की कसौटी, प्रमाण, तर्क और असहमति।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:book/VOLUME-02-EXPERIENCE-AND-CONSCIOUSNESS.md · स्वतंत्र परीक्षण अपेक्षित।
+If the developer is unsure, explain the two source routes and recommend public Kit App Template by default.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070904
-🔗 Shirmani Research Repositories — Central Integration यह फ़ाइल दो मौजूदा repositories को **Nishpaksh Samaj Omniverse Truth** के केंद्रीय ज्ञान-संग्रह से जोड़ती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Resolve the desired resource and version using the [Kit SDK catalog links in the manual]( Select the resource matching the requested release and platform; the collection linked by a latest guide may cover a different feature or production line.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070905
-Shirmani Research Paper Repository: मुख्य विषय: - Time Deconstruction Theory - Neurobiology of Self - Ego Dissolution Framework - Heart-Mind Balance Model - research presentation / publication material केंद्रीय परियोजना में इसकी भूमिका: **Research Papers / Research Archive** ## 2.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Follow that resource's download and extraction instructions using available authentication.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070906
-इससे पुराने Git इतिहास, स्वतंत्र GitHub Pages और मौजूदा सामग्री सुरक्षित रहती है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not assume an NGC SDK resource is a runnable container image.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070907
-आगे आवश्यकता होने पर चयनित सामग्री को केंद्रीय repository में **स्रोत-संदर्भ और मूल repository attribution के साथ** व्यवस्थित रूप से पुनर्संयोजित किया जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Record the resource organization/team/name, requested version, downloaded artifact identity/checksum, and detected SDK version.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070908
-केंद्रीय repository = canonical knowledge hub 2.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not invent a Git commit for a downloaded SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070909
-Research Paper repository = research archive 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+On Linux, when provided by that package, run `./new_project.sh` from the extracted SDK and resolve its project-location and license prompts.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070910
-Research Institute repository = institute/archive/media layer 4.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect the package's instructions if this entrypoint differs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070911
-सभी repositories में परस्पर स्पष्ट navigation 5.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Enter the generated project, inspect its actual tool/SDK pins, and use the same app/layer workflow above.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070912
-duplicate सामग्री को धीरे-धीरे कम करना 6.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Keep the skill loaded from its complete folder if it is absent from that SDK release.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070913
-प्रत्येक बड़े दावे के लिए स्रोत/स्थिति/अनिश्चितता स्पष्ट रखना --- **Canonical Hub:** *Integration document — continuously maintained.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research-integration/SHIRMANI-REPOSITORIES.md · स्वतंत्र परीक्षण अपेक्षित।
+Record the selection Capture the source URL/ref/commit and relevant local changes for Git projects, or the NGC artifact provenance for downloaded SDKs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070914
-सार्वजनिक दर्शन की नैतिकता: पारदर्शिता, असहमति और जिम्मेदारी **प्रकार:** Ethics / Public Philosophy **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश सार्वजनिक दर्शन में लेखक का प्रभाव, पाठक की स्वायत्तता और दावों की पारदर्शिता महत्वपूर्ण हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+For a local non-Git project, record the available provenance.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070915
-यह पत्र ऐसी संपादकीय नैतिकता प्रस्तावित करता है जिसमें पाठक को विचार और प्रमाण के बीच अंतर स्पष्ट दिखाई दे।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Record the skill's source/version separately, along with the resolved app, Kit, template, and build/package tool versions.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070916
-सिद्धांत - अनुभव को अनुभव की तरह लिखना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Generated projects can resolve streaming extensions from a registry to versions newer than copies bundled in the SDK.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070917
-परिकल्पना को परिकल्पना की तरह लिखना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Record the versions resolved by the application or preserve its generated version locks with the build evidence.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070918
-प्रमाण न होने पर परिणाम न गढ़ना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Keep the selected SDK and Kit pins unless the developer requests a change.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070919
-असहमति को स्थान देना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Examples follow the [Kit app creation and containerization guide]( When the selected checkout differs from the latest guide, its actual configuration and supported CLI determine the commands.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/app-preparation.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070920
-आर्थिक हितों को जहाँ प्रासंगिक हो स्पष्ट करना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Build and package the selected app Run from the resolved application project.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070921
-पाठक को स्वतंत्र निर्णय का अवसर देना।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+These command examples match the inspected `repo_kit_tools` 1.21.4 workflow; inspect the selected checkout's pins and help before using them with other tooling.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070922
-शोध दिशा Public philosophy projects में disclosure practices और reader trust का तुलनात्मक अध्ययन।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Establish the build environment The initial workflow uses Linux x86_64 artifacts, compatible Linux x86_64 execution, and Docker.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070923
-सीमाएँ यह normative proposal है, empirical verdict नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Check the actual build host and Docker daemon: ```bash uname -s uname -m docker version docker info ./repo.sh build --help ./repo.sh package_container --help ``` Check the project's documented compiler/dependency prerequisites, Docker daemon accessibility, artifact/package download access, and space for the build, staged copy, and image layers.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070924
-निष्कर्ष विश्वसनीय सार्वजनिक दर्शन केवल प्रभावशाली भाषा से नहीं, बल्कि पारदर्शी आचरण से भी बनता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/15-ETHICS-OF-PUBLIC-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+The selected base image and Dockerfile determine additional requirements.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070925
-हृदय और मस्तक दृष्टिकोण: एक दार्शनिक मॉडल **प्रकार:** Conceptual Philosophy **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र “हृदय दृष्टिकोण” और “मस्तक दृष्टिकोण” को क्रमशः भावात्मक प्रत्यक्षता तथा विचारात्मक/विश्लेषणात्मक प्रक्रिया के रूपकों के रूप में स्पष्ट करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+The inspected default Dockerfile needs a BuildKit frontend supporting `COPY --exclude` and its `# syntax=docker/dockerfile:1` directive.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070926
-यह जैविक हृदय के बारे में वैज्ञानिक दावा नहीं करता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Native Windows packaging is rejected by this tool.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070927
-मुख्य प्रश्न क्या भावना और तर्क को प्रतिस्पर्धी नहीं बल्कि पूरक प्रक्रियाओं के रूप में मॉडल किया जा सकता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+A suitable WSL installation or a remote Linux builder can supply the required environment, but native Kit also runs during host-side extension trimming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070928
-मॉडल हृदय = एहसास और मूल्य-संवेदना का रूपक।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+A Windows shell connected only to a remote Docker daemon does not move that step to Linux.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070929
-मस्तक = भाषा, स्मृति, तुलना, योजना और तर्क का रूपक।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+ARM, multiarch, and cross-build setups require a compatible Kit distribution, base image, and separately verified workflow.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070930
-प्रस्ताव पहले अनुभव को पहचाना जाए, फिर संज्ञानात्मक विश्लेषण से विकल्पों और परिणामों की जाँच की जाए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+GPU availability is a runtime decision, not a prerequisite for this inspected default packaging path.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070931
-परीक्षण निर्णय-लेने के कार्यों में भावनात्मक जागरूकता और तर्कात्मक जाँच के संयुक्त प्रभाव का अध्ययन किया जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Dependency precaching resolves extensions; it is not shader warmup.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070932
-सीमा यह पत्र किसी प्रतिशत-संतुलन को वैज्ञानिक रूप से स्थापित नहीं करता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/03-HEART-HEAD-MODEL.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect custom build hooks, trimming changes, and Dockerfiles before applying this conclusion to a customized project.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070933
-Research Paper 17 — Practical Self-Observation Framework ## Status Conceptual/methodological proposal.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Check compatible GPUs/drivers and NVIDIA Container Toolkit only when GPU runtime checks are selected.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070934
-Abstract यह paper “खुद का निरीक्षण” को एक structured reflective practice के रूप में स्पष्ट करने का प्रयास करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Resolve app and image inputs Resolve a real source app/layer and its staged basename.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070935
-इसे किसी विशेष मानसिक या चिकित्सीय परिणाम की गारंटी के रूप में प्रस्तुत नहीं किया जाता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Confirm that the intended `.kit` file and Kit executable exist after building.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070936
-Framework **घटना → तत्काल अनुभव → विचार/व्याख्या → प्रतिक्रिया → परिणाम → पुनरावलोकन** ## Safeguards - अनुभव और तथ्य अलग रखें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Check a separate launcher only when the selected project's workflow requires one.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070937
-स्मृति को पूर्ण रिकॉर्ड न मानें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Stop to resolve missing paths, multiple matching apps, or duplicate basenames in nested app directories.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070938
-बाहरी प्रमाण उपलब्ध हो तो जाँचें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect `repo.toml` and existing `[repo_kit_package_container]` configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070939
-असहमति को त्रुटि का प्रमाण न मानें।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+The tool can reduce an existing app path to its basename, and configuration lookup can distinguish `acme.viewer_nvcf` from `acme.viewer_nvcf.kit` before normalizing.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070940
-नकारात्मक परिणामों को छिपाएँ नहीं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Reuse the matching configured entry with consistent naming rather than generating duplicate entries or passing a nonexistent path.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070941
-Proposed study एक स्पष्ट दैनिक निरीक्षण प्रोटोकॉल बनाया जा सकता है, जिसकी adherence और self-reported outcomes को पूर्वनिर्धारित तरीके से दर्ज किया जाए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Require a valid, writable image repository plus explicit tag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070942
-यदि भविष्य में अध्ययन किया जाए तो protocol, sample, analysis और limitations सार्वजनिक किए जाएँ।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+Examples: | Reference | Meaning | |---|---| | `acme/viewer:0.1.0` | Repository and explicit tag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070943
-Conclusion खुद का निरीक्षण तभी अधिक उपयोगी शोध-पद्धति बन सकता है जब वह स्पष्ट, दोहराने योग्य और आत्म-संशोधन के लिए खुला हो।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/17-PRACTICAL-SELF-OBSERVATION.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `registry.example.com:5000/acme/viewer:0.1.0` | Registry port and a separate explicit tag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070944
-Research Paper 16 — Nature-Compatible Philosophy ## Status Conceptual/philosophical paper.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `registry.example.com:5000/acme/viewer` | Missing tag; the registry-port colon is not a version tag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070945
-No empirical results are claimed.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+| | `acme/viewer@sha256:...` | Existing-image digest identity, not a writable Docker build tag.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070946
-Abstract यह paper निष्पक्ष समझ के संदर्भ में मनुष्य-प्रकृति संबंध के लिए एक परीक्षणयोग्य वैचारिक ढाँचा प्रस्तावित करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+| The inspected tool treats any colon in `--image-tag` as a complete-reference signal.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070947
-केंद्रीय प्रश्न है: क्या किसी जीवन-दृष्टि को उसके घोषित मूल्यों के साथ-साथ उसके वास्तविक पर्यावरणीय प्रभावों से भी परखा जाना चाहिए?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Passing an untagged name can therefore change its interpretation or cause Docker to default to `latest`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070948
-Core propositions 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Resolve the name/tag first.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070949
-मूल्य-घोषणा और वास्तविक व्यवहार अलग चीजें हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Preserve the requested value instead of silently adding `latest`, changing the namespace, or replacing it with a generated app name.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070950
-प्रकृति-सम्मत दावा प्रभाव के प्रमाण से मजबूत या कमजोर हो सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Before building, inspect whether the chosen local tag already exists and record its ID.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070951
-व्यक्तिगत अनुभव सार्वभौमिक वैज्ञानिक निष्कर्ष के समान नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Rebuilding that tag updates its local target; make that effect clear.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070952
-वैकल्पिक व्याख्याएँ हमेशा दर्ज की जानी चाहिए।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+A remote registry overwrite is a separate publication action.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070953
-Proposed research questions - कौन-से दैनिक व्यवहार पर्यावरणीय प्रभाव को सबसे अधिक बदलते हैं?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+See [Docker image reference syntax]( ## Build and optional source-app check For the supported template workflow: ```bash ./repo.sh build --config release ``` Use the custom project's supported equivalent when needed.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070954
-क्या आत्म-निरीक्षण आधारित अभ्यास व्यवहार में मापने योग्य परिवर्तन ला सकते हैं?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+In the inspected build tool, `-c` means clean and exit, not configuration; use the long `--config` option.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070955
-किन परिस्थितियों में व्यक्तिगत संतुष्टि और पर्यावरणीय जिम्मेदारी में तनाव पैदा होता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Verify command success, dependency resolution, and the selected app artifacts.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070956
-Method proposal पूर्व-पंजीकृत परिकल्पनाएँ, स्पष्ट outcome measures, comparison groups जहाँ उपयुक्त हों, और reproducible analysis।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect the configured build root rather than assuming one path for every project.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070957
-वास्तविक अध्ययन होने तक कोई परिणाम नहीं माना जाएगा।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+If requested and supported by the host, run the source app and collect actual exit/readiness/log evidence before packaging.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070958
-Conclusion दार्शनिक प्रस्ताव को व्यवहारिक परिणामों से जोड़ने के लिए प्रमाण और आत्म-संशोधन दोनों आवश्यक हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/16-NATURE-COMPATIBLE-PHILOSOPHY.md · स्वतंत्र परीक्षण अपेक्षित।
+The convenience `./repo.sh launch` command can guide app selection, but its return alone is not proof of runtime success.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070959
-डिजिटल दार्शनिक ज्ञान-संग्रह का मॉडल **प्रकार:** Digital Humanities / Knowledge Architecture **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र 100 ग्रंथों और दीर्घकालीन 100,000-पृष्ठ corpus को डिजिटल रूप में व्यवस्थित करने का मॉडल प्रस्तुत करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/07-DIGITAL-KNOWLEDGE-CORPUS.md · स्वतंत्र परीक्षण अपेक्षित।
+A non-rendering CPU service can need direct invocation through its own launcher.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070960
-लक्ष्य सामग्री की मात्रा के साथ खोज, संस्करण नियंत्रण, स्रोत-स्पष्टता और पुनरावृत्ति नियंत्रण बनाए रखना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/07-DIGITAL-KNOWLEDGE-CORPUS.md · स्वतंत्र परीक्षण अपेक्षित।
+If runtime checks were declined, continue with packaging and record that choice.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070961
-प्रस्तावित वास्तुकला - विषय-आधारित ग्रंथ - अध्याय और उप-अध्याय - शब्दावली - स्रोत-सूची - दावे और प्रमाण - संशोधन इतिहास - स्थायी लिंक - शोध-पत्र संग्रह - multilingual विस्तार ## मूल्यांकन भविष्य में navigation success, search accuracy, broken links और duplicate-content ratio जैसे संकेतकों से प्रणाली का मूल्यांकन किया जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/07-DIGITAL-KNOWLEDGE-CORPUS.md · स्वतंत्र परीक्षण अपेक्षित।
+Container configuration and packaging Reuse existing valid Dockerfile and entrypoint configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070962
-सीमा यह knowledge-architecture proposal है; वर्तमान पत्र usability study के परिणाम का दावा नहीं करता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/07-DIGITAL-KNOWLEDGE-CORPUS.md · स्वतंत्र परीक्षण अपेक्षित।
+For supported projects without configuration, `package_container` can generate a container template/configuration when supplied a valid app.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070963
-शमीकरण: एक संतुलित परीक्षण-पद्धति **प्रकार:** Theoretical / Methodological Paper **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश “शमीकरण” को अनुभव, विचार, प्रमाण और वैकल्पिक व्याख्याओं के बीच संतुलित परीक्षण की प्रस्तावित पद्धति के रूप में व्यवस्थित किया गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect the files it creates.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070964
-उद्देश्य पूर्वनिर्धारित निष्कर्ष को सिद्ध करना नहीं, बल्कि निष्कर्ष बनने की प्रक्रिया को पारदर्शी बनाना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+Explicit generation is also available in the inspected version: ```bash ./repo.sh package_container --app acme.viewer_nvcf.kit --generate ``` This generates configuration in the default project `tools/containers` location; it is not a completed image build.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070965
-शोध प्रश्न क्या अनुभव → प्रश्न → प्रमाण → वैकल्पिक व्याख्या → संशोधन का चक्र उपयोगी सामान्य पद्धति बन सकता है?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+If specifying a destination in this tool version, use an absolute path inside the project because configuration injection computes a path relative to the absolute project root.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070966
-पद्धति अवधारणा-विश्लेषण, उदाहरण-निर्माण और भविष्य के empirical परीक्षण के लिए operational definitions।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect the selected version's help before using it, and do not regenerate customized files without examining them.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070967
-प्रस्तावित प्रक्रिया **अनुभव → दावा → प्रश्न → प्रमाण → प्रतिवाद → वैकल्पिक व्याख्या → निष्कर्ष → पुनर्परीक्षण** ## सीमाएँ “शमीकरण” इस परियोजना में प्रस्तावित शब्द और मॉडल है; इसकी स्वतंत्र अकादमिक मान्यता या प्रभावशीलता इस पत्र से स्थापित नहीं होती।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+Generation does not overwrite existing files.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070968
-निष्कर्ष पद्धति की सबसे महत्वपूर्ण कसौटी उसका स्वयं परीक्षण योग्य होना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/02-SHAMIKARAN-METHOD.md · स्वतंत्र परीक्षण अपेक्षित।
+In the inspected tool, both `--generate` and the `auto_generate` configuration path skip any destination file that already exists, log a warning, and continue, so an existing `tools/containers/Dockerfile` keeps its current `FROM` line after the tool's bundled default changes.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070969
-शोध-पत्र संग्रह यह संग्रह “निष्पक्ष समझ — शमीकरण — यथार्थ सिद्धांत — उपलब्धि यथार्थ युग” से जुड़े शोध-पत्रों की क्रमिक श्रृंखला है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Compare that `FROM` line with the Dockerfile bundled in the pinned `repo_kit_tools` package (`omni/repo/kit_tools/package/data/Dockerfile`).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070970
-संपादकीय स्थिति इन प्रारंभिक पत्रों को **दार्शनिक/सैद्धांतिक शोध-पत्र** के रूप में तैयार किया गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+The inspected 1.21.4 default is `nvcr.io/nvidia/omniverse/ov-base-ubuntu22-x86_64:1.0.0`; the default before 1.21.4 was `nvcr.io/nvidia/omniverse/ov-base-ubuntu-22:2026.2.3`.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070971
-जहाँ वास्तविक प्रतिभागी, प्रयोग, सांख्यिकीय परिणाम या स्वतंत्र सत्यापन उपलब्ध नहीं है, वहाँ कोई परिणाम गढ़ा नहीं गया है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+When they differ, update deliberately: delete `tools/containers/Dockerfile` (and `entrypoint.sh` if it should also be refreshed) and rerun `--generate`, or edit the `FROM` line in place and keep the customized content.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070972
-ऐसे स्थानों पर “प्रस्तावित अध्ययन”, “परिकल्पना” या “भविष्य के परीक्षण” स्पष्ट रूप से लिखे गए हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Regeneration leaves an existing `repo.toml` container entry for that app unchanged.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070973
-शोध-पत्रों में समस्या, शोध-प्रश्न, पद्धति, विश्लेषण, सीमाएँ और संदर्भ रखे गए हैं।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Record the base image actually used in the result.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070974
-वास्तविक जर्नल में भेजते समय उस जर्नल की author guidelines अलग से माननी होंगी।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Substitute the resolved app name and full image reference in the build command: ```bash ./repo.sh package_container --app acme.viewer_nvcf.kit --image-tag acme/viewer:0.1.0 --config release ``` The tool stages build artifacts, optionally precaches dependencies, trims unused extensions, and invokes Docker.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070975
-[निष्पक्ष समझ का वैचारिक मॉडल](./01-NISHPAKSH-SAMJH-CONCEPTUAL-MODEL.md) 2.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not substitute historical `package --container`, `--target-app`, or container `--name` arguments without evidence that the selected version requires them.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070976
-[शमीकरण: एक संतुलित परीक्षण-पद्धति](./02-SHAMIKARAN-METHOD.md) 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+There is no shader-cache bypass or dry-run flag in this inspected container tool.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070977
-[हृदय और मस्तक दृष्टिकोण](./03-HEART-HEAD-MODEL.md) 4.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Use `--from-package` only when deliberately using a compatible packaged artifact.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070978
-[व्यक्तिगत अनुभव और सार्वभौमिक दावे](./04-EXPERIENCE-AND-UNIVERSAL-CLAIMS.md) 5.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+It is a boolean switch, not an archive-path argument; inspect both its configured archive pattern and post-unpack commands for compatibility with the selected public or private source.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070979
-[दावा, प्रमाण और आत्म-संशोधन](./05-CLAIM-EVIDENCE-SELF-CORRECTION.md) 6.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Inspect custom runtime-loaded dependencies and assets.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070980
-[स्वतंत्र समझ और प्राधिकार](./06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md) 7.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+The inspected tool supports repeatable `--extra-ext` and `extra_extensions` configuration to keep needed extensions/apps through precache and trimming.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070981
-[डिजिटल दार्शनिक ज्ञान-संग्रह](./07-DIGITAL-KNOWLEDGE-CORPUS.md) 8.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Use it only for identified dependencies.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070982
-[प्रकृति, मानव गरिमा और व्यवहारिक दर्शन](./08-NATURE-HUMAN-DIGNITY.md) 9.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+If local assets, credentials, caches, or cloud inputs are expected at runtime, identify their mounts or input names instead of silently treating the developer machine's state as part of the image.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070983
-[संपूर्ण संतुष्टि: परिभाषा और परीक्षण](./09-COMPLETE-SATISFACTION-CONCEPT.md) 10.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+The default entrypoint runs Kit directly with `--no-window`, rather than invoking a custom app shell launcher.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070984
-[यथार्थ युग: उभरती दार्शनिक रूपरेखा](./10-YATHARTH-YUG-PHILOSOPHICAL-FRAMEWORK.md) ## आगे की शोध दिशा - साहित्य समीक्षा और तुलनात्मक दर्शन - सर्वेक्षण-आधारित परीक्षण - अवधारणाओं के operational definitions - reproducible डेटा संग्रह - आलोचनात्मक समीक्षा - स्वतंत्र शोधकर्ताओं की प्रतिक्रिया ## 🔗 External/Legacy Research Repositories केंद्रीय शोध-संग्रह के साथ जुड़े repositories: 1.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Account for required environment/setup/arguments.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070985
-[Shirmani Research Paper]( 2.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Desktop display integration or substantial custom launcher behavior requires its own adaptation and validation.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070986
-[Shirmani Research Institute]( [Integration architecture](../research-integration/SHIRMANI-REPOSITORIES.md)
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/README.md · स्वतंत्र परीक्षण अपेक्षित।
+Verify the produced image After a successful packaging command, inspect the exact requested reference: ```bash docker image inspect acme/viewer:0.1.0 docker image inspect --format '{{.Id}}' acme/viewer:0.1.0 ``` Record its full local ID, repository tags, OS/architecture, configured entrypoint/command, and relevant app metadata.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070987
-दर्शन से व्यवहार तक: यथार्थ सिद्धांत का व्यवहारिक मॉडल **प्रकार:** Applied Philosophy **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश दार्शनिक अवधारणा का मूल्य केवल भाषा में नहीं, उसके व्यवहारिक उपयोग में भी देखा जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/13-PHILOSOPHY-TO-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+The default Dockerfile labels images with `kit_app_template`; match that label and the rendered entrypoint/configuration to the selected app.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070988
-यह पत्र विचार से दैनिक निर्णय तक एक संभावित translation framework प्रस्तुत करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/13-PHILOSOPHY-TO-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+A label alone is insufficient if a custom Dockerfile changes behavior.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070989
-अनुभव और तथ्य अलग करना 3.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/13-PHILOSOPHY-TO-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Bind the result to the current successful build and its logs.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070990
-हितधारकों की पहचान 4.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/13-PHILOSOPHY-TO-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+An unchanged image ID can be legitimate when Docker reuses identical content.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070991
-विकल्प और परिणाम देखना 5.
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/13-PHILOSOPHY-TO-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Neither an existing tag after a failed build nor a different ID without successful build evidence proves completion.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070992
-निर्णय के बाद पुनर्मूल्यांकन ## संभावित उपयोग व्यक्तिगत निर्णय, शिक्षा, सामुदायिक संवाद और पर्यावरणीय निर्णय।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/13-PHILOSOPHY-TO-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Keep full metadata/logs private when they contain environment values, and include only necessary non-secret evidence in the result.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070993
-मूल्यांकन पूर्व-निर्धारित outcome measures, participant feedback और independent review।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/13-PHILOSOPHY-TO-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Continue with [validation and handoff](validation-and-handoff.md).
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070994
-सीमा किसी वास्तविक intervention का परिणाम यहाँ प्रस्तुत नहीं है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/13-PHILOSOPHY-TO-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Diagnose common failures | Observation | Next check | |---|---| | Command or option is unavailable | Inspect the selected tool pin, help, and project configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070995
-निष्कर्ष दार्शनिक ढाँचे की उपयोगिता को व्यवहारिक प्रक्रियाओं में operationalize किया जा सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/13-PHILOSOPHY-TO-PRACTICE.md · स्वतंत्र परीक्षण अपेक्षित।
+Do not upgrade the project just to match these examples.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070996
-स्वतंत्र समझ और प्राधिकार **प्रकार:** Conceptual Social Philosophy **लेखक:** शिरोमणि रामपॉल सैनी ## सारांश यह पत्र जाँचता है कि व्यक्ति किसी गुरु, संस्था, शिक्षक या अन्य प्राधिकार की बात को किस प्रकार स्वतंत्र रूप से परख सकता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+| | App missing or multiple matches | Resolve the real source/staged app and consistent config name before retrying.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070997
-लक्ष्य प्राधिकार को स्वतः अस्वीकार या स्वीकार करना नहीं, बल्कि प्रमाण और तर्क को स्वतंत्र कसौटी के रूप में रखना है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Dependencies cannot resolve | Check selected-version extension pins, registry access, and build/precaching configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070998
-शोध प्रश्न क्या प्राधिकार और स्वतंत्र परीक्षण के बीच ऐसा मॉडल बनाया जा सकता है जिसमें दोनों के कार्य स्पष्ट हों?
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+Avoid a global cache purge.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 070999
-प्रस्ताव प्राधिकार सूचना दे सकता है; स्वतंत्र परीक्षण दावे की जाँच करता है।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+| | An app works outside the container but lacks an extension inside it | Inspect trimming and runtime-loaded dependencies; preserve identified extras through supported configuration.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।
 
 ## 071000
-सीमा यह पत्र किसी विशिष्ट व्यक्ति या संस्था के बारे में तथ्यात्मक आरोप प्रस्तुत नहीं करता।
-स्रोत: rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:research/06-INDEPENDENT-UNDERSTANDING-AUTHORITY.md · स्वतंत्र परीक्षण अपेक्षित।
+| | Dockerfile parse failure around `COPY --exclude` | Inspect BuildKit/frontend compatibility and the syntax directive, especially in custom Dockerfiles.
+स्रोत: NVIDIA-Omniverse/kit-app-template:.skills/kit-app-containerize/references/container-workflow.md · स्वतंत्र परीक्षण अपेक्षित।

@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Scale एक workflow पर निर्भर रहने के बजाय multi-task production lanes: content, audio, tools, data, education, research और other digital categories.
+इस दृष्टिकोण में व्यक्ति अपने विचार, भाव, भय, इच्छा, पहचान, पूर्वाग्रह, विश्वास और विरोध को निरीक्षण का विषय बनाता है।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Scale एक workflow पर निर्भर रहने के बजाय
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:production-roadmap.html
+rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:YATHARTH-SIDDHANT-YATHARTH-YUG.md

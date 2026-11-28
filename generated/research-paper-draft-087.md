@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-INSTITUTE DISCOVERY FACTORY PRODUCTION QC / GATE PUBLIC SHOWROOM SALE REVIEW QUALITY IMPROVEMENT — catalog identities loaded — product families — engines 4 sale-ready products 🛒 Sale-ready products अभी केवल प्रकाशित वास्तविक source/preview वाले products बिक्री के लिए दिखाए गए हैं।
+{ "schema_version": 1, "repo": "rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto", "role": "manifesto-archive", "mode": "free-first", "ai_provider": "optional", "policy": { "no_paid_api_required": true, "do_not_execute_untrusted_code": true, "research_label": "draft", "no_scientific_validation_claims": true } }
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ INSTITUTE DISCOVERY FACTORY PRODUCTION QC / GATE PUBLIC SHOWROOM SALE REVIEW QUA
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:supreme-public-showroom.html
+rampaulsaini/Koyab-Founding-Declaration-Omniversal-Manifesto:factory-agent.json

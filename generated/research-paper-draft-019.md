@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-No login Runs in browser Copy-ready output No source verification claim 1 · Enter the question and draft Question / user request Proposed answer or main claim Source URL or source details (optional) Statement type Factual claim Philosophical / identity statement Practical instruction Opinion / interpretation Evidence notes / limitations Build transparent answer Clear 2 · Answer record Waiting for input Enter a question and proposed answer, then select “Build transparent answer”.
+यह युग **अतीत के चारों युगों से खरबों गुणा ऊँचा** है — क्योंकि यहाँ न विभाजन है, न भ्रम, सिर्फ़ शुद्ध सत्य का प्रत्यक्ष अस्तित्व है।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ No login Runs in browser Copy-ready output No source verification claim 1 · Ent
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:evidence-answer-studio.html
+rampaulsaini/omniverse-dashboard:Philosophy.md

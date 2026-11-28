@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-Close (48–60s):** Show the limitation notice: a source URL alone does not independently verify a claim.
+> **जहाँ दूसरे को केवल 'दूसरा' समझना कम होता है, > वहाँ संबंध की गहराई बढ़ सकती है।** --- ## 11.
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@ Close (48–60s):** Show the limitation notice: a source URL alone does not inde
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:SH-UT007-demo-script.md
+rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:YATHARTH-SIDDHANT-YATHARTH-YUG.md

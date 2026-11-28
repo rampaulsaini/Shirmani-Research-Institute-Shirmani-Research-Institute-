@@ -4,7 +4,7 @@
 यह स्वचालित प्रारूप उपलब्ध स्रोत-सामग्री को व्यवस्थित करता है।
 
 ## Research question
-इसे किसी काल्पनिक “100% complete” दावे की तरह नहीं पढ़ना चाहिए।
+शमीकरण **शमीकरण** यहाँ विरोधों को जबरन मिटाने के बजाय उन्हें समझकर संतुलित करने की प्रक्रिया के अर्थ में प्रयुक्त है।
 
 ## Method
 स्रोत-संग्रह, पाठ-सफाई, वाक्य-खंडन और स्रोत-ट्रेसिंग।
@@ -13,4 +13,4 @@
 Draft generated automatically. स्वतंत्र peer review, empirical testing और source verification आवश्यक हैं।
 
 ## Source
-rampaulsaini/my-omniverse-store:funding.html
+rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth:YATHARTH-SIDDHANT-YATHARTH-YUG.md
