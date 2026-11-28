@@ -72,9 +72,19 @@ class LeadAgentTests(unittest.TestCase):
             {"permission_checked_at":"2025-01-01T00:00:00+00:00"},
             {"buyer_evidence_type":"public_signal"},
             {"buyer_evidence_type":"self_declared"},
+            {"buyer_evidence_type":"partner_authorized"},
+            {"buyer_evidence_type":"licensed_dataset"},
+            {"buyer_evidence_url":"javascript://acme.example/evidence"},
+            {"buyer_evidence_url":"ftp://acme.example/evidence"},
+            {"buyer_evidence_url":"https://user:secret@acme.example/evidence"},
         ):
             score,_=agent.score_lead(self.buyer(**changes))
             self.assertEqual(score,0)
+    def test_http_and_https_evidence_urls_are_accepted(self):
+        for url in ("https://acme.example/evidence", "http://acme.example/evidence"):
+            score,_=agent.score_lead(self.buyer(buyer_evidence_url=url))
+            self.assertGreater(score,0)
+
     def test_verified_active_use_is_an_accepted_buyer_evidence_class(self):
         score,_=agent.score_lead(self.buyer(buyer_evidence_type="verified_active_use"))
         self.assertGreater(score,0)
