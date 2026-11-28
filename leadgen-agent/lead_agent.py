@@ -51,8 +51,11 @@ def init_db():
           contact_basis TEXT DEFAULT '',
           current_product TEXT DEFAULT '', product_category TEXT DEFAULT '',
           buyer_evidence TEXT DEFAULT '', buyer_evidence_url TEXT DEFAULT '',
-          buyer_evidence_type TEXT DEFAULT '', evidence_checked_at TEXT DEFAULT '',
+          buyer_evidence_type TEXT DEFAULT '', buyer_evidence_observed_at TEXT DEFAULT '', evidence_checked_at TEXT DEFAULT '',
           data_permission_basis TEXT DEFAULT '', contact_permission_status TEXT DEFAULT '',
+          permission_channel TEXT DEFAULT '', permission_purpose TEXT DEFAULT '', permission_scope TEXT DEFAULT '',
+          permission_recipient TEXT DEFAULT '', permission_granted_at TEXT DEFAULT '', permission_expires_at TEXT DEFAULT '',
+          permission_revoked_at TEXT DEFAULT '',
           sri_product_match TEXT DEFAULT '', sri_product_category TEXT DEFAULT '', sri_product_match_url TEXT DEFAULT '',
           permission_evidence_url TEXT DEFAULT '', permission_checked_at TEXT DEFAULT '',
           comparison_evidence_url TEXT DEFAULT '', comparison_checked_at TEXT DEFAULT '',
@@ -86,8 +89,11 @@ def init_db():
         additions = {
           "current_product": "TEXT DEFAULT ''", "product_category": "TEXT DEFAULT ''",
           "buyer_evidence": "TEXT DEFAULT ''", "buyer_evidence_url": "TEXT DEFAULT ''",
-          "buyer_evidence_type": "TEXT DEFAULT ''", "evidence_checked_at": "TEXT DEFAULT ''",
+          "buyer_evidence_type": "TEXT DEFAULT ''", "buyer_evidence_observed_at": "TEXT DEFAULT ''", "evidence_checked_at": "TEXT DEFAULT ''",
           "data_permission_basis": "TEXT DEFAULT ''", "contact_permission_status": "TEXT DEFAULT ''",
+          "permission_channel": "TEXT DEFAULT ''", "permission_purpose": "TEXT DEFAULT ''", "permission_scope": "TEXT DEFAULT ''",
+          "permission_recipient": "TEXT DEFAULT ''", "permission_granted_at": "TEXT DEFAULT ''", "permission_expires_at": "TEXT DEFAULT ''",
+          "permission_revoked_at": "TEXT DEFAULT ''",
           "sri_product_match": "TEXT DEFAULT ''", "sri_product_category": "TEXT DEFAULT ''",
           "sri_product_match_url": "TEXT DEFAULT ''",
           "permission_evidence_url": "TEXT DEFAULT ''", "permission_checked_at": "TEXT DEFAULT ''",
@@ -127,7 +133,7 @@ def import_csv(path):
                 duplicates += 1
                 # Enrich blanks only; never overwrite an existing verified contact silently.
                 updates = {}
-                for key in ("website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status","sri_product_match","sri_product_category","sri_product_match_url","permission_evidence_url","permission_checked_at","comparison_evidence_url","comparison_checked_at","quality_comparison_result","total_cost_comparison_result","comparison_summary","added_value"):
+                for key in ("website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","buyer_evidence_observed_at","evidence_checked_at","data_permission_basis","contact_permission_status","permission_channel","permission_purpose","permission_scope","permission_recipient","permission_granted_at","permission_expires_at","permission_revoked_at","sri_product_match","sri_product_category","sri_product_match_url","permission_evidence_url","permission_checked_at","comparison_evidence_url","comparison_checked_at","quality_comparison_result","total_cost_comparison_result","comparison_summary","added_value"):
                     if not clean(duplicate[key]) and row.get(key): updates[key] = row[key]
                 if updates:
                     assignments = ", ".join(f"{k}=?" for k in updates)
@@ -136,9 +142,9 @@ def import_csv(path):
                     updated += 1
                 continue
             db.execute("""INSERT INTO leads
-              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,current_product,product_category,buyer_evidence,buyer_evidence_url,buyer_evidence_type,evidence_checked_at,data_permission_basis,contact_permission_status,sri_product_match,sri_product_category,sri_product_match_url,permission_evidence_url,permission_checked_at,comparison_evidence_url,comparison_checked_at,quality_comparison_result,total_cost_comparison_result,comparison_summary,added_value,created_at,updated_at)
-              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status","sri_product_match","sri_product_category","sri_product_match_url","permission_evidence_url","permission_checked_at","comparison_evidence_url","comparison_checked_at","quality_comparison_result","total_cost_comparison_result","comparison_summary","added_value")) + (now(),now()))
+              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,current_product,product_category,buyer_evidence,buyer_evidence_url,buyer_evidence_type,buyer_evidence_observed_at,evidence_checked_at,data_permission_basis,contact_permission_status,permission_channel,permission_purpose,permission_scope,permission_recipient,permission_granted_at,permission_expires_at,permission_revoked_at,sri_product_match,sri_product_category,sri_product_match_url,permission_evidence_url,permission_checked_at,comparison_evidence_url,comparison_checked_at,quality_comparison_result,total_cost_comparison_result,comparison_summary,added_value,created_at,updated_at)
+              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","buyer_evidence_observed_at","evidence_checked_at","data_permission_basis","contact_permission_status","permission_channel","permission_purpose","permission_scope","permission_recipient","permission_granted_at","permission_expires_at","permission_revoked_at","sri_product_match","sri_product_category","sri_product_match_url","permission_evidence_url","permission_checked_at","comparison_evidence_url","comparison_checked_at","quality_comparison_result","total_cost_comparison_result","comparison_summary","added_value")) + (now(),now()))
             inserted += 1
     return {"inserted":inserted,"duplicates":duplicates,"enriched":updated}
 
@@ -150,9 +156,16 @@ def buyer_gate(row):
         "buyer_evidence": "existing purchase/use evidence",
         "buyer_evidence_url": "evidence source URL",
         "buyer_evidence_type": "evidence type",
+        "buyer_evidence_observed_at": "date buyer evidence was observed",
         "evidence_checked_at": "evidence review date",
         "data_permission_basis": "data-use permission/licence basis",
         "contact_permission_status": "contact permission status",
+        "permission_channel": "permission channel",
+        "permission_purpose": "permission purpose",
+        "permission_scope": "permission scope",
+        "permission_recipient": "permission recipient",
+        "permission_granted_at": "permission grant date",
+        "permission_expires_at": "permission expiry date",
         "sri_product_match": "existing SRI product match",
         "sri_product_category": "SRI product category",
         "sri_product_match_url": "SRI catalogue/product evidence URL",
@@ -190,18 +203,35 @@ def buyer_gate(row):
     permission = clean(value("contact_permission_status")).lower()
     if permission not in {"consented", "documented_permission"}:
         return False, ["contact permission is not explicitly valid"]
+    if clean(value("permission_channel")).lower() not in {"email", "phone", "linkedin", "other"}:
+        return False, ["permission channel is not an accepted explicit channel"]
+    if clean(value("permission_revoked_at")):
+        return False, ["contact permission has been revoked"]
     try:
+        observed = datetime.fromisoformat(clean(value("buyer_evidence_observed_at")).replace("Z", "+00:00"))
         checked = datetime.fromisoformat(clean(value("evidence_checked_at")).replace("Z", "+00:00"))
         permission_checked = datetime.fromisoformat(clean(value("permission_checked_at")).replace("Z", "+00:00"))
         comparison_checked = datetime.fromisoformat(clean(value("comparison_checked_at")).replace("Z", "+00:00"))
+        granted = datetime.fromisoformat(clean(value("permission_granted_at")).replace("Z", "+00:00"))
+        expires = datetime.fromisoformat(clean(value("permission_expires_at")).replace("Z", "+00:00"))
+        if observed.tzinfo is None:
+            observed = observed.replace(tzinfo=timezone.utc)
         if checked.tzinfo is None:
             checked = checked.replace(tzinfo=timezone.utc)
         if permission_checked.tzinfo is None:
             permission_checked = permission_checked.replace(tzinfo=timezone.utc)
         if comparison_checked.tzinfo is None:
             comparison_checked = comparison_checked.replace(tzinfo=timezone.utc)
+        if granted.tzinfo is None:
+            granted = granted.replace(tzinfo=timezone.utc)
+        if expires.tzinfo is None:
+            expires = expires.replace(tzinfo=timezone.utc)
         current = datetime.now(timezone.utc)
-        for label, reviewed in (("buyer evidence", checked), ("permission evidence", permission_checked), ("comparison evidence", comparison_checked)):
+        if granted.astimezone(timezone.utc) > current + timedelta(days=1):
+            return False, ["contact permission grant date is future-dated"]
+        if expires.astimezone(timezone.utc) <= current:
+            return False, ["contact permission has expired"]
+        for label, reviewed in (("buyer evidence observation", observed), ("buyer evidence review", checked), ("permission evidence", permission_checked), ("comparison evidence", comparison_checked)):
             age = current - reviewed.astimezone(timezone.utc)
             if age < timedelta(days=-1) or age > timedelta(days=180):
                 return False, [label + " is future-dated or stale (over 180 days)"]
