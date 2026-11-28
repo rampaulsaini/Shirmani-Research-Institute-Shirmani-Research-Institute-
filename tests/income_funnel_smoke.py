@@ -52,6 +52,8 @@ def main() -> int:
     try:
         index_source, index = load("index.html")
         offer_source, offer = load("first-paid-pilot-offer.html")
+        svc002_source, svc002 = load("sri-svc-002-research-summary.html")
+        svc003_source, svc003 = load("sri-svc-003-detailed-research-report.html")
         sales_desk_source, sales_desk = load("showroom/global-product-sales-desk.html")
         enquiry_source, enquiry = load("writing-research-enquiry.html")
         showroom_source, showroom = load("showroom-public-interface.html")
@@ -80,9 +82,9 @@ def main() -> int:
     # Keep a single canonical offer section so mobile visitors do not see duplicate prices/CTAs.
     if "<h2>Service menu</h2>" in sales_desk_source:
         errors.append("Legacy sales desk repeats the starter offers in a second service-menu section")
-    starter_section = offer_source.split("<h2>Starter offers</h2>", 1)
+    starter_section = offer_source.split("<h2>Three scoped pilot services</h2>", 1)
     if len(starter_section) != 2:
-        errors.append("Canonical first-client offer is missing the starter-offers section")
+        errors.append("Canonical first-client offer is missing the three-pilot-services section")
     else:
         starter_cards = starter_section[1].split("<h2>Prepare a client enquiry</h2>", 1)[0]
         if starter_cards.count('<article class="offer">') != 3:
@@ -100,14 +102,29 @@ def main() -> int:
     if not any(phrase in offer_source.casefold() for phrase in ("no message is sent automatically", "does not send email/whatsapp", "do not automatically send")):
         errors.append("Canonical offer must disclose that contact drafts are not automatically sent")
 
-    # Outreach must use the same prices as the canonical first-client offer.
-    # Editing is ₹999, website/blog copy is ₹2,999, and source-based research is ₹1,999.
+    # Outreach must use the same three service identities and prices as the canonical offer.
     if "Source-linked Research Summary — proposed ₹1,999 pilot" not in outreach_source:
-        errors.append("Outreach research-summary price must match the canonical ₹1,999 offer")
-    if "Website / Blog Content — proposed ₹2,999 pilot" not in outreach_source:
-        errors.append("Outreach website/blog price must match the canonical ₹2,999 offer")
+        errors.append("Outreach SRI-SVC-002 price must match the canonical ₹1,999 offer")
+    if "Detailed Research Report — proposed ₹2,999 pilot" not in outreach_source:
+        errors.append("Outreach SRI-SVC-003 price must match the canonical ₹2,999 offer")
     if "Hindi/English Writing & Editing — proposed ₹999 pilot" not in outreach_source:
-        errors.append("Outreach editing price must match the canonical ₹999 offer")
+        errors.append("Outreach SRI-SVC-001 price must match the canonical ₹999 offer")
+
+    # New research packages must have standalone detail pages and no premature checkout.
+    for source, page_text, sku, price, marker in (
+        (svc002_source, " ".join(svc002.text), "SRI-SVC-002", "₹1,999", "up to 3"),
+        (svc003_source, " ".join(svc003.text), "SRI-SVC-003", "₹2,999", "up to 8"),
+    ):
+        if sku not in source or price not in page_text:
+            errors.append(f"{sku} detail page is missing its identifier or price")
+        if marker not in source.casefold():
+            errors.append(f"{sku} detail page is missing its agreed source limit")
+        if "mailto:" not in source or "wa.me/" not in source:
+            errors.append(f"{sku} detail page is missing enquiry routes")
+        if "rzp.io" in source or "upi://" in source or "paypal" in source.casefold():
+            errors.append(f"{sku} must not show a payment route before its own checkout is configured")
+        if "स्वतंत्र वैज्ञानिक" not in source:
+            errors.append(f"{sku} must explain the independent-verification boundary")
 
     # The income tracker must support a portable backup without presenting local entries as verified payments.
     for marker in ('id="export"', 'CSV प्रमाण-बैकअप डाउनलोड करें', 'exported_at_utc',
