@@ -210,22 +210,22 @@ def draft_message(lead_id):
         qualified, reasons = buyer_gate(lead)
         if not qualified: raise ValueError("NOT_QUALIFIED: " + "; ".join(reasons))
         context={k:lead[k] for k in ("business_name","niche","country","website","need_evidence","contact_name","current_product","product_category","buyer_evidence")}
-        prompt=("Write a concise, respectful first-contact business email in English. "
-          "Use only these verified fields; do not invent facts, claims, relationship, or urgency. "
-          "Offer a short scope discussion, ask permission to send details, and include a polite opt-out. "
-          "No fake personalization. Return subject and body only.\n"
+        prompt=("Write a concise, respectful business email in English to an established buyer of a digital product. "
+          "Use only these supplied facts; do not invent product use, comparative superiority, savings, relationship, or urgency. "
+          "Refer to the current product/category and ask permission to share a same-category alternative. "
+          "Include a polite opt-out. Return subject and body only.\n"
           + json.dumps(context,ensure_ascii=False))
         try:
             result=ollama_generate(prompt)
             source="ollama:"+OLLAMA_MODEL
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, KeyError):
-            result=("Subject: A small, clearly scoped pilot from Shirmani Research Institute\n\n"
+            result=("Subject: A relevant option in your existing digital product category\n\n"
               f"Hello {clean(lead['contact_name']) or 'Team'},\n\n"
-              f"I’m contacting you because {clean(lead['business_name'])} is listed in the "
-              f"{clean(lead['niche']) or 'your sector'} area. Shirmani Research Institute offers "
-              "Hindi/English writing and source-based research summaries. Would a short outline "
-              "of a small, fixed-scope pilot be useful? If this is not relevant, please let me know "
-              "and I will not follow up.\n\nRegards,\nShirmani Research Institute")
+              f"I understand that {clean(lead['business_name'])} uses {clean(lead['current_product'])} "
+              f"in the {clean(lead['product_category'])} category, based on the recorded source. "
+              "Shirmani Research Institute is reviewing whether an existing SRI offering is a suitable "
+              "same-category alternative. May I share a short, evidence-based comparison for your review? "
+              "If this is not relevant, please let me know and I will not follow up.\n\nRegards,\nShirmani Research Institute")
             source="safe-template-fallback"
         cur=db.execute("INSERT INTO messages(lead_id,channel,direction,body,status,created_at) VALUES(?,?,?,?,?,?)",
                        (lead_id,"EMAIL","OUTBOUND_DRAFT",f"[{source}]\n{result}","DRAFT",now()))
