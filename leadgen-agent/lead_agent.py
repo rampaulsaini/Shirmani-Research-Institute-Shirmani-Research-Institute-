@@ -47,6 +47,7 @@ def init_db():
           buyer_evidence TEXT DEFAULT '', buyer_evidence_url TEXT DEFAULT '',
           buyer_evidence_type TEXT DEFAULT '', evidence_checked_at TEXT DEFAULT '',
           data_permission_basis TEXT DEFAULT '', contact_permission_status TEXT DEFAULT '',
+          sri_product_match TEXT DEFAULT '', sri_product_match_url TEXT DEFAULT '',
           score INTEGER NOT NULL DEFAULT 0,
           score_reasons TEXT DEFAULT '[]', status TEXT NOT NULL DEFAULT 'NEW',
           opt_out INTEGER NOT NULL DEFAULT 0,
@@ -76,7 +77,8 @@ def init_db():
           "current_product": "TEXT DEFAULT ''", "product_category": "TEXT DEFAULT ''",
           "buyer_evidence": "TEXT DEFAULT ''", "buyer_evidence_url": "TEXT DEFAULT ''",
           "buyer_evidence_type": "TEXT DEFAULT ''", "evidence_checked_at": "TEXT DEFAULT ''",
-          "data_permission_basis": "TEXT DEFAULT ''", "contact_permission_status": "TEXT DEFAULT ''"
+          "data_permission_basis": "TEXT DEFAULT ''", "contact_permission_status": "TEXT DEFAULT ''",
+          "sri_product_match": "TEXT DEFAULT ''", "sri_product_match_url": "TEXT DEFAULT ''"
         }
         for name, declaration in additions.items():
             if name not in existing:
@@ -110,7 +112,7 @@ def import_csv(path):
                 duplicates += 1
                 # Enrich blanks only; never overwrite an existing verified contact silently.
                 updates = {}
-                for key in ("website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status"):
+                for key in ("website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status","sri_product_match","sri_product_match_url"):
                     if not clean(duplicate[key]) and row.get(key): updates[key] = row[key]
                 if updates:
                     assignments = ", ".join(f"{k}=?" for k in updates)
@@ -119,9 +121,9 @@ def import_csv(path):
                     updated += 1
                 continue
             db.execute("""INSERT INTO leads
-              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,current_product,product_category,buyer_evidence,buyer_evidence_url,buyer_evidence_type,evidence_checked_at,data_permission_basis,contact_permission_status,created_at,updated_at)
-              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status")) + (now(),now()))
+              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,current_product,product_category,buyer_evidence,buyer_evidence_url,buyer_evidence_type,evidence_checked_at,data_permission_basis,contact_permission_status,sri_product_match,sri_product_match_url,created_at,updated_at)
+              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status","sri_product_match","sri_product_match_url")) + (now(),now()))
             inserted += 1
     return {"inserted":inserted,"duplicates":duplicates,"enriched":updated}
 
@@ -136,6 +138,8 @@ def buyer_gate(row):
         "evidence_checked_at": "evidence review date",
         "data_permission_basis": "data-use permission/licence basis",
         "contact_permission_status": "contact permission status",
+        "sri_product_match": "existing SRI product match",
+        "sri_product_match_url": "SRI catalogue/product evidence URL",
     }
     def value(key):
         return row[key] if key in row.keys() else ""
@@ -144,6 +148,8 @@ def buyer_gate(row):
         return False, ["missing: " + ", ".join(missing)]
     if not norm_domain(value("buyer_evidence_url")):
         return False, ["buyer evidence URL is invalid"]
+    if not norm_domain(value("sri_product_match_url")):
+        return False, ["SRI product match URL is invalid"]
     evidence_type = clean(value("buyer_evidence_type")).lower()
     if evidence_type not in {"self_declared", "verified_purchase", "partner_authorized", "licensed_dataset"}:
         return False, ["evidence type is not an accepted proof class"]
@@ -209,7 +215,7 @@ def draft_message(lead_id):
         if lead["opt_out"]: raise ValueError("Lead is opted out; drafting suppressed")
         qualified, reasons = buyer_gate(lead)
         if not qualified: raise ValueError("NOT_QUALIFIED: " + "; ".join(reasons))
-        context={k:lead[k] for k in ("business_name","niche","country","website","need_evidence","contact_name","current_product","product_category","buyer_evidence")}
+        context={k:lead[k] for k in ("business_name","niche","country","website","need_evidence","contact_name","current_product","product_category","buyer_evidence","sri_product_match")}
         prompt=("Write a concise, respectful business email in English to an established buyer of a digital product. "
           "Use only these supplied facts; do not invent product use, comparative superiority, savings, relationship, or urgency. "
           "Refer to the current product/category and ask permission to share a same-category alternative. "
@@ -223,8 +229,8 @@ def draft_message(lead_id):
               f"Hello {clean(lead['contact_name']) or 'Team'},\n\n"
               f"I understand that {clean(lead['business_name'])} uses {clean(lead['current_product'])} "
               f"in the {clean(lead['product_category'])} category, based on the recorded source. "
-              "Shirmani Research Institute is reviewing whether an existing SRI offering is a suitable "
-              "same-category alternative. May I share a short, evidence-based comparison for your review? "
+              f"An existing SRI catalogue match is {clean(lead['sri_product_match'])}. "
+              "May I share a short, evidence-based same-category quality and total-cost comparison for your review? "
               "If this is not relevant, please let me know and I will not follow up.\n\nRegards,\nShirmani Research Institute")
             source="safe-template-fallback"
         cur=db.execute("INSERT INTO messages(lead_id,channel,direction,body,status,created_at) VALUES(?,?,?,?,?,?)",
