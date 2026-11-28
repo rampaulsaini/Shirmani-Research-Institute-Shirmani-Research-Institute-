@@ -105,7 +105,7 @@ form.addEventListener('reset',()=>{current='';preview.textContent='Your enquiry 
 document.getElementById('download').addEventListener('click',()=>{if(!current){status.textContent='Create the brief preview first.';return;}const blob=new Blob([current],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='shirmani-writing-research-enquiry.txt';a.click();URL.revokeObjectURL(url);status.textContent='TXT export prepared by your browser.';});
 document.getElementById('copy').addEventListener('click',async()=>{if(!current){status.textContent='Create the brief preview first.';return;}try{await navigator.clipboard.writeText(current);status.textContent='Brief copied.';}catch(e){status.textContent='Clipboard unavailable in this browser. Use the preview and copy it manually.';}});
 document.getElementById('email').addEventListener('click',()=>{if(!current){status.textContent='Create the brief preview first.';return;}const subject=encodeURIComponent('SHIRMANI Writing & Research Enquiry — '+value('service'));const body=encodeURIComponent(current);window.location.href='mailto:sainirampaul60@gmail.com?subject='+subject+'&body='+body;status.textContent='Email draft requested for sainirampaul60@gmail.com. Review and send it yourself.';});
-document.getElementById('whatsapp').addEventListener('click',()=>{if(!current){status.textContent='Create the brief preview first.';return;}const body=encodeURIComponent(current);window.open('https://wa.me/918082935186?text='+body,'_blank','noopener,noreferrer');status.textContent='WhatsApp draft requested for the published institute contact. Review and send it yourself.';});
+
 })();
 </script>
 </body>
