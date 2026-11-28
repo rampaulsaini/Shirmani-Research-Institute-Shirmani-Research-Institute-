@@ -20,7 +20,7 @@ class LeadAgentTests(unittest.TestCase):
             "current_product":"ExampleCRM Pro", "product_category":"CRM software",
             "buyer_evidence":"Organisation publicly documents active use of ExampleCRM Pro",
             "buyer_evidence_url":"https://acme.example/tools",
-            "buyer_evidence_type":"self_declared",
+            "buyer_evidence_type":"verified_purchase",
             "evidence_checked_at":datetime.now(timezone.utc).isoformat(),
             "data_permission_basis":"Recorded, purpose-specific consent for a relevant one-to-one product comparison",
             "contact_permission_status":"consented",
@@ -66,13 +66,19 @@ class LeadAgentTests(unittest.TestCase):
         for changes in (
             {"contact_permission_status":"unknown"},
             {"contact_permission_status":"permitted_business_contact"},
+            {"contact_permission_status":"existing_relationship"},
             {"data_permission_basis":""},
             {"permission_evidence_url":""},
             {"permission_checked_at":"2025-01-01T00:00:00+00:00"},
             {"buyer_evidence_type":"public_signal"},
+            {"buyer_evidence_type":"self_declared"},
         ):
             score,_=agent.score_lead(self.buyer(**changes))
             self.assertEqual(score,0)
+    def test_verified_active_use_is_an_accepted_buyer_evidence_class(self):
+        score,_=agent.score_lead(self.buyer(buyer_evidence_type="verified_active_use"))
+        self.assertGreater(score,0)
+
     def test_missing_sri_catalogue_match_is_blocked(self):
         score,_=agent.score_lead(self.buyer(sri_product_match="",sri_product_match_url=""))
         self.assertEqual(score,0)
