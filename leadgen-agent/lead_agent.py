@@ -165,7 +165,7 @@ def buyer_gate(row):
             return False, ["buyer evidence is future-dated or stale (over 180 days)"]
     except (TypeError, ValueError):
         return False, ["evidence review date must be ISO-8601"]
-    return True, ["existing digital buyer evidence and permission gates passed"]
+    return True, ["required buyer, SRI product-match, and permission fields present; human validation still required"]
 
 def score_lead(row):
     qualified, gate_reasons = buyer_gate(row)
