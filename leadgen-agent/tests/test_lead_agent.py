@@ -1,4 +1,6 @@
 import csv, tempfile, unittest
+from unittest.mock import patch
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import lead_agent as agent
 
@@ -8,33 +10,221 @@ class LeadAgentTests(unittest.TestCase):
         agent.DB_PATH=Path(self.tmp.name)/"test.sqlite3"
         agent.init_db()
     def tearDown(self): self.tmp.cleanup()
+    def buyer(self, **overrides):
+        row={
+            "business_name":"Acme", "website":"https://acme.example", "niche":"software",
+            "country":"India", "contact_name":"Sales Team", "email":"sales@acme.example",
+            "phone":"", "source_url":"https://acme.example/about",
+            "need_evidence":"Published product documentation describes current workflow",
+            "contact_basis":"Official business contact page",
+            "current_product":"ExampleCRM Pro", "product_category":"CRM software",
+            "buyer_evidence":"Organisation publicly documents active use of ExampleCRM Pro",
+            "buyer_evidence_url":"https://acme.example/tools",
+            "buyer_evidence_type":"verified_purchase",
+            "buyer_evidence_observed_at":datetime.now(timezone.utc).isoformat(),
+            "evidence_checked_at":datetime.now(timezone.utc).isoformat(),
+            "data_permission_basis":"Recorded, purpose-specific consent for a relevant one-to-one product comparison",
+            "contact_permission_status":"consented",
+            "permission_channel":"email", "permission_purpose":"One-to-one same-category product comparison",
+            "permission_scope":"One comparison email about SRI CRM Starter; no recurring marketing",
+            "permission_recipient":"sales@acme.example",
+            "permission_granted_at":datetime.now(timezone.utc).isoformat(),
+            "permission_expires_at":(datetime.now(timezone.utc)+timedelta(days=30)).isoformat(),
+            "permission_revoked_at":"",
+            "sri_product_match":"SRI CRM Starter", "sri_product_category":"CRM software",
+            "sri_product_match_url":"https://sri.example/catalog/crm-starter",
+            "permission_evidence_url":"https://acme.example/contact", "permission_checked_at":datetime.now(timezone.utc).isoformat(),
+            "comparison_evidence_url":"https://sri.example/tests/crm-comparison",
+            "comparison_checked_at":datetime.now(timezone.utc).isoformat(),
+            "quality_comparison_result":"better", "total_cost_comparison_result":"lower",
+            "comparison_summary":"Same workflow benchmark; SRI passed all required tasks with fewer defects and lower annual total cost.",
+            "added_value":"Included migration checklist and one onboarding session",
+            "opt_out":0,
+        }
+        row.update(overrides)
+        return row
     def write_csv(self, rows):
         path=Path(self.tmp.name)/"leads.csv"
-        fields=["business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis"]
+        fields=list(self.buyer().keys())
         with path.open("w",newline="",encoding="utf-8") as f:
             w=csv.DictWriter(f,fieldnames=fields); w.writeheader(); w.writerows(rows)
         return path
     def test_import_and_duplicate_domain(self):
-        row={"business_name":"Acme","website":"https://www.acme.example","niche":"education","email":"sales@acme.example","need_evidence":"published tender","contact_basis":"official site"}
-        path=self.write_csv([row,{"business_name":"Acme Ltd","website":"http://acme.example/","email":"other@acme.example"}])
+        row=self.buyer()
+        path=self.write_csv([row,{**row,"business_name":"Acme Ltd","website":"http://acme.example/"}])
         result=agent.import_csv(path)
         self.assertEqual(result["inserted"],1)
         self.assertEqual(result["duplicates"],1)
-    def test_score_is_explainable_and_bounded(self):
-        row={"business_name":"A","niche":"education","need_evidence":"need","website":"https://a.example","email":"a@a.example","phone":"","contact_basis":"official page","opt_out":0}
+        with agent.connect() as db:
+            saved=db.execute("SELECT current_product FROM leads").fetchone()
+            self.assertEqual(saved["current_product"],"ExampleCRM Pro")
+    def test_existing_buyer_with_permission_can_qualify(self):
+        score,reasons=agent.score_lead(self.buyer())
+        self.assertGreater(score,0)
+        self.assertLessEqual(score,100)
+        self.assertIn("buyer, permission, same-category match, better-quality and lower-total-cost evidence fields present; human validation still required",reasons)
+    def test_generic_business_without_buyer_evidence_is_blocked(self):
+        row=self.buyer(current_product="",product_category="",buyer_evidence="",buyer_evidence_url="",
+                       buyer_evidence_type="",evidence_checked_at="")
         score,reasons=agent.score_lead(row)
-        self.assertEqual(score,100); self.assertEqual(len(reasons),5)
+        self.assertEqual(score,0)
+        self.assertTrue(any("NOT_QUALIFIED" in reason for reason in reasons))
+    def test_missing_permission_or_invalid_evidence_type_is_blocked(self):
+        for changes in (
+            {"contact_permission_status":"unknown"},
+            {"contact_permission_status":"permitted_business_contact"},
+            {"contact_permission_status":"existing_relationship"},
+            {"data_permission_basis":""},
+            {"permission_evidence_url":""},
+            {"permission_checked_at":"2025-01-01T00:00:00+00:00"},
+            {"buyer_evidence_type":"public_signal"},
+            {"buyer_evidence_type":"self_declared"},
+            {"buyer_evidence_type":"partner_authorized"},
+            {"buyer_evidence_type":"licensed_dataset"},
+            {"buyer_evidence_observed_at":"2025-01-01T00:00:00+00:00"},
+            {"permission_channel":"phone"},
+            {"permission_channel":"sms"},
+            {"permission_recipient":"other@acme.example"},
+            {"permission_purpose":""},
+            {"permission_scope":""},
+            {"permission_recipient":""},
+            {"permission_granted_at":"2027-01-01T00:00:00+00:00"},
+            {"permission_expires_at":"2025-01-01T00:00:00+00:00"},
+            {"permission_revoked_at":datetime.now(timezone.utc).isoformat()},
+            {"buyer_evidence_url":"javascript://acme.example/evidence"},
+            {"buyer_evidence_url":"ftp://acme.example/evidence"},
+            {"buyer_evidence_url":"https://user:secret@acme.example/evidence"},
+        ):
+            score,_=agent.score_lead(self.buyer(**changes))
+            self.assertEqual(score,0)
+    def test_http_and_https_evidence_urls_are_accepted(self):
+        for url in ("https://acme.example/evidence", "http://acme.example/evidence"):
+            score,_=agent.score_lead(self.buyer(buyer_evidence_url=url))
+            self.assertGreater(score,0)
+
+    def test_verified_active_use_is_an_accepted_buyer_evidence_class(self):
+        score,_=agent.score_lead(self.buyer(buyer_evidence_type="verified_active_use"))
+        self.assertGreater(score,0)
+
+    def test_email_draft_requires_matching_email_specific_permission(self):
+        for changes in (
+            {"permission_channel":"phone"},
+            {"permission_recipient":"other@acme.example"},
+        ):
+            score,_=agent.score_lead(self.buyer(**changes))
+            self.assertEqual(score,0)
+
+    def test_permission_must_be_scoped_and_unexpired(self):
+        for changes in (
+            {"permission_channel":"sms"},
+            {"permission_scope":""},
+            {"permission_purpose":""},
+            {"permission_recipient":""},
+            {"permission_expires_at":"2025-01-01T00:00:00+00:00"},
+            {"permission_revoked_at":datetime.now(timezone.utc).isoformat()},
+        ):
+            score,_=agent.score_lead(self.buyer(**changes))
+            self.assertEqual(score,0)
+
+    def test_buyer_evidence_observation_date_is_separate_and_fresh(self):
+        score,_=agent.score_lead(self.buyer(buyer_evidence_observed_at="2025-01-01T00:00:00+00:00"))
+        self.assertEqual(score,0)
+
+    def test_missing_sri_catalogue_match_is_blocked(self):
+        score,_=agent.score_lead(self.buyer(sri_product_match="",sri_product_match_url=""))
+        self.assertEqual(score,0)
+    def test_stale_buyer_evidence_is_blocked(self):
+        score,_=agent.score_lead(self.buyer(evidence_checked_at="2025-01-01T00:00:00+00:00"))
+        self.assertEqual(score,0)
+    def test_comparison_must_be_same_category_better_and_lower_cost(self):
+        for changes in (
+            {"sri_product_category":"writing software"},
+            {"quality_comparison_result":"equal"},
+            {"total_cost_comparison_result":"higher"},
+            {"comparison_evidence_url":""},
+            {"comparison_checked_at":"2025-01-01T00:00:00+00:00"},
+            {"comparison_summary":""},
+            {"added_value":""},
+        ):
+            score,_=agent.score_lead(self.buyer(**changes))
+            self.assertEqual(score,0)
     def test_opt_out_suppresses_score_and_draft(self):
-        row={"business_name":"A","niche":"","need_evidence":"","website":"","email":"","phone":"","contact_basis":"","opt_out":1}
-        self.assertEqual(agent.score_lead(row),(0,["opt-out: suppressed"]))
+        self.assertEqual(agent.score_lead(self.buyer(opt_out=1)),(0,["opt-out: suppressed"]))
         with agent.connect() as db:
             db.execute("INSERT INTO leads(business_name,opt_out,created_at,updated_at) VALUES('A',1,'x','x')")
         with self.assertRaises(ValueError): agent.draft_message(1)
-    def test_draft_never_sends(self):
+    def test_unqualified_record_cannot_create_draft(self):
         with agent.connect() as db:
-            db.execute("INSERT INTO leads(business_name,niche,created_at,updated_at) VALUES('A','education','x','x')")
-        result=agent.draft_message(1)
+            db.execute("INSERT INTO leads(business_name,created_at,updated_at) VALUES('A','x','x')")
+        with self.assertRaisesRegex(ValueError,"NOT_QUALIFIED"):
+            agent.draft_message(1)
+
+    def test_csv_opt_out_is_imported_and_never_cleared(self):
+        row=self.buyer(opt_out=1)
+        path=self.write_csv([row])
+        agent.import_csv(path)
+        with agent.connect() as db:
+            saved=db.execute("SELECT opt_out FROM leads WHERE email=?",(row["email"],)).fetchone()
+            self.assertEqual(saved["opt_out"],1)
+        # A later duplicate import without opt-out cannot reverse suppression.
+        agent.import_csv(self.write_csv([self.buyer(opt_out=0)]))
+        with agent.connect() as db:
+            saved=db.execute("SELECT opt_out FROM leads WHERE email=?",(row["email"],)).fetchone()
+            self.assertEqual(saved["opt_out"],1)
+
+    def test_opt_out_suppresses_other_records_with_same_email_or_phone(self):
+        row=self.buyer()
+        with agent.connect() as db:
+            db.execute("INSERT INTO leads(business_name,email,opt_out,created_at,updated_at) VALUES(?,?,?,?,?)",
+                       ("Suppressed",row["email"],1,"x","x"))
+            db.execute("INSERT INTO leads(business_name,email,created_at,updated_at) VALUES(?,?,?,?)",
+                       ("Duplicate identity",row["email"],"x","x"))
+            second=db.execute("SELECT * FROM leads WHERE business_name='Duplicate identity'").fetchone()
+            self.assertTrue(agent.identity_is_suppressed(db,second))
+        agent.score_all()
+        with agent.connect() as db:
+            second=db.execute("SELECT score FROM leads WHERE business_name='Duplicate identity'").fetchone()
+            self.assertEqual(second["score"],0)
+            with self.assertRaisesRegex(ValueError,"identity is opted out"):
+                agent.draft_message(2)
+    def test_qualified_draft_never_sends(self):
+        row=self.buyer()
+        columns=list(row.keys())
+        with agent.connect() as db:
+            sql="INSERT INTO leads("+",".join(columns)+",created_at,updated_at) VALUES("+",".join("?" for _ in range(len(columns)+2))+")"
+            db.execute(sql,[row[k] for k in columns]+["x","x"])
+        with patch.object(agent,"ollama_generate",side_effect=agent.urllib.error.URLError("offline")):
+            result=agent.draft_message(1)
         self.assertEqual(result["status"],"DRAFT")
         self.assertFalse(result["sender_invoked"])
+        self.assertIn("same-category",result["body"])
+    def test_legacy_database_gets_additive_migration(self):
+        legacy=Path(self.tmp.name)/"legacy.sqlite3"
+        original=agent.DB_PATH
+        agent.DB_PATH=legacy
+        with agent.connect() as db:
+            db.execute("""CREATE TABLE leads (
+              id INTEGER PRIMARY KEY AUTOINCREMENT, business_name TEXT NOT NULL,
+              website TEXT DEFAULT '', niche TEXT DEFAULT '', country TEXT DEFAULT '',
+              contact_name TEXT DEFAULT '', email TEXT DEFAULT '', phone TEXT DEFAULT '',
+              source_url TEXT DEFAULT '', need_evidence TEXT DEFAULT '', contact_basis TEXT DEFAULT '',
+              score INTEGER NOT NULL DEFAULT 0, score_reasons TEXT DEFAULT '[]',
+              status TEXT NOT NULL DEFAULT 'NEW', opt_out INTEGER NOT NULL DEFAULT 0,
+              next_followup_at TEXT DEFAULT '', created_at TEXT NOT NULL, updated_at TEXT NOT NULL,
+              UNIQUE(business_name, website))""")
+            db.execute("INSERT INTO leads(business_name,created_at,updated_at) VALUES('Legacy','x','x')")
+        agent.init_db()
+        with agent.connect() as db:
+            names={r["name"] for r in db.execute("PRAGMA table_info(leads)")}
+            self.assertIn("current_product",names)
+            self.assertIn("sri_product_match",names)
+            self.assertIn("permission_evidence_url",names)
+            self.assertIn("buyer_evidence_observed_at",names)
+            self.assertIn("permission_channel",names)
+            self.assertIn("permission_expires_at",names)
+            self.assertIn("comparison_evidence_url",names)
+            self.assertIn("sri_product_category",names)
+            self.assertEqual(db.execute("SELECT business_name FROM leads").fetchone()[0],"Legacy")
+        agent.DB_PATH=original
 
 if __name__=="__main__": unittest.main()

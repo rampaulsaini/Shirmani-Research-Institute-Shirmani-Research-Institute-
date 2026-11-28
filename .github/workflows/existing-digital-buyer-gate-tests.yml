@@ -1,0 +1,34 @@
+name: SRI Existing Digital Buyer Gate Tests
+
+on:
+  pull_request:
+    paths:
+      - "leadgen-agent/lead_agent.py"
+      - "leadgen-agent/tests/**"
+      - ".github/workflows/existing-digital-buyer-gate-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "leadgen-agent/lead_agent.py"
+      - "leadgen-agent/tests/**"
+      - ".github/workflows/existing-digital-buyer-gate-tests.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sri-existing-digital-buyer-gate-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+      - name: Run existing digital buyer qualification tests
+        working-directory: leadgen-agent
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
