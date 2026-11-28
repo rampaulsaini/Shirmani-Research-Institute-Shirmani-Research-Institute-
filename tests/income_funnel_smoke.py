@@ -100,6 +100,15 @@ def main() -> int:
             errors.append(f"Sales desk offer button and enquiry selector are not aligned: {selector_value}")
     if "<option>Hindi and English</option>" in sales_desk_source:
         errors.append("Sales desk must not offer a bilingual selection inside single-language pilot packages")
+    for package_label in (
+        "SRI-SVC-001 · Writing / Editing · ₹999",
+        "SRI-SVC-002 · Research Summary · ₹1,999",
+        "SRI-SVC-003 · Detailed Research Report · ₹2,999",
+    ):
+        if f"<option>{package_label}</option>" not in enquiry_source:
+            errors.append(f"Writing/research enquiry form is missing package selector: {package_label}")
+    if "<option>Hindi + English</option>" in enquiry_source:
+        errors.append("Writing/research enquiry form must not offer a bilingual selection in single-language pilots")
 
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
