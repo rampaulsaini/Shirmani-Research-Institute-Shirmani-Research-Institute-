@@ -24,8 +24,14 @@ class LeadAgentTests(unittest.TestCase):
             "evidence_checked_at":datetime.now(timezone.utc).isoformat(),
             "data_permission_basis":"Official public business contact route; use limited to relevant one-to-one enquiry",
             "contact_permission_status":"permitted_business_contact",
-            "sri_product_match":"SRI CRM Starter", "sri_product_match_url":"https://sri.example/catalog/crm-starter",
+            "sri_product_match":"SRI CRM Starter", "sri_product_category":"CRM software",
+            "sri_product_match_url":"https://sri.example/catalog/crm-starter",
             "permission_evidence_url":"https://acme.example/contact", "permission_checked_at":datetime.now(timezone.utc).isoformat(),
+            "comparison_evidence_url":"https://sri.example/tests/crm-comparison",
+            "comparison_checked_at":datetime.now(timezone.utc).isoformat(),
+            "quality_comparison_result":"better", "total_cost_comparison_result":"lower",
+            "comparison_summary":"Same workflow benchmark; SRI passed all required tasks with fewer defects and lower annual total cost.",
+            "added_value":"Included migration checklist and one onboarding session",
             "opt_out":0,
         }
         row.update(overrides)
@@ -49,7 +55,7 @@ class LeadAgentTests(unittest.TestCase):
         score,reasons=agent.score_lead(self.buyer())
         self.assertGreater(score,0)
         self.assertLessEqual(score,100)
-        self.assertIn("required buyer, SRI product-match, and permission fields present; human validation still required",reasons)
+        self.assertIn("buyer, permission, same-category match, better-quality and lower-total-cost evidence fields present; human validation still required",reasons)
     def test_generic_business_without_buyer_evidence_is_blocked(self):
         row=self.buyer(current_product="",product_category="",buyer_evidence="",buyer_evidence_url="",
                        buyer_evidence_type="",evidence_checked_at="")
@@ -72,6 +78,18 @@ class LeadAgentTests(unittest.TestCase):
     def test_stale_buyer_evidence_is_blocked(self):
         score,_=agent.score_lead(self.buyer(evidence_checked_at="2025-01-01T00:00:00+00:00"))
         self.assertEqual(score,0)
+    def test_comparison_must_be_same_category_better_and_lower_cost(self):
+        for changes in (
+            {"sri_product_category":"writing software"},
+            {"quality_comparison_result":"equal"},
+            {"total_cost_comparison_result":"higher"},
+            {"comparison_evidence_url":""},
+            {"comparison_checked_at":"2025-01-01T00:00:00+00:00"},
+            {"comparison_summary":""},
+            {"added_value":""},
+        ):
+            score,_=agent.score_lead(self.buyer(**changes))
+            self.assertEqual(score,0)
     def test_opt_out_suppresses_score_and_draft(self):
         self.assertEqual(agent.score_lead(self.buyer(opt_out=1)),(0,["opt-out: suppressed"]))
         with agent.connect() as db:
@@ -114,6 +132,8 @@ class LeadAgentTests(unittest.TestCase):
             self.assertIn("current_product",names)
             self.assertIn("sri_product_match",names)
             self.assertIn("permission_evidence_url",names)
+            self.assertIn("comparison_evidence_url",names)
+            self.assertIn("sri_product_category",names)
             self.assertEqual(db.execute("SELECT business_name FROM leads").fetchone()[0],"Legacy")
         agent.DB_PATH=original
 
