@@ -158,6 +158,35 @@ class LeadAgentTests(unittest.TestCase):
             db.execute("INSERT INTO leads(business_name,created_at,updated_at) VALUES('A','x','x')")
         with self.assertRaisesRegex(ValueError,"NOT_QUALIFIED"):
             agent.draft_message(1)
+
+    def test_csv_opt_out_is_imported_and_never_cleared(self):
+        row=self.buyer(opt_out=1)
+        path=self.write_csv([row])
+        agent.import_csv(path)
+        with agent.connect() as db:
+            saved=db.execute("SELECT opt_out FROM leads WHERE email=?",(row["email"],)).fetchone()
+            self.assertEqual(saved["opt_out"],1)
+        # A later duplicate import without opt-out cannot reverse suppression.
+        agent.import_csv(self.write_csv([self.buyer(opt_out=0)]))
+        with agent.connect() as db:
+            saved=db.execute("SELECT opt_out FROM leads WHERE email=?",(row["email"],)).fetchone()
+            self.assertEqual(saved["opt_out"],1)
+
+    def test_opt_out_suppresses_other_records_with_same_email_or_phone(self):
+        row=self.buyer()
+        with agent.connect() as db:
+            db.execute("INSERT INTO leads(business_name,email,opt_out,created_at,updated_at) VALUES(?,?,?,?,?)",
+                       ("Suppressed",row["email"],1,"x","x"))
+            db.execute("INSERT INTO leads(business_name,email,created_at,updated_at) VALUES(?,?,?,?)",
+                       ("Duplicate identity",row["email"],"x","x"))
+            second=db.execute("SELECT * FROM leads WHERE business_name='Duplicate identity'").fetchone()
+            self.assertTrue(agent.identity_is_suppressed(db,second))
+        agent.score_all()
+        with agent.connect() as db:
+            second=db.execute("SELECT score FROM leads WHERE business_name='Duplicate identity'").fetchone()
+            self.assertEqual(second["score"],0)
+            with self.assertRaisesRegex(ValueError,"identity is opted out"):
+                agent.draft_message(2)
     def test_qualified_draft_never_sends(self):
         row=self.buyer()
         columns=list(row.keys())
