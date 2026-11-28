@@ -1,0 +1,34 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import fs from "node:fs";
+
+const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
+
+test("communication archive write route is authenticated and owner-only", () => {
+  assert.match(source, /app\.post\("\/api\/owner\/communications\/messages",\s*dbRequired,\s*auth,\s*ownerOnly/);
+  assert.match(source, /content_reviewed_no_credentials !== true/);
+  assert.match(source, /normalizeTimestamp\(body\.sent_at\)/);
+  assert.match(source, /normalizeTimestamp\(body\.received_at\)/);
+  assert.match(source, /provider !== "manual" && !providerMessageId/);
+  assert.match(source, /encryptMessageContent\(messageContent\)/);
+  assert.match(source, /encrypted\.encryptedContent/);
+  assert.match(source, /EMAIL_CONTENT_ENCRYPTION_NOT_CONFIGURED/);
+});
+
+test("communication archive does not return message bodies in list response", () => {
+  assert.match(source, /app\.get\("\/api\/owner\/communications\/messages",\s*dbRequired,\s*auth,\s*ownerOnly/);
+  assert.match(source, /bodies_included: false/);
+  assert.doesNotMatch(source, /select\s+[^;]*encrypted_content[^;]*from communication_messages order by/i);
+});
+
+test("message body retrieval remains owner-only and checks key version and digest", () => {
+  assert.match(source, /app\.get\("\/api\/owner\/communications\/messages\/:id\/content",\s*dbRequired,\s*auth,\s*ownerOnly/);
+  assert.match(source, /EMAIL_CONTENT_KEY_VERSION_MISMATCH/);
+  assert.match(source, /COMMUNICATION_INTEGRITY_CHECK_FAILED/);
+  assert.match(source, /decryptMessageContent\(rows\[0\]\.encrypted_content/);
+});
+
+test("communication archive errors do not expose database or encryption internals", () => {
+  assert.match(source, /COMMUNICATION_ARCHIVE_SAVE_FAILED/);
+  assert.match(source, /COMMUNICATION_CONTENT_UNAVAILABLE/);
+});
