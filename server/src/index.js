@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import pg from "pg";
 import { governancePolicy } from "./governance-policy.js";
+import { isValidContactEmail } from "./validation.js";
 
 const { Pool } = pg;
 const app = express();
@@ -642,7 +643,7 @@ app.post("/api/enquiry", dbRequired, enquiryLimiter, async (req, res) => {
   if (!name || !service || !topic || !["Hindi", "English", "Hindi + English", "To be agreed"].includes(language)) {
     return res.status(400).json({ error: "INVALID_ENQUIRY", message: "नाम, सेवा, विषय और मान्य भाषा आवश्यक हैं।" });
   }
-  if ((!email && !phone) || (email && !/^\\S+@\\S+\\.\\S+$/.test(email)) ||
+  if ((!email && !phone) || (email && !isValidContactEmail(email)) ||
       (phone && !/^[+0-9() .-]{7,32}$/.test(phone))) {
     return res.status(400).json({ error: "VALID_CONTACT_REQUIRED", message: "वैध ईमेल या फोन आवश्यक है।" });
   }
