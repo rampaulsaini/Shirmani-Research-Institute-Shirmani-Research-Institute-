@@ -179,10 +179,10 @@ def buyer_gate(row):
     if clean(value("total_cost_comparison_result")).lower() != "lower":
         return False, ["comparative total-cost result is not documented as lower"]
     evidence_type = clean(value("buyer_evidence_type")).lower()
-    if evidence_type not in {"self_declared", "verified_purchase", "partner_authorized", "licensed_dataset"}:
+    if evidence_type not in {"verified_purchase", "verified_active_use", "partner_authorized", "licensed_dataset"}:
         return False, ["evidence type is not an accepted proof class"]
     permission = clean(value("contact_permission_status")).lower()
-    if permission not in {"consented", "documented_permission", "existing_relationship"}:
+    if permission not in {"consented", "documented_permission"}:
         return False, ["contact permission is not explicitly valid"]
     try:
         checked = datetime.fromisoformat(clean(value("evidence_checked_at")).replace("Z", "+00:00"))
