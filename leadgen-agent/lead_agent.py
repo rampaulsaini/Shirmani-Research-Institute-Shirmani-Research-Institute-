@@ -42,7 +42,12 @@ def init_db():
           website TEXT DEFAULT '', niche TEXT DEFAULT '', country TEXT DEFAULT '',
           contact_name TEXT DEFAULT '', email TEXT DEFAULT '', phone TEXT DEFAULT '',
           source_url TEXT DEFAULT '', need_evidence TEXT DEFAULT '',
-          contact_basis TEXT DEFAULT '', score INTEGER NOT NULL DEFAULT 0,
+          contact_basis TEXT DEFAULT '',
+          current_product TEXT DEFAULT '', product_category TEXT DEFAULT '',
+          buyer_evidence TEXT DEFAULT '', buyer_evidence_url TEXT DEFAULT '',
+          buyer_evidence_type TEXT DEFAULT '', evidence_checked_at TEXT DEFAULT '',
+          data_permission_basis TEXT DEFAULT '', contact_permission_status TEXT DEFAULT '',
+          score INTEGER NOT NULL DEFAULT 0,
           score_reasons TEXT DEFAULT '[]', status TEXT NOT NULL DEFAULT 'NEW',
           opt_out INTEGER NOT NULL DEFAULT 0,
           next_followup_at TEXT DEFAULT '', created_at TEXT NOT NULL, updated_at TEXT NOT NULL,
@@ -65,6 +70,17 @@ def init_db():
         CREATE INDEX IF NOT EXISTS idx_followup ON leads(next_followup_at);
         CREATE INDEX IF NOT EXISTS idx_messages_lead ON messages(lead_id);
         """)
+        # Additive migrations preserve existing local databases.
+        existing = {r["name"] for r in db.execute("PRAGMA table_info(leads)").fetchall()}
+        additions = {
+          "current_product": "TEXT DEFAULT ''", "product_category": "TEXT DEFAULT ''",
+          "buyer_evidence": "TEXT DEFAULT ''", "buyer_evidence_url": "TEXT DEFAULT ''",
+          "buyer_evidence_type": "TEXT DEFAULT ''", "evidence_checked_at": "TEXT DEFAULT ''",
+          "data_permission_basis": "TEXT DEFAULT ''", "contact_permission_status": "TEXT DEFAULT ''"
+        }
+        for name, declaration in additions.items():
+            if name not in existing:
+                db.execute(f"ALTER TABLE leads ADD COLUMN {name} {declaration}")
     return str(DB_PATH)
 
 def find_duplicate(db, row):
@@ -94,7 +110,7 @@ def import_csv(path):
                 duplicates += 1
                 # Enrich blanks only; never overwrite an existing verified contact silently.
                 updates = {}
-                for key in ("website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis"):
+                for key in ("website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status"):
                     if not clean(duplicate[key]) and row.get(key): updates[key] = row[key]
                 if updates:
                     assignments = ", ".join(f"{k}=?" for k in updates)
@@ -103,26 +119,66 @@ def import_csv(path):
                     updated += 1
                 continue
             db.execute("""INSERT INTO leads
-              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,created_at,updated_at)
-              VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
-              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis")) + (now(),now()))
+              (business_name,website,niche,country,contact_name,email,phone,source_url,need_evidence,contact_basis,current_product,product_category,buyer_evidence,buyer_evidence_url,buyer_evidence_type,evidence_checked_at,data_permission_basis,contact_permission_status,created_at,updated_at)
+              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+              tuple(row.get(k,"") for k in ("business_name","website","niche","country","contact_name","email","phone","source_url","need_evidence","contact_basis","current_product","product_category","buyer_evidence","buyer_evidence_url","buyer_evidence_type","evidence_checked_at","data_permission_basis","contact_permission_status")) + (now(),now()))
             inserted += 1
     return {"inserted":inserted,"duplicates":duplicates,"enriched":updated}
 
+def buyer_gate(row):
+    """Fail closed unless existing digital-product use and lawful contact basis are evidenced."""
+    required = {
+        "current_product": "current digital product/tool",
+        "product_category": "digital product category",
+        "buyer_evidence": "existing purchase/use evidence",
+        "buyer_evidence_url": "evidence source URL",
+        "buyer_evidence_type": "evidence type",
+        "evidence_checked_at": "evidence review date",
+        "data_permission_basis": "data-use permission/licence basis",
+        "contact_permission_status": "contact permission status",
+    }
+    missing = [label for key, label in required.items() if not clean(row[key])]
+    if missing:
+        return False, ["missing: " + ", ".join(missing)]
+    if not norm_domain(row["buyer_evidence_url"]):
+        return False, ["buyer evidence URL is invalid"]
+    evidence_type = clean(row["buyer_evidence_type"]).lower()
+    if evidence_type not in {"self_declared", "verified_purchase", "partner_authorized", "licensed_dataset"}:
+        return False, ["evidence type is not an accepted proof class"]
+    permission = clean(row["contact_permission_status"]).lower()
+    if permission not in {"consented", "permitted_business_contact", "existing_relationship"}:
+        return False, ["contact permission is not explicitly valid"]
+    try:
+        checked = datetime.fromisoformat(clean(row["evidence_checked_at"]).replace("Z", "+00:00"))
+        if checked.tzinfo is None:
+            checked = checked.replace(tzinfo=timezone.utc)
+        age = datetime.now(timezone.utc) - checked.astimezone(timezone.utc)
+        if age < timedelta(days=-1) or age > timedelta(days=180):
+            return False, ["buyer evidence is future-dated or stale (over 180 days)"]
+    except (TypeError, ValueError):
+        return False, ["evidence review date must be ISO-8601"]
+    return True, ["existing digital buyer evidence and permission gates passed"]
+
 def score_lead(row):
-    score, reasons = 0, []
+    qualified, gate_reasons = buyer_gate(row)
+    if row["opt_out"]:
+        return 0, ["opt-out: suppressed"]
+    if not qualified:
+        return 0, ["NOT_QUALIFIED: existing digital buyer gate blocked", *gate_reasons]
+    score, reasons = 0, list(gate_reasons)
     def add(points, reason):
         nonlocal score
         score += points
         if points: reasons.append(reason)
-    add(25 if clean(row["niche"]) else 0, "niche documented (+25)")
-    add(25 if clean(row["need_evidence"]) else 0, "specific need evidence recorded (+25)")
-    add(15 if clean(row["website"]) and norm_domain(row["website"]) else 0, "business website recorded (+15)")
-    add(20 if clean(row["email"]) or clean(row["phone"]) else 0, "business contact route recorded (+20)")
-    add(15 if clean(row["contact_basis"]) else 0, "contact basis/source recorded (+15)")
-    if row["opt_out"]:
-        return 0, ["opt-out: suppressed"]
-    return min(score,100), reasons
+    add(15 if clean(row["niche"]) else 0, "niche documented (+15)")
+    add(15 if clean(row["need_evidence"]) else 0, "specific need evidence recorded (+15)")
+    add(10 if clean(row["website"]) and norm_domain(row["website"]) else 0, "business website recorded (+10)")
+    add(15 if clean(row["email"]) or clean(row["phone"]) else 0, "business contact route recorded (+15)")
+    add(10 if clean(row["contact_basis"]) else 0, "contact source recorded (+10)")
+    add(10 if clean(row["source_url"]) else 0, "source URL recorded (+10)")
+    add(10 if clean(row["country"]) else 0, "country recorded (+10)")
+    add(5 if clean(row["contact_name"]) else 0, "contact name recorded (+5)")
+    return min(score, 100), reasons
 
 def score_all():
     init_db()
@@ -149,7 +205,9 @@ def draft_message(lead_id):
         lead=db.execute("SELECT * FROM leads WHERE id=?",(lead_id,)).fetchone()
         if not lead: raise ValueError("Lead not found")
         if lead["opt_out"]: raise ValueError("Lead is opted out; drafting suppressed")
-        context={k:lead[k] for k in ("business_name","niche","country","website","need_evidence","contact_name")}
+        qualified, reasons = buyer_gate(lead)
+        if not qualified: raise ValueError("NOT_QUALIFIED: " + "; ".join(reasons))
+        context={k:lead[k] for k in ("business_name","niche","country","website","need_evidence","contact_name","current_product","product_category","buyer_evidence")}
         prompt=("Write a concise, respectful first-contact business email in English. "
           "Use only these verified fields; do not invent facts, claims, relationship, or urgency. "
           "Offer a short scope discussion, ask permission to send details, and include a polite opt-out. "
