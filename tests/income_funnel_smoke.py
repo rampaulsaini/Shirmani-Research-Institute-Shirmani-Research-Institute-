@@ -152,15 +152,16 @@ def main() -> int:
     ):
         if marker.casefold() not in showroom_pipeline_source.casefold():
             errors.append(f"Current showroom income pipeline is missing duplicate/payment/truth-boundary control: {marker}")
-    # Payment guidance must remain consent-first and must not prefill an amount.
+    # Payment guidance must remain consent-first and use the approved Razorpay route.
+    # Legacy manual UPI/PayPal instructions are intentionally excluded from this pilot.
     offer_lower = offer_source.casefold()
     if "payment — only after written agreement" not in offer_lower:
         errors.append("Canonical offer must label payment as occurring only after written agreement")
     if "पहले लिखित सहमति" not in offer_source:
         errors.append("Canonical offer must explain written consent before payment")
-    razorpay_links = [link for link in offer_urls if link.startswith("https://rzp.io/rzp/")]
+    razorpay_links = [link for link in offer_urls if link == "https://rzp.io/rzp/UhC1i8c"]
     if not razorpay_links:
-        errors.append("Canonical offer must expose the approved Razorpay checkout link")
+        errors.append("Canonical offer must expose the approved ₹999 Razorpay checkout link")
     if "₹999" not in offer_source or "SRI-SVC-001" not in offer_source:
         errors.append("Canonical offer must identify the ₹999 SRI-SVC-001 pilot")
     if "Hindi OR English" not in offer_source and "एक भाषा" not in offer_source:
