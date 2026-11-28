@@ -1,4 +1,5 @@
 import csv, tempfile, unittest
+from unittest.mock import patch
 from datetime import datetime, timezone
 from pathlib import Path
 import lead_agent as agent
@@ -79,7 +80,8 @@ class LeadAgentTests(unittest.TestCase):
         with agent.connect() as db:
             sql="INSERT INTO leads("+",".join(columns)+",created_at,updated_at) VALUES("+",".join("?" for _ in range(len(columns)+2))+")"
             db.execute(sql,[row[k] for k in columns]+["x","x"])
-        result=agent.draft_message(1)
+        with patch.object(agent,"ollama_generate",side_effect=agent.urllib.error.URLError("offline")):
+            result=agent.draft_message(1)
         self.assertEqual(result["status"],"DRAFT")
         self.assertFalse(result["sender_invoked"])
         self.assertIn("same-category",result["body"])
