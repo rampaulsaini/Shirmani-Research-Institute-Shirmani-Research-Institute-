@@ -1,6 +1,6 @@
 import csv, tempfile, unittest
 from unittest.mock import patch
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import lead_agent as agent
 
@@ -21,9 +21,16 @@ class LeadAgentTests(unittest.TestCase):
             "buyer_evidence":"Organisation publicly documents active use of ExampleCRM Pro",
             "buyer_evidence_url":"https://acme.example/tools",
             "buyer_evidence_type":"verified_purchase",
+            "buyer_evidence_observed_at":datetime.now(timezone.utc).isoformat(),
             "evidence_checked_at":datetime.now(timezone.utc).isoformat(),
             "data_permission_basis":"Recorded, purpose-specific consent for a relevant one-to-one product comparison",
             "contact_permission_status":"consented",
+            "permission_channel":"email", "permission_purpose":"One-to-one same-category product comparison",
+            "permission_scope":"One comparison email about SRI CRM Starter; no recurring marketing",
+            "permission_recipient":"sales@acme.example",
+            "permission_granted_at":datetime.now(timezone.utc).isoformat(),
+            "permission_expires_at":(datetime.now(timezone.utc)+timedelta(days=30)).isoformat(),
+            "permission_revoked_at":"",
             "sri_product_match":"SRI CRM Starter", "sri_product_category":"CRM software",
             "sri_product_match_url":"https://sri.example/catalog/crm-starter",
             "permission_evidence_url":"https://acme.example/contact", "permission_checked_at":datetime.now(timezone.utc).isoformat(),
@@ -74,6 +81,14 @@ class LeadAgentTests(unittest.TestCase):
             {"buyer_evidence_type":"self_declared"},
             {"buyer_evidence_type":"partner_authorized"},
             {"buyer_evidence_type":"licensed_dataset"},
+            {"buyer_evidence_observed_at":"2025-01-01T00:00:00+00:00"},
+            {"permission_channel":"sms"},
+            {"permission_purpose":""},
+            {"permission_scope":""},
+            {"permission_recipient":""},
+            {"permission_granted_at":"2027-01-01T00:00:00+00:00"},
+            {"permission_expires_at":"2025-01-01T00:00:00+00:00"},
+            {"permission_revoked_at":datetime.now(timezone.utc).isoformat()},
             {"buyer_evidence_url":"javascript://acme.example/evidence"},
             {"buyer_evidence_url":"ftp://acme.example/evidence"},
             {"buyer_evidence_url":"https://user:secret@acme.example/evidence"},
@@ -88,6 +103,22 @@ class LeadAgentTests(unittest.TestCase):
     def test_verified_active_use_is_an_accepted_buyer_evidence_class(self):
         score,_=agent.score_lead(self.buyer(buyer_evidence_type="verified_active_use"))
         self.assertGreater(score,0)
+
+    def test_permission_must_be_scoped_and_unexpired(self):
+        for changes in (
+            {"permission_channel":"sms"},
+            {"permission_scope":""},
+            {"permission_purpose":""},
+            {"permission_recipient":""},
+            {"permission_expires_at":"2025-01-01T00:00:00+00:00"},
+            {"permission_revoked_at":datetime.now(timezone.utc).isoformat()},
+        ):
+            score,_=agent.score_lead(self.buyer(**changes))
+            self.assertEqual(score,0)
+
+    def test_buyer_evidence_observation_date_is_separate_and_fresh(self):
+        score,_=agent.score_lead(self.buyer(buyer_evidence_observed_at="2025-01-01T00:00:00+00:00"))
+        self.assertEqual(score,0)
 
     def test_missing_sri_catalogue_match_is_blocked(self):
         score,_=agent.score_lead(self.buyer(sri_product_match="",sri_product_match_url=""))
@@ -149,6 +180,9 @@ class LeadAgentTests(unittest.TestCase):
             self.assertIn("current_product",names)
             self.assertIn("sri_product_match",names)
             self.assertIn("permission_evidence_url",names)
+            self.assertIn("buyer_evidence_observed_at",names)
+            self.assertIn("permission_channel",names)
+            self.assertIn("permission_expires_at",names)
             self.assertIn("comparison_evidence_url",names)
             self.assertIn("sri_product_category",names)
             self.assertEqual(db.execute("SELECT business_name FROM leads").fetchone()[0],"Legacy")
