@@ -158,13 +158,19 @@ def main() -> int:
         errors.append("Canonical offer must label payment as occurring only after written agreement")
     if "पहले लिखित सहमति" not in offer_source:
         errors.append("Canonical offer must explain written consent before payment")
-    upi_links = [link for link in offer_urls if urlsplit(link).scheme == "upi"]
-    if not upi_links:
-        errors.append("Canonical offer must expose the documented UPI payment-intent link")
-    elif any("am" in parse_qs(urlsplit(link).query) for link in upi_links):
-        errors.append("UPI payment intent must not prefill an amount before written agreement")
-    if "paypal" not in offer_lower or "transaction reference" not in offer_lower:
-        errors.append("Canonical offer must include PayPal guidance and transaction-reference follow-up")
+    razorpay_links = [link for link in offer_urls if link.startswith("https://rzp.io/rzp/")]
+    if not razorpay_links:
+        errors.append("Canonical offer must expose the approved Razorpay checkout link")
+    if "₹999" not in offer_source or "SRI-SVC-001" not in offer_source:
+        errors.append("Canonical offer must identify the ₹999 SRI-SVC-001 pilot")
+    if "Hindi OR English" not in offer_source and "एक भाषा" not in offer_source:
+        errors.append("Canonical offer must limit each pilot order to one language")
+    if "paypal" in offer_lower or "9622254967@ptyes" in offer_source or "upi id" in offer_lower:
+        errors.append("Canonical offer must not expose legacy manual UPI/PayPal payment routes")
+    if "transaction reference" not in offer_lower or "bank credit" not in offer_lower:
+        errors.append("Canonical offer must explain transaction-reference and bank-credit verification")
+    if "only after written agreement" not in offer_lower:
+        errors.append("Canonical offer must gate Razorpay checkout behind written agreement")
     if "does not" not in offer_lower or "process payments" not in offer_lower:
         errors.append("Canonical offer must disclose that the static page does not process payments")
 
