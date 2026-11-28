@@ -118,7 +118,7 @@ test("server source exposes explicit deployment readiness gates", () => {
 test("public aggregate status is separate from liveness and counts only verified consented INR payment proofs", () => {
   const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
   assert.ok(source.includes('app.get("/api/status"'));
-  assert.ok(source.includes("from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'"));
+  assert.ok(source.includes("from paid_orders where verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true and currency='INR'"));
   assert.ok(source.includes("PENDING_UNLESS_VERIFIED_CONSENTED_PAYMENT_PROOF_EXISTS"));
   assert.ok(source.includes('app.get("/api/health"'));
 });

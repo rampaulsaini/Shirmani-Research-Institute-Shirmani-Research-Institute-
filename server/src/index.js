@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { createHash, randomBytes } from "node:crypto";
 import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
@@ -734,8 +735,8 @@ app.get("/api/ready", async (_req, res) => {
 // verified income requires a consented, verified payment-proof row in INR.
 app.get("/api/status", async (_req, res) => {
   let database = "NOT_CONFIGURED";
-  const tables = { client_enquiries: "NOT_CHECKED", paid_orders: "NOT_CHECKED" };
-  const counters = { enquiries: null, paid_orders: null, income_inr_minor: null };
+  const tables = { client_enquiries: "NOT_CHECKED", paid_orders: "NOT_CHECKED", guest_service_orders: "NOT_CHECKED", guest_service_payment_proofs: "NOT_CHECKED" };
+  const counters = { enquiries: null, paid_orders: null, guest_service_orders: null, guest_paid_orders: null, owner_attested_bank_match_inr_minor: null, provider_verified_payment_inr_minor: null, income_inr_minor: null };
 
   if (pool) {
     try {
@@ -764,14 +765,47 @@ app.get("/api/status", async (_req, res) => {
       const result = await pool.query("select to_regclass('public.paid_orders') is not null as ready");
       if (result.rows[0]?.ready) {
         tables.paid_orders = "READY";
-        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as income_inr_minor from paid_orders where verification_status='verified' and customer_consent=true and currency='INR'");
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as owner_attested_minor from paid_orders where verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true and currency='INR'");
         counters.paid_orders = paid.rows[0].count;
-        counters.income_inr_minor = String(paid.rows[0].income_inr_minor);
+        counters.owner_attested_bank_match_inr_minor = String(paid.rows[0].owner_attested_minor);
+        // Provider verification is unavailable until a server-side signed-webhook verifier exists.
+        counters.provider_verified_payment_inr_minor = null;
+        counters.income_inr_minor = String(paid.rows[0].owner_attested_minor);
       } else {
         tables.paid_orders = "MISSING";
       }
     } catch {
       tables.paid_orders = "ERROR";
+    }
+
+    try {
+      const result = await pool.query("select to_regclass('public.guest_service_orders') is not null as ready");
+      if (result.rows[0]?.ready) {
+        tables.guest_service_orders = "READY";
+        const orders = await pool.query("select count(*)::int as count from guest_service_orders");
+        counters.guest_service_orders = orders.rows[0].count;
+      } else {
+        tables.guest_service_orders = "MISSING";
+      }
+    } catch {
+      tables.guest_service_orders = "ERROR";
+    }
+
+    try {
+      const result = await pool.query("select to_regclass('public.guest_service_payment_proofs') is not null as ready");
+      if (result.rows[0]?.ready) {
+        tables.guest_service_payment_proofs = "READY";
+        const paid = await pool.query("select count(*)::int as count, coalesce(sum(amount_minor),0)::bigint as owner_attested_minor from guest_service_payment_proofs where verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true and currency='INR'");
+        counters.guest_paid_orders = paid.rows[0].count;
+        const existingOwnerAttested = BigInt(counters.owner_attested_bank_match_inr_minor || "0");
+        counters.owner_attested_bank_match_inr_minor = String(existingOwnerAttested + BigInt(paid.rows[0].owner_attested_minor));
+        counters.provider_verified_payment_inr_minor = null;
+        counters.income_inr_minor = counters.owner_attested_bank_match_inr_minor;
+      } else {
+        tables.guest_service_payment_proofs = "MISSING";
+      }
+    } catch {
+      tables.guest_service_payment_proofs = "ERROR";
     }
   }
 
@@ -785,6 +819,12 @@ app.get("/api/status", async (_req, res) => {
     counters,
     payment: "PENDING_UNLESS_VERIFIED_CONSENTED_PAYMENT_PROOF_EXISTS",
     income,
+    income_assurance: {
+      owner_attested_bank_match_inr_minor: counters.owner_attested_bank_match_inr_minor,
+      provider_verified_payment_inr_minor: null,
+      provider_verification_available: false,
+      meaning: "Owner bank-statement matches are owner-attested, not independently audited. Provider-side verification is not implemented, so no provider-verified total is reported."
+    },
     generated_at: new Date().toISOString()
   });
 });
@@ -811,12 +851,46 @@ app.get("/api/export-enquiries", dbRequired, auth, ownerOnly, async (_req, res) 
 
 app.get("/api/export-income", dbRequired, auth, ownerOnly, async (req, res) => {
   try {
-    const { rows } = await pool.query("select id,order_id,amount_minor,currency,payment_id,upi_ref,screenshot_url,customer_consent,verification_status,verification_method,verified_at,created_at from paid_orders where verification_status='verified' and customer_consent=true order by verified_at asc");
+    // Keep the owner export reconciled with /api/status by including both legacy
+    // marketplace payments and guest-service payment proofs in one normalized ledger.
+    const { rows } = await pool.query(`
+      select id::text as id, 'paid_orders'::text as source,
+        order_id::text as order_id, null::text as service_order_id,
+        amount_minor::text as amount_minor, currency::text as currency,
+        payment_id, upi_ref, null::text as payment_reference,
+        screenshot_url, null::text as evidence_reference,
+        customer_consent, verification_status, verification_method, verified_at, created_at
+      from paid_orders
+      where verification_status='verified' and verification_method='owner_bank_statement'
+        and customer_consent=true and currency='INR'
+      union all
+      select id::text as id, 'guest_service_payment_proofs'::text as source,
+        null::text as order_id, service_order_id::text as service_order_id,
+        amount_minor::text as amount_minor, currency::text as currency,
+        null::text as payment_id, null::text as upi_ref, payment_reference,
+        null::text as screenshot_url, evidence_reference,
+        customer_consent, verification_status, verification_method, verified_at, created_at
+      from guest_service_payment_proofs
+      where verification_status='verified' and verification_method='owner_bank_statement'
+        and customer_consent=true and currency='INR'
+      order by verified_at asc
+    `);
     const totalMinor = rows.reduce((sum, row) => sum + BigInt(row.amount_minor), 0n);
     const totalInr = (totalMinor / 100n).toString() + "." + (totalMinor % 100n).toString().padStart(2, "0");
-    const report = { status: rows.length ? "AVAILABLE" : "UNAVAILABLE", currency: "INR", verified_paid_orders: rows.length, total_minor_units: totalMinor.toString(), total_inr: totalInr, verification_basis: "owner_attested_bank_match_or_provider_verified", generated_at: new Date().toISOString(), records: rows };
+    const report = {
+      status: rows.length ? "AVAILABLE" : "UNAVAILABLE",
+      currency: "INR",
+      owner_attested_payment_records: rows.length,
+      owner_attested_paid_orders: rows.length,
+      owner_attested_total_minor_units: totalMinor.toString(),
+      owner_attested_total_inr: totalInr,
+      verification_basis: "owner_attested_bank_statement_match_not_independently_audited",
+      provider_verification_available: false,
+      generated_at: new Date().toISOString(),
+      records: rows
+    };
     res.setHeader("Cache-Control", "private, no-store, max-age=0");
-    if (req.query.format === "csv") return sendCsv(res, "income.csv", ["id","order_id","amount_minor","currency","payment_id","upi_ref","screenshot_url","customer_consent","verification_status","verification_method","verified_at","created_at"], rows);
+    if (req.query.format === "csv") return sendCsv(res, "income.csv", ["source","id","order_id","service_order_id","amount_minor","currency","payment_id","upi_ref","payment_reference","screenshot_url","evidence_reference","customer_consent","verification_status","verification_method","verified_at","created_at"], rows);
     return res.status(200).json(report);
   } catch { return res.status(503).json({ status: "UNAVAILABLE", error: "INCOME_EXPORT_UNAVAILABLE", records: [] }); }
 });
@@ -933,6 +1007,275 @@ const verifyYatharthAccount = async (req, res) => {
 
 app.get("/api/yatharth/verify/:accountId", dbRequired, verifyYatharthAccount);
 app.get("/verify/:accountId", dbRequired, verifyYatharthAccount);
+
+
+// Owner-only operational view for guest service orders; never exposed publicly.
+app.get("/api/owner/service-orders", dbRequired, auth, ownerOnly, async (req, res) => {
+  const requestedLimit = Number.parseInt(req.query.limit, 10);
+  const limit = Number.isInteger(requestedLimit) ? Math.min(100, Math.max(1, requestedLimit)) : 50;
+  try {
+    const { rows } = await pool.query(
+      "select o.id,o.enquiry_id,e.name,e.email,e.phone,e.service,e.language,e.topic,o.scope,o.amount_minor,o.currency,o.deadline,o.revision_limit,o.status,o.accepted_at,o.delivery_reference,o.delivered_at,o.customer_acceptance_reference,o.customer_accepted_at,o.created_at,o.updated_at,p.id as payment_proof_id,p.verification_status as payment_verification_status,p.verified_at as payment_verified_at from guest_service_orders o join client_enquiries e on e.id=o.enquiry_id left join guest_service_payment_proofs p on p.service_order_id=o.id order by o.created_at desc limit $1",
+      [limit]
+    );
+    return res.json({ items: rows, count: rows.length, access: "owner_only" });
+  } catch {
+    return res.status(503).json({ error: "GUEST_SERVICE_ORDER_INBOX_UNAVAILABLE" });
+  }
+});
+
+// Guest service-order lifecycle: links consented enquiries to the existing owner-only
+// payment/delivery controls without inventing a marketplace account for a guest.
+const privateEvidenceReference = value =>
+  typeof value === "string" && /^private:\/\/[A-Za-z0-9/_-]{1,960}$/.test(value.trim());
+
+app.post("/api/owner/enquiries/:enquiryId/convert-to-service-order", dbRequired, auth, ownerOnly, async (req, res) => {
+  const body = req.body || {};
+  const scope = typeof body.scope === "string" ? body.scope.trim() : "";
+  const deadline = typeof body.deadline === "string" ? body.deadline.trim() : "";
+  const amountMinor = body.amount_minor;
+  const revisionLimit = body.revision_limit;
+  const acceptanceReference = typeof body.written_acceptance_reference === "string" ? body.written_acceptance_reference.trim() : "";
+  if (!scope || scope.length > 5000 || !deadline || deadline.length > 160 ||
+      !Number.isSafeInteger(amountMinor) || amountMinor <= 0 ||
+      !Number.isInteger(revisionLimit) || revisionLimit < 0 || revisionLimit > 10 ||
+      body.currency !== "INR" || !privateEvidenceReference(acceptanceReference)) {
+    return res.status(400).json({ error: "EXACT_SCOPE_PRICE_DEADLINE_REVISIONS_AND_PRIVATE_ACCEPTANCE_REQUIRED" });
+  }
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const enquiry = await client.query(
+      "select id,status,consent_at from client_enquiries where id=$1 for update",
+      [req.params.enquiryId]
+    );
+    if (!enquiry.rows[0]) { await client.query("rollback"); return res.status(404).json({ error: "ENQUIRY_NOT_FOUND" }); }
+    if (!enquiry.rows[0].consent_at || ["declined","closed"].includes(enquiry.rows[0].status)) {
+      await client.query("rollback"); return res.status(409).json({ error: "ENQUIRY_NOT_ELIGIBLE_FOR_ORDER" });
+    }
+    const existing = await client.query(
+      "select id,status,amount_minor,currency,created_at from guest_service_orders where enquiry_id=$1",
+      [req.params.enquiryId]
+    );
+    if (existing.rows[0]) {
+      await client.query("commit");
+      return res.status(200).json({ ...existing.rows[0], duplicate: true, message: "An order already exists for this enquiry." });
+    }
+    const created = await client.query(
+      "insert into guest_service_orders(enquiry_id,scope,amount_minor,currency,deadline,revision_limit,written_acceptance_reference,created_by) values($1,$2,$3,'INR',$4,$5,$6,$7) returning id,enquiry_id,scope,amount_minor,currency,deadline,revision_limit,status,accepted_at,created_at",
+      [req.params.enquiryId, scope, amountMinor, deadline, revisionLimit, acceptanceReference, req.user.sub]
+    );
+    await client.query("update client_enquiries set status='accepted',updated_at=now() where id=$1", [req.params.enquiryId]);
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_order_created','guest_service_order',$2,$3)",
+      [req.user.sub, created.rows[0].id, { enquiry_id: req.params.enquiryId, currency: "INR", written_acceptance_recorded: true }]
+    );
+    await client.query("commit");
+    return res.status(201).json({ ...created.rows[0], payment_status: "NOT_PAID" });
+  } catch (error) {
+    try { await client.query("rollback"); } catch {}
+    if (error?.code === "23505") return res.status(409).json({ error: "SERVICE_ORDER_ALREADY_EXISTS_OR_DUPLICATE" });
+    return res.status(503).json({ error: "GUEST_SERVICE_ORDER_CREATE_FAILED" });
+  } finally { client.release(); }
+});
+
+app.post("/api/owner/service-orders/:orderId/payment-proof", dbRequired, auth, ownerOnly, async (req, res) => {
+  const body = req.body || {};
+  const paymentReference = typeof body.payment_reference === "string" ? body.payment_reference.trim() : "";
+  const evidenceReference = typeof body.evidence_reference === "string" ? body.evidence_reference.trim() : "";
+  const consentReference = typeof body.customer_consent_reference === "string" ? body.customer_consent_reference.trim() : "";
+  if (!paymentReference || paymentReference.length > 200 || !privateEvidenceReference(evidenceReference) || !privateEvidenceReference(consentReference) || body.customer_consent !== true) {
+    return res.status(400).json({ error: "PAYMENT_REFERENCE_PRIVATE_EVIDENCE_AND_RECORDED_CUSTOMER_CONSENT_REQUIRED" });
+  }
+  try {
+    const order = await pool.query(
+      "select id,amount_minor,currency,status from guest_service_orders where id=$1",
+      [req.params.orderId]
+    );
+    if (!order.rows[0]) return res.status(404).json({ error: "SERVICE_ORDER_NOT_FOUND" });
+    if (order.rows[0].status !== "awaiting_payment") return res.status(409).json({ error: "SERVICE_ORDER_NOT_AWAITING_PAYMENT" });
+    const { rows } = await pool.query(
+      "insert into guest_service_payment_proofs(service_order_id,amount_minor,currency,payment_reference,evidence_reference,customer_consent,customer_consent_reference) values($1,$2,$3,$4,$5,true,$6) returning id,service_order_id,amount_minor,currency,verification_status,created_at",
+      [order.rows[0].id, order.rows[0].amount_minor, order.rows[0].currency, paymentReference, evidenceReference, consentReference]
+    );
+    return res.status(201).json({ ...rows[0], income: "PENDING_UNVERIFIED", note: "Evidence recorded; not verified income." });
+  } catch (error) {
+    if (error?.code === "23505") return res.status(409).json({ error: "DUPLICATE_PAYMENT_REFERENCE_OR_OPEN_PROOF" });
+    return res.status(503).json({ error: "GUEST_PAYMENT_PROOF_SAVE_FAILED" });
+  }
+});
+
+app.post("/api/owner/service-payment-proofs/:proofId/verify", dbRequired, auth, ownerOnly, async (req, res) => {
+  if (req.body?.confirm_bank_match !== true) return res.status(400).json({ error: "BANK_MATCH_CONFIRMATION_REQUIRED" });
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const proof = await client.query(
+      "select p.id,p.service_order_id,p.amount_minor,p.currency,p.verification_status,o.status as order_status,o.amount_minor as order_amount,o.currency as order_currency from guest_service_payment_proofs p join guest_service_orders o on o.id=p.service_order_id where p.id=$1 for update of p,o",
+      [req.params.proofId]
+    );
+    if (!proof.rows[0] || proof.rows[0].verification_status !== "pending") {
+      await client.query("rollback"); return res.status(404).json({ error: "PENDING_GUEST_PAYMENT_PROOF_NOT_FOUND" });
+    }
+    const p = proof.rows[0];
+    if (p.order_status !== "awaiting_payment" || String(p.amount_minor) !== String(p.order_amount) || p.currency.trim() !== p.order_currency.trim()) {
+      await client.query("rollback"); return res.status(409).json({ error: "PAYMENT_AMOUNT_CURRENCY_OR_ORDER_STATE_MISMATCH" });
+    }
+    await client.query(
+      "update guest_service_payment_proofs set verification_status='verified',verification_method='owner_bank_statement',verified_by=$1,verified_at=now() where id=$2",
+      [req.user.sub, p.id]
+    );
+    await client.query("update guest_service_orders set status='paid',updated_at=now() where id=$1", [p.service_order_id]);
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_payment_verified','guest_service_order',$2,$3)",
+      [req.user.sub, p.service_order_id, { proof_id: p.id, verification_method: "owner_bank_statement" }]
+    );
+    await client.query("commit");
+    return res.json({ proof_id: p.id, service_order_id: p.service_order_id, status: "paid", verification_scope: "owner_attested_bank_match_not_independent_audit" });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "GUEST_PAYMENT_VERIFICATION_FAILED" });
+  } finally { client.release(); }
+});
+
+app.post("/api/owner/service-orders/:orderId/deliver", dbRequired, auth, ownerOnly, async (req, res) => {
+  const reference = typeof req.body?.delivery_reference === "string" ? req.body.delivery_reference.trim() : "";
+  if (!privateEvidenceReference(reference)) return res.status(400).json({ error: "PRIVATE_DELIVERY_REFERENCE_REQUIRED" });
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const { rows } = await client.query(
+      "update guest_service_orders set status='delivered',delivery_reference=$1,delivered_at=now(),updated_at=now() where id=$2 and status='paid' returning id,status,delivered_at",
+      [reference, req.params.orderId]
+    );
+    if (!rows[0]) { await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_MUST_BE_PAID_BEFORE_DELIVERY" }); }
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_order_delivered','guest_service_order',$2,$3)",
+      [req.user.sub, rows[0].id, { delivery_reference_private: true }]
+    );
+    await client.query("commit");
+    return res.json({ ...rows[0], customer_acceptance: "PENDING" });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "GUEST_SERVICE_DELIVERY_FAILED" });
+  } finally { client.release(); }
+});
+
+// Owner creates a one-time bearer token after delivery. The raw token is returned once
+// for manual out-of-band sharing; no email/SMS provider is configured by this change.
+app.post("/api/owner/service-orders/:orderId/acceptance-invitations", dbRequired, auth, ownerOnly, async (req, res) => {
+  const token = randomBytes(32).toString("base64url");
+  const tokenHash = createHash("sha256").update(token).digest("hex");
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    const order = await client.query(
+      "select id,status from guest_service_orders where id=$1 for update",
+      [req.params.orderId]
+    );
+    if (!order.rows[0]) { await client.query("rollback"); return res.status(404).json({ error: "SERVICE_ORDER_NOT_FOUND" }); }
+    if (order.rows[0].status !== "delivered") {
+      await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_MUST_BE_DELIVERED_BEFORE_ACCEPTANCE_INVITATION" });
+    }
+    await client.query(
+      "update guest_service_acceptance_tokens set revoked_at=now() where service_order_id=$1 and consumed_at is null and revoked_at is null",
+      [req.params.orderId]
+    );
+    const issued = await client.query(
+      "insert into guest_service_acceptance_tokens(service_order_id,token_hash,expires_at,issued_by) values($1,$2,now()+interval '72 hours',$3) returning id,expires_at",
+      [req.params.orderId, tokenHash, req.user.sub]
+    );
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values($1,'guest_service_acceptance_token_issued','guest_service_order',$2,$3)",
+      [req.user.sub, req.params.orderId, { token_id: issued.rows[0].id, expires_at: issued.rows[0].expires_at, raw_token_returned_once: true, delivery_channel: "manual_out_of_band" }]
+    );
+    await client.query("commit");
+    return res.status(201).json({
+      token,
+      expires_at: issued.rows[0].expires_at,
+      delivery_channel: "MANUAL_OUT_OF_BAND_REQUIRED",
+      note: "Share this token privately with the customer. It is shown once; possession confirms the token action, not the recipient's legal identity."
+    });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "GUEST_ACCEPTANCE_INVITATION_FAILED" });
+  } finally { client.release(); }
+});
+
+const guestAcceptanceLimiter = rateLimit({ windowMs: 15 * 60_000, limit: 10, standardHeaders: true, legacyHeaders: false });
+
+// Customer action is a POST so link-preview bots cannot consume the one-time token.
+// The token is a bearer credential: it is not identity proof or an independent audit.
+app.post("/api/service-order-acceptance", dbRequired, guestAcceptanceLimiter, async (req, res) => {
+  const token = typeof req.body?.token === "string" ? req.body.token : "";
+  if (!/^[A-Za-z0-9_-]{40,60}$/.test(token) || req.body?.accepted !== true) {
+    return res.status(400).json({ error: "VALID_TOKEN_AND_EXPLICIT_ACCEPTANCE_REQUIRED" });
+  }
+  const tokenHash = createHash("sha256").update(token).digest("hex");
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    // Use the same lock order as invitation issuance: order first, token second.
+    // This avoids an order/token lock inversion when issuance and acceptance race.
+    const tokenOwner = await client.query(
+      "select service_order_id from guest_service_acceptance_tokens where token_hash=$1",
+      [tokenHash]
+    );
+    if (!tokenOwner.rows[0]) {
+      await client.query("rollback"); return res.status(404).json({ error: "ACCEPTANCE_TOKEN_NOT_FOUND" });
+    }
+    const lockedOrder = await client.query(
+      "select id,status from guest_service_orders where id=$1 for update",
+      [tokenOwner.rows[0].service_order_id]
+    );
+    if (!lockedOrder.rows[0]) {
+      await client.query("rollback"); return res.status(404).json({ error: "ACCEPTANCE_TOKEN_NOT_FOUND" });
+    }
+    const found = await client.query(
+      "select id,service_order_id,expires_at,consumed_at,revoked_at from guest_service_acceptance_tokens where token_hash=$1 and service_order_id=$2 for update",
+      [tokenHash, lockedOrder.rows[0].id]
+    );
+    if (!found.rows[0] || found.rows[0].revoked_at) {
+      await client.query("rollback"); return res.status(404).json({ error: "ACCEPTANCE_TOKEN_NOT_FOUND" });
+    }
+    const invitation = { ...found.rows[0], order_status: lockedOrder.rows[0].status };
+    if (invitation.consumed_at) {
+      await client.query("rollback"); return res.status(409).json({ error: "ACCEPTANCE_TOKEN_ALREADY_USED" });
+    }
+    if (new Date(invitation.expires_at).getTime() <= Date.now()) {
+      await client.query("rollback"); return res.status(410).json({ error: "ACCEPTANCE_TOKEN_EXPIRED" });
+    }
+    if (invitation.order_status !== "delivered") {
+      await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_NOT_AWAITING_CUSTOMER_ACCEPTANCE" });
+    }
+    await client.query(
+      "update guest_service_acceptance_tokens set consumed_at=now() where id=$1 and consumed_at is null and revoked_at is null",
+      [invitation.id]
+    );
+    const accepted = await client.query(
+      "update guest_service_orders set status='completed',customer_accepted_at=now(),customer_acceptance_method='single_use_token',updated_at=now() where id=$1 and status='delivered' returning id,status,customer_accepted_at,customer_acceptance_method",
+      [invitation.service_order_id]
+    );
+    if (!accepted.rows[0]) {
+      await client.query("rollback"); return res.status(409).json({ error: "SERVICE_ORDER_NOT_AWAITING_CUSTOMER_ACCEPTANCE" });
+    }
+    await client.query(
+      "insert into audit_events(actor_id,event_type,target_type,target_id,metadata) values(null,'guest_service_customer_acceptance_recorded','guest_service_order',$1,$2)",
+      [invitation.service_order_id, { acceptance_method: "single_use_token", token_id: invitation.id, identity_verification: "not_performed" }]
+    );
+    await client.query("commit");
+    return res.json({ ...accepted.rows[0], acceptance_scope: "single_use_bearer_token_possession_not_identity_verified" });
+  } catch {
+    try { await client.query("rollback"); } catch {}
+    return res.status(503).json({ error: "GUEST_CUSTOMER_ACCEPTANCE_FAILED" });
+  } finally { client.release(); }
+});
+
+// Retain the old owner route as an explicit fail-closed response; an owner cannot
+// mark a guest order completed by asserting customer confirmation.
+app.post("/api/owner/service-orders/:orderId/customer-acceptance", dbRequired, auth, ownerOnly, (_req, res) => {
+  return res.status(410).json({ error: "OWNER_RECORDED_CUSTOMER_ACCEPTANCE_DISABLED", required_flow: "single_use_customer_acceptance_token" });
+});
 
 app.use((_req, res) => res.status(404).json({ error: "NOT_FOUND" }));
 app.listen(port, () => console.log(`shirmani-social-api listening on :${port}`));

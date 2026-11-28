@@ -16,7 +16,7 @@ test("private exports require authentication and owner identity", () => {
 
 test("only verified and consented proof records contribute to income", () => {
   const source = fs.readFileSync(new URL("../src/index.js", import.meta.url), "utf8");
-  assert.ok(source.includes("verification_status='verified' and customer_consent=true"));
+  assert.ok(source.includes("verification_status='verified' and verification_method='owner_bank_statement' and customer_consent=true"));
   assert.ok(source.includes("UNAVAILABLE_PENDING_VERIFICATION"));
   assert.ok(source.includes("owner_attested_bank_match_not_independent_audit"));
   assert.match(source, /private:\\\/\\\//, "only private:// evidence references may be accepted");
