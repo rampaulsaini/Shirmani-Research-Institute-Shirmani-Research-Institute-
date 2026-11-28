@@ -42,14 +42,14 @@
 
 <section class="sale-gate" id="sri-svc-001" aria-labelledby="sri-sale-title">
   <div class="service-id">FEATURED SERVICE · SRI-SVC-001</div>
-  <h2 id="sri-sale-title">Hindi / English Writing &amp; Research</h2>
+  <h2 id="sri-sale-title">Hindi OR English Writing &amp; Editing</h2>
   <div class="price">₹999 · First Pilot</div>
-  <p>एक सीमित शुरुआती पायलट: ग्राहक द्वारा दिए गए अधिकतम 500 शब्दों की writing polish / research-summary सहायता। अंतिम deliverables और स्रोत brief देखने के बाद लिखित रूप में तय होंगे।</p>
+  <p>एक सीमित शुरुआती पायलट: ग्राहक द्वारा दिए गए अधिकतम 500 शब्दों की हिंदी OR अंग्रेज़ी writing / editing सहायता। इसमें grammar, clarity, structure और readability सुधार शामिल हैं। Research summaries अलग सेवाएँ हैं। अंतिम deliverables लिखित brief के आधार पर तय होंगे।</p>
   <div class="sale-grid">
     <div class="sale-box">
       <h3>Scope · Deadline · Revisions</h3>
       <ul>
-        <li><strong>Scope:</strong> अधिकतम 500 शब्द; Hindi या English clarity, structure और language सुधार अथवा सहमत स्रोतों का संक्षिप्त सारांश</li>
+        <li><strong>Scope:</strong> अधिकतम 500 शब्द; एक ऑर्डर में Hindi OR English लेखन/संपादन, grammar, clarity, structure और readability सुधार</li>
         <li><strong>Deadline:</strong> स्वीकृत brief और आवश्यक सामग्री मिलने के बाद 2 कार्य-दिवस का प्रस्तावित समय</li>
         <li><strong>Revisions:</strong> एक समेकित revision</li>
         <li><strong>₹999:</strong> केवल लिखित scope और अंतिम quote की स्वीकृति के बाद लागू</li>
@@ -59,10 +59,10 @@
     </div>
     <div class="sale-box">
       <h3>Payment details · पुष्टि के बाद ही भुगतान</h3>
-      <p>UPI ID</p><p class="sale-payment">9622254967@ptyes</p>
-      <p>PayPal</p><p class="sale-payment">sainirampaul60@gmail.com</p>
-      <p class="sale-terms">भुगतान से पहले अपने UPI / PayPal App में recipient का नाम, ID और राशि स्वयं verify करें। पहले लिखित proposal स्वीकार करें। OTP, UPI PIN, password या bank login कभी साझा न करें।</p>
-      <p><a class="btn alt" href="docs/payment-proof-format.md">Payment proof format देखें</a></p>
+      <p>Razorpay · SRI-SVC-001</p><p class="sale-payment">₹999 INR</p>
+      <p class="sale-terms">केवल लिखित रूप से agreed scope, final price और payment terms की पुष्टि के बाद मौजूदा Razorpay checkout खोलें। भुगतान से पहले checkout में राशि और सेवा का विवरण स्वयं verify करें। OTP, UPI PIN, password या bank login कभी साझा न करें।</p>
+      <p><a class="btn" href="https://rzp.io/rzp/UhC1i8c" target="_blank" rel="noopener noreferrer">Agreed ₹999 भुगतान करें via Razorpay</a></p>
+      <p><a class="btn alt" href="docs/payment-proof-format.md">Payment proof rules पढ़ें</a></p>
     </div>
   </div>
   <div class="sale-box" id="sri-enquiry" style="margin-top:14px">
@@ -73,7 +73,7 @@
       <label>ईमेल (वैकल्पिक) <input name="email" type="email" maxlength="254" autocomplete="email"></label>
       <label>फोन / WhatsApp (वैकल्पिक) <input name="phone" type="tel" maxlength="32" autocomplete="tel"></label>
       <label>विषय / जरूरत <input name="topic" maxlength="180" required placeholder="आपको किस लेखन या शोध सहायता की जरूरत है?"></label>
-      <label>भाषा <select name="language"><option>Hindi</option><option>English</option><option>Hindi + English</option><option>To be agreed</option></select></label>
+      <label>भाषा <select name="language"><option>Hindi</option><option>English</option><option>To be agreed</option></select></label>
       <label>समय-सीमा की अपेक्षा <input name="deadline" maxlength="100" placeholder="उदाहरण: 2 कार्य-दिवस; अंतिम पुष्टि आवश्यक"></label>
       <label>Brief / निर्देश (वैकल्पिक) <textarea name="notes" maxlength="1500" placeholder="कृपया निजी या संवेदनशील जानकारी न भेजें।"></textarea></label>
       <label style="position:absolute;left:-10000px" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
@@ -166,10 +166,10 @@
     const payload = {
       name: String(data.get("name") || "").trim(),
       email, phone,
-      service: "SRI-SVC-001 Hindi/English Writing & Research",
+      service: "SRI-SVC-001 Hindi OR English Writing & Editing",
       language: String(data.get("language") || "To be agreed"),
       topic: String(data.get("topic") || "").trim(),
-      goal: "₹999 first pilot enquiry; final scope and quote require written agreement.",
+      goal: "₹999 proposed writing/editing pilot only; research summaries are separate. Final scope and quote require written agreement.",
       word_count: "Up to 500 words — confirm in proposal",
       deadline: String(data.get("deadline") || "2 working days proposed; confirm in writing"),
       budget: "INR 999 proposed first pilot; not an accepted quote",
