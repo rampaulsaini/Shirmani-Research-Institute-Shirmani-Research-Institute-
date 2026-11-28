@@ -112,8 +112,8 @@ def main() -> int:
 
     # New research packages must have standalone detail pages and no premature checkout.
     for source, page_text, sku, price, marker in (
-        (svc002_source, " ".join(svc002.text), "SRI-SVC-002", "₹1,999", "up to 3"),
-        (svc003_source, " ".join(svc003.text), "SRI-SVC-003", "₹2,999", "up to 8"),
+        (svc002_source, " ".join(svc002.text), "SRI-SVC-002", "₹1,999", "अधिकतम 3 सहमत"),
+        (svc003_source, " ".join(svc003.text), "SRI-SVC-003", "₹2,999", "अधिकतम 8 सहमत"),
     ):
         if sku not in source or price not in page_text:
             errors.append(f"{sku} detail page is missing its identifier or price")
