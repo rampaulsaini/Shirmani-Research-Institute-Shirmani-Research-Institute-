@@ -122,6 +122,10 @@ def main() -> int:
     for stale_label in ("SRI-WEB-PILOT-03", "Website / Blog Content", "SRI-RES-PILOT-02"):
         if stale_label.casefold() in showroom_source.casefold():
             errors.append(f"Public showroom still contains superseded pilot offer: {stale_label}")
+    if "https://rzp.io/rzp/UhC1i8c" not in showroom_source:
+        errors.append("Public showroom SVC-001 payment route must match the canonical Razorpay checkout")
+    if "9622254967@ptyes" in showroom_source or "paypal" in showroom_source.casefold() or "upi://" in showroom_source:
+        errors.append("Public showroom must not retain superseded manual UPI/PayPal payment instructions")
 
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
