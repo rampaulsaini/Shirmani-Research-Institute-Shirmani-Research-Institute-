@@ -1,0 +1,16 @@
+{
+  "name": "yatharth-token-private-tests",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-only compilation and unit tests for the YTH source scaffold",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "3.1.0",
+    "@openzeppelin/contracts": "5.4.0",
+    "ethers": "6.15.0",
+    "hardhat": "2.26.3"
+  }
+}
