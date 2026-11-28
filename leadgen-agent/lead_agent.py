@@ -182,7 +182,7 @@ def buyer_gate(row):
     if evidence_type not in {"self_declared", "verified_purchase", "partner_authorized", "licensed_dataset"}:
         return False, ["evidence type is not an accepted proof class"]
     permission = clean(value("contact_permission_status")).lower()
-    if permission not in {"consented", "permitted_business_contact", "existing_relationship"}:
+    if permission not in {"consented", "documented_permission", "existing_relationship"}:
         return False, ["contact permission is not explicitly valid"]
     try:
         checked = datetime.fromisoformat(clean(value("evidence_checked_at")).replace("Z", "+00:00"))
@@ -268,7 +268,7 @@ def draft_message(lead_id):
               f"An existing SRI catalogue match is {clean(lead['sri_product_match'])}. "
               f"Our recorded comparison summary is: {clean(lead['comparison_summary'])}. "
               f"The specific added value is: {clean(lead['added_value'])}. "
-              "May I share the supporting evidence and full scope for your review? "
+              "May I share the supporting evidence for this same-category comparison and the full scope for your review? "
               "If this is not relevant, please let me know and I will not follow up.\n\nRegards,\nShirmani Research Institute")
             source="safe-template-fallback"
         cur=db.execute("INSERT INTO messages(lead_id,channel,direction,body,status,created_at) VALUES(?,?,?,?,?,?)",
