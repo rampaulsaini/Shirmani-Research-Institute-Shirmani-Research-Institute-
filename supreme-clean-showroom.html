@@ -37,7 +37,7 @@ a{color:var(--cyan)}a:focus-visible,button:focus-visible,input:focus-visible,sel
 
 <section class="panel pilot" id="first-pilot">
   <div class="tag">FIRST PILOT · CUSTOMER ENQUIRY</div>
-  <h2>SRI-SVC-001 — Hindi / English Writing & Research</h2>
+  <h2>SRI-SVC-001 — Hindi OR English Writing & Editing</h2>
   <div class="price">₹999 Pilot</div>
   <p>एक सीमित शुरुआती सेवा: ग्राहक द्वारा दिए गए brief पर अधिकतम 500 शब्दों की Hindi या English writing / editing सहायता (एक ऑर्डर में केवल एक भाषा)। इसमें grammar, clarity, structure और readability सुधार शामिल हैं। Research summaries अलग सेवा हैं।</p>
   <div class="specs">
@@ -114,7 +114,7 @@ $("enquiryForm").addEventListener("submit",async e=>{
  const email=$("email").value.trim(),phone=$("phone").value.trim();
  if(!email&&!phone){$("enquiryStatus").textContent="कृपया email या phone में से कम-से-कम एक दें।";return;}
  if(!$("consent").checked){$("enquiryStatus").textContent="Enquiry भेजने से पहले consent आवश्यक है।";return;}
- const payload={name:$("name").value.trim(),email,phone,service:"SRI-SVC-001 Hindi/English Writing & Research",language:$("language").value,topic:$("topic").value.trim(),goal:"₹999 proposed first pilot; final scope and quote require written agreement.",word_count:"Up to 500 words",deadline:$("deadline").value.trim()||"2 working days proposed; confirm in writing",budget:"INR 999 proposed; not an accepted quote",notes:$("notes").value.trim(),website:$("website").value,consent:true};
+ const payload={name:$("name").value.trim(),email,phone,service:"SRI-SVC-001 Hindi OR English Writing & Editing",language:$("language").value,topic:$("topic").value.trim(),goal:"₹999 proposed first pilot; final scope and quote require written agreement.",word_count:"Up to 500 words",deadline:$("deadline").value.trim()||"2 working days proposed; confirm in writing",budget:"INR 999 proposed; not an accepted quote",notes:$("notes").value.trim(),website:$("website").value,consent:true};
  const button=$("submitEnquiry");button.disabled=true;$("enquiryStatus").textContent="Enquiry सुरक्षित रूप से भेजी जा रही है…";
  try{const response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});const result=await response.json().catch(()=>({}));if(!response.ok)throw new Error(result.error||"API request failed ("+response.status+")");$("enquiryStatus").textContent="Enquiry दर्ज हुई। Reference: "+result.id+" · अभी कोई order या payment नहीं बना है।";$("enquiryForm").reset();}
  catch(error){$("enquiryStatus").textContent="Enquiry दर्ज नहीं हुई: "+error.message+" · अभी भुगतान न करें।";}
