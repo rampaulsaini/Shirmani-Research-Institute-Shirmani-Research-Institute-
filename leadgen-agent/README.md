@@ -19,7 +19,7 @@ A local-first, human-approved prospect CRM. Python + SQLite are the durable core
 7. Draft for a lead: `python lead_agent.py draft LEAD_ID`
 8. Review: `python lead_agent.py list`
 
-CSV imports may also include buyer evidence, permission, same-category SRI product match, and comparative-test fields. A record remains `NOT_QUALIFIED` unless the buyer's current product/category and recent evidence are documented, explicit consent or separately documented permission/existing-relationship basis is recorded, the existing SRI match is in the same category, and recent comparison evidence records both better quality and lower total cost plus specific added value. These are evidence prompts, not automatic legal or product-equivalence verification; a human must validate source contents, licences, permission, and comparison before any contact.
+CSV imports may also include buyer evidence, permission, same-category SRI product match, and comparative-test fields. A record remains `NOT_QUALIFIED` unless the buyer's current product/category and recent evidence are documented, explicit consent or separately documented permission is recorded; self-declared buyer claims and relationship-only contact status do not qualify, the existing SRI match is in the same category, and recent comparison evidence records both better quality and lower total cost plus specific added value. These are evidence prompts, not automatic legal or product-equivalence verification; a human must validate source contents, licences, permission, and comparison before any contact.
 
 The database is created at `data/leads.sqlite3`. It is local and should not be committed or placed in a public web root.
 
