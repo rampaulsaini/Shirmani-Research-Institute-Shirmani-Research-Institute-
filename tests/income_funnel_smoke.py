@@ -115,6 +115,14 @@ def main() -> int:
         if stale_label.casefold() in enquiry_source.casefold():
             errors.append(f"Writing/research enquiry page still contains superseded offer: {stale_label}")
 
+    # The main public showroom must use the same three canonical SKUs and must not retain the old ₹2,999 website/blog offer.
+    for marker in ("SRI-SVC-001", "SRI-SVC-002", "SRI-SVC-003", "sri-svc-002-research-summary.html", "sri-svc-003-detailed-research-report.html"):
+        if marker not in showroom_source:
+            errors.append(f"Public showroom is missing canonical service route or SKU: {marker}")
+    for stale_label in ("SRI-WEB-PILOT-03", "Website / Blog Content", "SRI-RES-PILOT-02"):
+        if stale_label.casefold() in showroom_source.casefold():
+            errors.append(f"Public showroom still contains superseded pilot offer: {stale_label}")
+
     offer_urls = offer.links
     if not any(urlsplit(link).scheme == "mailto" for link in offer_urls):
         errors.append("Sales desk has no email enquiry action")
