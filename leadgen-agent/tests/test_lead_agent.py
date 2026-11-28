@@ -25,6 +25,7 @@ class LeadAgentTests(unittest.TestCase):
             "data_permission_basis":"Official public business contact route; use limited to relevant one-to-one enquiry",
             "contact_permission_status":"permitted_business_contact",
             "sri_product_match":"SRI CRM Starter", "sri_product_match_url":"https://sri.example/catalog/crm-starter",
+            "permission_evidence_url":"https://acme.example/contact", "permission_checked_at":datetime.now(timezone.utc).isoformat(),
             "opt_out":0,
         }
         row.update(overrides)
@@ -59,6 +60,8 @@ class LeadAgentTests(unittest.TestCase):
         for changes in (
             {"contact_permission_status":"unknown"},
             {"data_permission_basis":""},
+            {"permission_evidence_url":""},
+            {"permission_checked_at":"2025-01-01T00:00:00+00:00"},
             {"buyer_evidence_type":"public_signal"},
         ):
             score,_=agent.score_lead(self.buyer(**changes))
@@ -110,6 +113,7 @@ class LeadAgentTests(unittest.TestCase):
             names={r["name"] for r in db.execute("PRAGMA table_info(leads)")}
             self.assertIn("current_product",names)
             self.assertIn("sri_product_match",names)
+            self.assertIn("permission_evidence_url",names)
             self.assertEqual(db.execute("SELECT business_name FROM leads").fetchone()[0],"Legacy")
         agent.DB_PATH=original
 
